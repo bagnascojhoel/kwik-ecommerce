@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: health-check
+      author: jhoel.bagnasco
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: health-check/ddl-create_table_health_check.sql
+            relativeToChangelogFile: true

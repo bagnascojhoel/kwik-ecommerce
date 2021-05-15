@@ -1,0 +1,27 @@
+kwik-ecommerce:
+  database:
+    name: ${DB_NAME:kwik_ecommerce_db}
+
+spring:
+  profiles:
+    active: @activatedProperties@
+
+  application:
+    name: kwik-ecommerce-api
+
+  datasource:
+    plataform: mysql
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${kwik-ecommerce.database.name}?createDatabaseIfNotExist=true
+    username: ${DB_USER:root}
+    password: ${DB_PASS:toor}
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+
+  liquibase:
+    contexts: ${spring.profiles.active}
+    enabled: true
+    change-log: classpath:/db/changelog/changelog.yml
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}

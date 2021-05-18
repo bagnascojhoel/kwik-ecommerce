@@ -1,6 +1,22 @@
 kwik-ecommerce:
-  database:
+  db:
     name: ${DB_NAME:kwik_ecommerce_db}
+    host: ${DB_HOST:localhost}
+    port: ${DB_PORT:3306}
+    user: ${DB_USER:root}
+    pass: ${DB_PASS:toor}
+  server:
+    port: ${APP_PORT:8080}
+    context: /api
+  api-info:
+    title: Kwik-Ecommerce API
+    description: This is our description
+    version: 0.0.1
+
+server:
+  port: ${kwik-ecommerce.server.port}
+  servlet:
+    context-path: ${kwik-ecommerce.server.context}
 
 spring:
   profiles:
@@ -11,9 +27,9 @@ spring:
 
   datasource:
     plataform: mysql
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${kwik-ecommerce.database.name}?createDatabaseIfNotExist=true
-    username: ${DB_USER:root}
-    password: ${DB_PASS:toor}
+    url: jdbc:mysql://${kwik-ecommerce.db.host}:${kwik-ecommerce.db.port}/${kwik-ecommerce.db.name}?useSSL=false&createDatabaseIfNotExist=true
+    username: ${kwik-ecommerce.db.user}
+    password: ${kwik-ecommerce.db.pass}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect

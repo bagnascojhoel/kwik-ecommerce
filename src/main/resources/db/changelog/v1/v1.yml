@@ -1,9 +1,9 @@
 databaseChangeLog:
   - changeSet:
-      id: health-check
+      id: create-table_product
       author: jhoel.bagnasco
       changes:
         - sqlFile:
             encoding: utf8
-            path: health-check/ddl-create_table_health_check.sql
+            path: product/ddl-create-table_product.sql
             relativeToChangelogFile: true

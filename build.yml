@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  builder:
+    container_name: kwik_ecommerce-builder
+    build:
+      dockerfile: images/build.Dockerfile
+      context: .
+      args:
+        - ENV=${ENV}
+    volumes:
+      - ./target:/tmp/target
+

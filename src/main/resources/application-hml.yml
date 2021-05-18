@@ -6,4 +6,4 @@ kwik-ecommerce:
     user: ${DB_USER:root}
     pass: ${DB_PASS:aAE39Rt1}
   server:
-    port: 80
+    port: ${APP_PORT:80}

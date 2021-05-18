@@ -27,7 +27,7 @@ spring:
 
   datasource:
     plataform: mysql
-    url: jdbc:mysql://${kwik-ecommerce.db.host}:${kwik-ecommerce.db.port}/${kwik-ecommerce.db.name}?useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://${kwik-ecommerce.db.host}:${kwik-ecommerce.db.port}/${kwik-ecommerce.db.name}?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
     username: ${kwik-ecommerce.db.user}
     password: ${kwik-ecommerce.db.pass}
 

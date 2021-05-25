@@ -9,10 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/products")
-public class ProductController {
+public class ProductController implements ProductApi {
 
     private final ProductService productService;
 

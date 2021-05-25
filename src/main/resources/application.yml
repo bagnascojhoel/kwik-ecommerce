@@ -10,7 +10,7 @@ kwik-ecommerce:
     context: /api
   api-info:
     title: Kwik-Ecommerce API
-    description: This is our description
+    description: API for the Kwik-Ecommerce website.
     version: 0.0.1
 
 server:

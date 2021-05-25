@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Page;
 
+
 @Api(value = "/products", tags = "Products")
 public interface ProductApi {
 

@@ -12,6 +12,7 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+
 @Configuration
 @RequiredArgsConstructor
 public class SwaggerConfiguration {
@@ -19,10 +20,10 @@ public class SwaggerConfiguration {
     private final ApiInfoProperty apiInfoProperty;
 
     @Bean
-    public Docket buildDocker() {
+    public Docket buildDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("br.com.kwikecommerce.kwikecommerceapi"))
+            .apis(RequestHandlerSelectors.basePackage("br.com.kwikecommerce.api"))
             .paths(PathSelectors.any())
             .build()
             .apiInfo(buildApiInfo());

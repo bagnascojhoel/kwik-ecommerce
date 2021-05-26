@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String SWAGGER_ENDPOINT = "swagger-ui.html";
-
     private static final String[] PUBLIC_ENDPOINTS = {
         "/**"
     };

@@ -2,8 +2,9 @@ databaseChangeLog:
   - changeSet:
       id: create-table_product
       author: jhoel.bagnasco
+      comments: Cria a versão inicial da tabela de produtos
       changes:
         - sqlFile:
             encoding: utf8
-            path: product/ddl-create-table_product.sql
+            path: product/create_table-produto.sql
             relativeToChangelogFile: true

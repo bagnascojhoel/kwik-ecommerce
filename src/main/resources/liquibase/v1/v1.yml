@@ -1,10 +1,30 @@
 databaseChangeLog:
   - changeSet:
-      id: create-table_product
+      id: create_table-produto
       author: jhoel.bagnasco
       comments: Cria a versão inicial da tabela de produtos
       changes:
         - sqlFile:
             encoding: utf8
-            path: product/create_table-produto.sql
+            path: produto/create_table-produto.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: create_table-categoria
+      author: jhoel.bagnasco
+      comments: Cria tabela categoria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: categoria/create_table-categoria.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: alter_table-produto-add-categoria
+      author: jhoel.bagnasco
+      comments: Adiciona coluna e foreign key de categoria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: produto/alter_table-produto-add-categoria.sql
             relativeToChangelogFile: true

@@ -6,19 +6,16 @@ import br.com.kwikecommerce.api.dto.product.ProductListingDto;
 import br.com.kwikecommerce.api.dto.product.creation.ProductCreationRequestDto;
 import br.com.kwikecommerce.api.mapper.product.ProductMapper;
 import br.com.kwikecommerce.api.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
-@RequiredArgsConstructor
 @Service
-public class ProductServiceImpl implements ProductService {
-
-    private final ProductRepository productRepository;
-    private final ProductMapper productMapper;
+public record ProductServiceImpl(
+    ProductRepository productRepository,
+    ProductMapper productMapper) implements ProductService {
 
     @Override
     public Long createProduct(ProductCreationRequestDto requestDto) {
@@ -31,7 +28,8 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductListingDto> listProducts(Integer pageNumber, SortingOption sortingOption) {
         var sort = buildSort(sortingOption);
         var pageable = PageRequest.of(pageNumber, Constants.PAGE_LENGTH, sort);
-        return productMapper.map(productRepository.findAll(pageable));
+
+        return productRepository.findAll(pageable).map(productMapper::map);
     }
 
     private Sort buildSort(SortingOption sortingOption) {

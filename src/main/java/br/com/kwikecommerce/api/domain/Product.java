@@ -1,6 +1,6 @@
-package br.com.kwikecommerce.api.domain.product;
+package br.com.kwikecommerce.api.domain;
 
-import br.com.kwikecommerce.api.domain.AbstractEntity;
+import br.com.kwikecommerce.api.domain.general.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

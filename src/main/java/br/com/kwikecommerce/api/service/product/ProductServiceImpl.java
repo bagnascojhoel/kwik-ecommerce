@@ -1,10 +1,10 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.domain.Constants;
-import br.com.kwikecommerce.api.domain.SortingOption;
-import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.domain.general.Constants;
+import br.com.kwikecommerce.api.domain.general.SortingOption;
 import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
-import br.com.kwikecommerce.api.mapper.product.ProductMapper;
+import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,13 +19,13 @@ public record ProductServiceImpl(
 ) implements ProductService {
 
     @Override
-    public Long createProduct(ProductCreationRequestDto requestDto) {
+    public Long create(ProductCreationRequestDto requestDto) {
         var product = productMapper.map(requestDto);
         return productRepository.save(product).getId();
     }
 
     @Override
-    public Page<ProductListingResponseDto> listProducts(Integer pageNumber, SortingOption sortingOption) {
+    public Page<ProductListingResponseDto> fetchPage(Integer pageNumber, SortingOption sortingOption) {
         var sort = buildSort(sortingOption);
         var pageable = PageRequest.of(pageNumber, Constants.PAGE_LENGTH, sort);
 

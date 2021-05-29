@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.domain;
+package br.com.kwikecommerce.api.domain.general;
 
 public abstract class Constants {
 

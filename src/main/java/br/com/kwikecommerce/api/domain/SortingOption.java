@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.domain.product;
+package br.com.kwikecommerce.api.domain;
 
 import lombok.RequiredArgsConstructor;
 

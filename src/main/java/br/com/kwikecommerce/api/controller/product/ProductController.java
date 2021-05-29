@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.controller.product;
 
-import br.com.kwikecommerce.api.domain.product.SortingOption;
-import br.com.kwikecommerce.api.dto.product.ProductListingDto;
-import br.com.kwikecommerce.api.dto.product.creation.ProductCreationRequestDto;
+import br.com.kwikecommerce.api.domain.SortingOption;
+import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
 import br.com.kwikecommerce.api.service.product.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +19,7 @@ public record ProductController(ProductService productService) implements Produc
     }
 
     @GetMapping
-    public Page<ProductListingDto> listProducts(
+    public Page<ProductListingResponseDto> listProducts(
         @RequestParam Integer pageNumber,
         @RequestParam SortingOption sortingOption) {
 

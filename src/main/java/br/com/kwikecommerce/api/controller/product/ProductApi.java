@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.controller.product;
 
-import br.com.kwikecommerce.api.domain.product.SortingOption;
-import br.com.kwikecommerce.api.dto.product.ProductListingDto;
-import br.com.kwikecommerce.api.dto.product.creation.ProductCreationRequestDto;
+import br.com.kwikecommerce.api.domain.SortingOption;
+import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -16,7 +16,7 @@ public interface ProductApi {
     Long createProduct(ProductCreationRequestDto requestDto);
 
     @ApiOperation("Fetches a page of products")
-    Page<ProductListingDto> listProducts(
+    Page<ProductListingResponseDto> listProducts(
 
         @ApiParam(
             value = "Page number (first page is 0)",

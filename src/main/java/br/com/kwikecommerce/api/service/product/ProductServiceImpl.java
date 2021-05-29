@@ -1,9 +1,9 @@
 package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.domain.Constants;
-import br.com.kwikecommerce.api.domain.product.SortingOption;
-import br.com.kwikecommerce.api.dto.product.ProductListingDto;
-import br.com.kwikecommerce.api.dto.product.creation.ProductCreationRequestDto;
+import br.com.kwikecommerce.api.domain.SortingOption;
+import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
 import br.com.kwikecommerce.api.mapper.product.ProductMapper;
 import br.com.kwikecommerce.api.repository.ProductRepository;
 import org.springframework.data.domain.Page;
@@ -25,7 +25,7 @@ public record ProductServiceImpl(
     }
 
     @Override
-    public Page<ProductListingDto> listProducts(Integer pageNumber, SortingOption sortingOption) {
+    public Page<ProductListingResponseDto> listProducts(Integer pageNumber, SortingOption sortingOption) {
         var sort = buildSort(sortingOption);
         var pageable = PageRequest.of(pageNumber, Constants.PAGE_LENGTH, sort);
 

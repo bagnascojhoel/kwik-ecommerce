@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.dto.product.creation;
+package br.com.kwikecommerce.api.dto.product.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

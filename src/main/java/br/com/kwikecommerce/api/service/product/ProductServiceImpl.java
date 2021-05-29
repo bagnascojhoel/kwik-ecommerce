@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 @Service
 public record ProductServiceImpl(
     ProductRepository productRepository,
-    ProductMapper productMapper) implements ProductService {
+    ProductMapper productMapper
+) implements ProductService {
 
     @Override
     public Long createProduct(ProductCreationRequestDto requestDto) {
         var product = productMapper.map(requestDto);
-
         return productRepository.save(product).getId();
     }
 

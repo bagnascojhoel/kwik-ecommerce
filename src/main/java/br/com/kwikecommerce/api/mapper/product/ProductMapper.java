@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 
 
 @Mapper
-public interface ProductMapper {
+public interface ProductMapper extends AbstractMapper {
 
     Product map(ProductCreationRequestDto productCreationRequestDto);
 

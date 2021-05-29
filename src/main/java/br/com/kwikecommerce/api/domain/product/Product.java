@@ -17,10 +17,10 @@ import java.math.BigDecimal;
 
 @Builder
 @Entity
-@Table
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "produto")
 public final class Product extends AbstractEntity {
 
     @Length(min = 3, max = 100)

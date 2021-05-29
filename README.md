@@ -1,5 +1,8 @@
 # Kwik-Ecommerce API
 
+1. [Rodando a aplicação localmente](#Rodando a aplicação localmente)
+2. [Padrões](#Padrões)
+
 ## Rodando a aplicação localmente
 
 1. Necessário ter o Docker instalado.
@@ -40,4 +43,49 @@ docker compose up -e ENV=default --build
 A opção `--build` força uma reconstrução da imagem da aplicação. Se essa opção não for utilizada, o
 docker apenas constroi a imagem na primeira vez que o subcomando `up` é executado, ignorando
 quaisquer alterações realizadas após a última construção da imagem.
+
+## Padrões
+
+### Qualidade geral
+
+* Métodos devem sempre iniciar com um verbo ou advérbio, dependendo da classe em que ele se
+  encontra.
+
+### Services
+
+Os verbos utilizados nas services deverão seguir as seguintes regras:
+
+* Métodos que realizam alguma **operação de CRUD em conjunto com alguma outra lógica**, não devem
+  ser nomeados seguindo o padrão JPA. (Essa regra visa evitar confusão no uso dos métodos.)
+    * C -> create
+    * U -> update
+    * R -> fetch, fetchAll, fetchWithFilter
+    * D -> delete
+
+    ```java
+    class ProductServiceImpl {
+        // definição das dependências
+        Long create(CreationRequestDto requestDto) {
+            var product = productMapper.map(requestDto);
+            return productRepository.save(product).getId();
+        }
+ 
+    }
+    ```
+
+* Métodos que realizam **apenas uma operação de CRUD** devem ser nomeados de acordo com o padrão do
+  JPA. Entretanto, o método da Service pode alterar o tipo de dado recebido e o retornado.
+    ```java
+    interface ProductService {
+  
+        Page<ProductListingResponseDto> findAll();
+        
+        Long save(); // o método do JPA retorna o Product, a Service o id
+        
+        boolean exists(Product product);
+  
+        void delete(Product product);
+  
+      }
+    ```
 

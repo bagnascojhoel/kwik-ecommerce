@@ -17,5 +17,6 @@ public class ProductListingResponseDto {
     private BigDecimal unitaryPrice;
     private Integer availableQty;
     private String description;
+    private Long categoryId;
 
 }

@@ -1,12 +1,23 @@
 package br.com.kwikecommerce.api.controller.category;
 
 import br.com.kwikecommerce.api.dto.category.request.CategoryCreationRequestDto;
-import io.swagger.annotations.Api;
+import br.com.kwikecommerce.api.service.domain.category.CategoryService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Api(value = "/categories", tags = "Categories")
-public interface CategoryController {
+@RestController
+@RequestMapping("/v1/categories")
+public record CategoryController(
+    CategoryService categoryService
+) implements CategoryApi {
 
-    Long create(CategoryCreationRequestDto categoryCreationRequestDto);
+    @Override
+    @PostMapping
+    public Long create(@RequestBody CategoryCreationRequestDto categoryCreationRequestDto) {
+        return categoryService.create(categoryCreationRequestDto);
+    }
 
 }

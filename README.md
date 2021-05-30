@@ -89,3 +89,16 @@ Os verbos utilizados nas services deverão seguir as seguintes regras:
       }
     ```
 
+### Exceções
+
+* Todas exceções específicas devem estender uma das exceções base:
+    * BusinessLogicException
+    * NotFoundException
+    * ProxyException
+    * UnauthorizedException
+    * PassableException (exceção base para as que não encerram o fluxo)
+
+* Problemas que encerrem o fluxo da requisição devem ser exceções **unchecked**. Se o erro pode ser
+  contornado sem encerrar o fluxo, deve ser uma exceção **checked**.
+
+    

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
+
 @AllArgsConstructor
 @Builder
 @Data
@@ -56,5 +57,13 @@ public class ProductCreationRequestDto {
             """
     )
     private String description;
+
+    @ApiModelProperty(
+        value = "Category id",
+        notes = "Define the category which this product belongs to",
+        example = "1"
+    )
+    @NotNull
+    private Long categoryId;
 
 }

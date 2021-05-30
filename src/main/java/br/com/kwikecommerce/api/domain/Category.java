@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.domain;
 
-import br.com.kwikecommerce.api.domain.general.AbstractEntity;
+import br.com.kwikecommerce.api.domain.base.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 
 @Builder
@@ -23,5 +25,8 @@ public class Category extends AbstractEntity {
     @Length(max = 30)
     @Column(name = "nome")
     private String name;
+
+    @OneToMany
+    private List<Product> products;
 
 }

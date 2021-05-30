@@ -1,33 +1,33 @@
 package br.com.kwikecommerce.api.controller.product;
 
-import br.com.kwikecommerce.api.domain.general.SortingOption;
-import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.domain.base.SortingOption;
 import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.service.domain.product.ProductService;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 
-@Api(value = "/products", tags = "Products")
-public interface ProductController {
+@RestController
+@RequestMapping("/v1/products")
+public record ProductController(
+    ProductService productService
+) implements ProductApi {
 
-    @ApiOperation("Creates a new product")
-    Long createProduct(ProductCreationRequestDto requestDto);
+    @Override
+    @PostMapping
+    public Long create(@RequestBody @Validated ProductCreationRequestDto requestDto) {
+        return productService.create(requestDto);
+    }
 
-    @ApiOperation("Fetches a page of products")
-    Page<ProductListingResponseDto> listProducts(
+    @Override
+    @GetMapping
+    public Page<ProductListingResponseDto> list(
+        @RequestParam Integer pageNumber,
+        @RequestParam SortingOption sortingOption) {
 
-        @ApiParam(
-            value = "Page number (first page is 0)",
-            example = "1"
-        ) Integer pageNumber,
-
-        @ApiParam(
-            value = "Sorting option",
-            example = "ALPHABETIC_DESC"
-        ) SortingOption sortingOption
-
-    );
+        return productService.fetchPage(pageNumber, sortingOption);
+    }
 
 }

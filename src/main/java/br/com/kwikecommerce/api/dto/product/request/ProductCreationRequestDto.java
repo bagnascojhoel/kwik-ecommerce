@@ -1,7 +1,6 @@
 package br.com.kwikecommerce.api.dto.product.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,40 +14,42 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @NoArgsConstructor
-@ApiModel
 public class ProductCreationRequestDto {
 
-    @ApiModelProperty(
-        value = "Product title",
-        notes = "Max length is 100",
-        example = "WebCam HD Lenovo"
-    )
     @NotBlank
     @Size(max = 100)
+    @Schema(
+        name = "Product title",
+        description = "Max length is 100",
+        example = "WebCam HD Lenovo"
+    )
     private String title;
 
 
-    @ApiModelProperty(
-        value = "Product unitary price",
-        notes = "Only two decimal places are used. The limit is 99,999.99",
-        example = "135.00")
     @NotNull
     @Min(0)
     @Max(99999)
+    @Schema(
+        name = "Product unitary price",
+        description = "Only two decimal places are used. The limit is 99,999.99",
+        example = "135.00"
+    )
     private BigDecimal unitaryPrice;
 
 
-    @ApiModelProperty(
-        value = "Current units of the product available",
+    @NotNull
+    @Min(0)
+    @Schema(
+        name = "Current units of the product available",
         example = "37"
     )
-    @Min(0)
     private Integer availableQty;
 
 
-    @ApiModelProperty(
-        value = "Description of the product",
-        notes = "Here you should write all necessary info of the product",
+    @NotBlank
+    @Schema(
+        name = "Description of the product",
+        description = "Here you should write all necessary info of the product",
         example = """
             The webcam as a USB connector with a 2 meter cable. It also has a
             cover for the camera. It has a adjustable support which can be allows
@@ -58,12 +59,12 @@ public class ProductCreationRequestDto {
     )
     private String description;
 
-    @ApiModelProperty(
-        value = "Category id",
-        notes = "Define the category which this product belongs to",
+    @NotNull
+    @Schema(
+        name = "Category id",
+        description = "Define the category which this product belongs to",
         example = "1"
     )
-    @NotNull
     private Long categoryId;
 
 }

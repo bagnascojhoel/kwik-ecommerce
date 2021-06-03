@@ -6,7 +6,7 @@ import br.com.kwikecommerce.api.dto.category.response.CategoryListingResponseDto
 import br.com.kwikecommerce.api.exception.category.CategoryNotFoundException;
 import br.com.kwikecommerce.api.mapper.CategoryMapper;
 import br.com.kwikecommerce.api.repository.CategoryRepository;
-import br.com.kwikecommerce.api.service.application.LocalizationService;
+import br.com.kwikecommerce.api.service.application.message.MessageService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public record CategoryServiceImpl(
     CategoryMapper categoryMapper,
     CategoryRepository categoryRepository,
-    LocalizationService localizationService
+    MessageService messageService
 ) implements CategoryService {
 
     @Override
@@ -29,7 +29,7 @@ public record CategoryServiceImpl(
     @Override
     public Category fetchById(Long categoryId) {
         return categoryRepository.findById(categoryId)
-            .orElseThrow(() -> new CategoryNotFoundException("categoria não encontrada"));
+            .orElseThrow(() -> new CategoryNotFoundException(categoryId));
     }
 
     @Override

@@ -1,6 +1,6 @@
-package br.com.kwikecommerce.api.exceptions.category;
+package br.com.kwikecommerce.api.exception.category;
 
-import br.com.kwikecommerce.api.exceptions.base.NotFoundException;
+import br.com.kwikecommerce.api.exception.base.NotFoundException;
 
 
 public class CategoryNotFoundException extends NotFoundException {

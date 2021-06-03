@@ -3,31 +3,51 @@ package br.com.kwikecommerce.api.controller.product;
 import br.com.kwikecommerce.api.domain.base.SortingOption;
 import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequestDto;
 import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
-import br.com.kwikecommerce.api.service.domain.product.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.data.domain.Page;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 
 
-@RestController
-@RequestMapping("/v1/products")
-public record ProductController(
-    ProductService productService
-) implements ProductApi {
+@Tags({
+    @Tag(
+        name = "Products",
+        description = "Operations over product resources"
+    )
+})
+public interface ProductController {
 
-    @Override
-    @PostMapping
-    public Long create(@RequestBody @Validated ProductCreationRequestDto requestDto) {
-        return productService.create(requestDto);
-    }
+    @Tag(name = "Products")
+    @Operation(summary = "Creates a new product")
+    Long create(ProductCreationRequestDto requestDto);
 
-    @Override
-    @GetMapping
-    public Page<ProductListingResponseDto> list(
-        @RequestParam Integer pageNumber,
-        @RequestParam SortingOption sortingOption) {
+    @Tag(name = "Products")
+    @Operation(summary = "Fetches a page of products")
+    @Parameters({
+        @Parameter(
+            name = "Sorting Option",
+            ref = "SortingOption"
+        ),
+        @Parameter(
+            name = "Page number",
+            example = "1"
+        )
+    })
+    Page<ProductListingResponseDto> fetchPage(SortingOption sortingOption, Integer pageNumber);
 
-        return productService.fetchPage(pageNumber, sortingOption);
-    }
+    @Tag(name = "Products")
+    @Operation(summary = "Fetches a page of products from the same category")
+    @Parameters({
+        @Parameter(name = "Category Id", example = "1"),
+        @Parameter(name = "Sorting Option", ref = "Sorting Option"),
+        @Parameter(name = "Page number", example = "1")
+    })
+    Page<ProductListingResponseDto> fetchPageByCategory(
+        Long categoryId,
+        SortingOption sortingOption,
+        Integer pageNumber
+    );
 
 }

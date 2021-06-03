@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.exceptions.base;
+package br.com.kwikecommerce.api.exception.base;
 
 public class NotFoundException extends RuntimeException {
 

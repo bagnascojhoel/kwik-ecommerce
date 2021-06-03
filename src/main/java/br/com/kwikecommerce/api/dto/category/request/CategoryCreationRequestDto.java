@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.dto.category.request;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,19 +10,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 
-@AllArgsConstructor
 @Builder
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class CategoryCreationRequestDto {
 
     @NotEmpty
     @Size(max = 30)
-    @ApiModelProperty(
-        value = "Name",
-        notes = "Max length is 30 characters",
-        example = "Cellphones"
-    )
-    private String name;
+    @Schema(name = "Name", example = "Mugs")
+    String name;
 
 }

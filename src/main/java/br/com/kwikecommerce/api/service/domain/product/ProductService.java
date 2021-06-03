@@ -10,6 +10,12 @@ public interface ProductService {
 
     Long create(ProductCreationRequestDto productCreationRequestDto);
 
-    Page<ProductListingResponseDto> fetchPage(Integer pageNumber, SortingOption sortingOption);
+    Page<ProductListingResponseDto> fetchPage(SortingOption sortingOption, Integer pageNumber);
+
+    Page<ProductListingResponseDto> fetchPageByCategory(
+        Long categoryId,
+        SortingOption sortingOption,
+        Integer pageNumber
+    );
 
 }

@@ -1,24 +1,23 @@
-package br.com.kwikecommerce.api.dto.product.response;
-
+package br.com.kwikecommerce.api.dto.product.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 
+@AllArgsConstructor
 @Builder
 @Data
-@AllArgsConstructor
-public class ProductListingResponseDto {
+@NoArgsConstructor
+public class ProductUpdateRequest {
 
+    Long id;
     String title;
     BigDecimal unitaryPrice;
     Integer availableQty;
     String description;
-    Long categoryId;
-    List<String> photosUrls;
 
 }

@@ -1,11 +1,10 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
 import br.com.kwikecommerce.api.domain.base.SortingOption;
-import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequest;
-import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
+import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.service.product.ProductService;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,18 +22,15 @@ public record ProductControllerImpl(
     }
 
     @Override
-    public Page<ProductListingResponseDto> fetchPage(
-        @RequestParam SortingOption sortingOption,
-        @RequestParam Integer pageNumber
-    ) {
+    public Page<ProductListingResponse> fetchPage(SortingOption sortingOption, Integer pageNumber) {
         return productService.fetchPage(sortingOption, pageNumber);
     }
 
     @Override
-    public Page<ProductListingResponseDto> fetchPageByCategory(
-        @RequestParam Long categoryId,
-        @RequestParam SortingOption sortingOption,
-        @RequestParam Integer pageNumber
+    public Page<ProductListingResponse> fetchPageByCategory(
+        Long categoryId,
+        SortingOption sortingOption,
+        Integer pageNumber
     ) {
         return productService.fetchPageByCategory(categoryId, sortingOption, pageNumber);
     }

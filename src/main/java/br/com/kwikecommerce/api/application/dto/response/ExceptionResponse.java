@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application.dto;
+package br.com.kwikecommerce.api.application.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExceptionResponse {
 
-    String message;
+    private String message;
 
 }

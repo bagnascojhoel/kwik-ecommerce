@@ -3,8 +3,8 @@ package br.com.kwikecommerce.api.service.product;
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
 import br.com.kwikecommerce.api.converter.CategoryProductConverter;
 import br.com.kwikecommerce.api.domain.base.SortingOption;
-import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequest;
-import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
+import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.helper.ProductPaginationHelper;
 import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.repository.ProductRepository;
@@ -37,7 +37,7 @@ public record ProductServiceImpl(
     }
 
     @Override
-    public Page<ProductListingResponseDto> fetchPage(
+    public Page<ProductListingResponse> fetchPage(
         SortingOption sortingOption,
         Integer pageNumber
     ) {
@@ -46,7 +46,7 @@ public record ProductServiceImpl(
     }
 
     @Override
-    public Page<ProductListingResponseDto> fetchPageByCategory(
+    public Page<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
         SortingOption sortingOption,
         Integer pageNumber

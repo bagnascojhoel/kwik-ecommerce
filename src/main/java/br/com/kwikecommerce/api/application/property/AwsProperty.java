@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("aws")
 public class AwsProperty {
 
-    S3Property s3;
-    String accessKey;
-    String secretKey;
+    private S3Property s3;
+    private String accessKey;
+    private String secretKey;
 
     @AllArgsConstructor
     @Getter
@@ -26,8 +26,8 @@ public class AwsProperty {
     @NoArgsConstructor
     public static class S3Property {
 
-        String bucket;
-        String region;
+        private String bucket;
+        private String region;
 
     }
 

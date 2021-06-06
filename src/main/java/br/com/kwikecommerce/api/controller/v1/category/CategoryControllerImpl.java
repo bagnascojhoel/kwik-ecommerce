@@ -1,9 +1,8 @@
 package br.com.kwikecommerce.api.controller.v1.category;
 
-import br.com.kwikecommerce.api.dto.category.request.CategoryCreationRequest;
-import br.com.kwikecommerce.api.dto.category.response.CategoryListingResponse;
+import br.com.kwikecommerce.api.dto.request.CategoryCreationRequest;
+import br.com.kwikecommerce.api.dto.response.CategoryListingResponse;
 import br.com.kwikecommerce.api.service.category.CategoryService;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public record CategoryControllerImpl(
 ) implements CategoryController {
 
     @Override
-    public Long create(@RequestBody CategoryCreationRequest categoryCreationRequest) {
+    public Long create(CategoryCreationRequest categoryCreationRequest) {
         return categoryService.create(categoryCreationRequest);
     }
 

@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application.dto;
+package br.com.kwikecommerce.api.application.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -16,15 +16,15 @@ import java.util.List;
 @Schema(hidden = true)
 public class FieldValidationResponse {
 
-    List<FieldValidation> validations;
+    private List<FieldValidation> validations;
 
     @Builder
     @Data
     public static class FieldValidation {
 
-        String field;
-        String message;
-        String value;
+        private String field;
+        private String message;
+        private String value;
 
     }
 

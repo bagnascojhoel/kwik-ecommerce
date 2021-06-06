@@ -2,8 +2,8 @@ package br.com.kwikecommerce.api.mapper;
 
 import br.com.kwikecommerce.api.domain.Category;
 import br.com.kwikecommerce.api.domain.Product;
-import br.com.kwikecommerce.api.dto.product.request.ProductCreationRequest;
-import br.com.kwikecommerce.api.dto.product.response.ProductListingResponseDto;
+import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
+import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -22,6 +22,6 @@ public interface ProductMapper {
     );
 
     @Mapping(source = "category.id", target = "categoryId")
-    ProductListingResponseDto map(Product product);
+    ProductListingResponse map(Product product);
 
 }

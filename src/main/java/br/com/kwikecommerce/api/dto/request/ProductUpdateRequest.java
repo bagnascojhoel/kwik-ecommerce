@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.dto.product.request;
+package br.com.kwikecommerce.api.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,10 +14,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ProductUpdateRequest {
 
-    Long id;
-    String title;
-    BigDecimal unitaryPrice;
-    Integer availableQty;
-    String description;
+    private Long id;
+    private String title;
+    private BigDecimal unitaryPrice;
+    private Integer availableQty;
+    private String description;
 
 }

@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.controller.v1;
 
-import br.com.kwikecommerce.api.application.dto.ExceptionResponse;
-import br.com.kwikecommerce.api.application.dto.FieldValidationResponse;
-import br.com.kwikecommerce.api.application.dto.FieldValidationResponse.FieldValidation;
+import br.com.kwikecommerce.api.application.dto.response.ExceptionResponse;
+import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse;
+import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse.FieldValidation;
 import br.com.kwikecommerce.api.exception.base.NotFoundException;
 import br.com.kwikecommerce.api.message.ExceptionMessageKey;
 import br.com.kwikecommerce.api.message.MessageKey;

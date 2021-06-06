@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.dto.product.request;
+package br.com.kwikecommerce.api.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 
@@ -14,39 +17,34 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @NoArgsConstructor
-@Schema(name = "product")
+@Schema(description = "Data necessary to add a product resource")
 public class ProductCreationRequest {
 
-    @NotBlank
-    @Size(max = 100)
+    @Size(min = 3, max = 100)
     @Schema(
-        name = "title",
         description = "Max length is 100",
         example = "WebCam HD Lenovo"
     )
-    String title;
+    private String title;
 
-    @NotNull
-    @Min(0)
+    @NotBlank
     @Max(99999)
     @Schema(
-        name = "unitaryPrice",
-        description = "Only two decimal places are used. The limit is 99,999.99",
+        description = "Only two decimal places are used",
+        maximum = "99999.99",
         example = "135.00"
     )
-    BigDecimal unitaryPrice;
-
-    @NotNull
-    @Min(0)
-    @Schema(
-        name = "availableQty",
-        example = "37"
-    )
-    Integer availableQty;
+    private BigDecimal unitaryPrice;
 
     @NotBlank
     @Schema(
-        name = "description",
+        description = "Quantity you currently have for this product",
+        example = "37"
+    )
+    private Integer availableQty;
+
+    @NotBlank
+    @Schema(
         description = "Here you should write all necessary info of the product",
         example = """
             The webcam as a USB connector with a 2 meter cable. It also has a
@@ -55,14 +53,13 @@ public class ProductCreationRequest {
             on your desk.
             """
     )
-    String description;
+    private String description;
 
     @NotNull
     @Schema(
-        name = "categoryId",
         description = "Define the category which this product belongs to",
         example = "1"
     )
-    Long categoryId;
+    private Long categoryId;
 
 }

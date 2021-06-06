@@ -6,8 +6,8 @@ import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,29 +17,27 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@Tags({
-    @Tag(
-        name = "Products",
-        description = "Operations over product resources"
-    )
-})
+@Tag(
+    name = "Products",
+    description = "Operations over product resources"
+)
 @RequestMapping("/v1/products")
 public interface ProductController {
 
     @Tag(name = "Products")
-    @Operation(summary = "Creates a new product")
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Create a new product")
     Long create(
         @RequestPart @Valid ProductCreationRequest request,
         @RequestPart List<MultipartFile> photos
     );
 
     @Tag(name = "Products")
-    @Operation(summary = "Fetches a page of products")
     @GetMapping
+    @Operation(summary = "Fetch a page of products")
     @Parameters({
-        @Parameter(ref = "SortingOption"),
-        @Parameter(example = "0")
+        @Parameter(name = "sortingOption"),
+        @Parameter(name = "pageNumber", example = "0")
     })
     Page<ProductListingResponse> fetchPage(
         @RequestParam SortingOption sortingOption,
@@ -47,12 +45,12 @@ public interface ProductController {
     );
 
     @Tag(name = "Products")
-    @Operation(summary = "Fetch a page of products from a given category")
     @GetMapping("/{categoryId}")
+    @Operation(summary = "Fetch a page of products from a given category")
     @Parameters({
-        @Parameter(example = "1"),
-        @Parameter(ref = "SortingOption"),
-        @Parameter(example = "0")
+        @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1"),
+        @Parameter(name = "sortingOption"),
+        @Parameter(name = "pageNumber", example = "0")
     })
     Page<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,

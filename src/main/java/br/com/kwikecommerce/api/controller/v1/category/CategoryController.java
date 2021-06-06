@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -20,13 +21,13 @@ import java.util.List;
 public interface CategoryController {
 
     @Tag(name = "Categories")
-    @Operation(summary = "Creates a new category")
     @PostMapping
-    Long create(@RequestBody CategoryCreationRequest categoryCreationRequest);
+    @Operation(summary = "Create a new category")
+    Long create(@RequestBody @Valid CategoryCreationRequest categoryCreationRequest);
 
     @Tag(name = "Categories")
-    @Operation(summary = "Lists all categories")
     @GetMapping
+    @Operation(summary = "List all categories")
     List<CategoryListingResponse> fetchAll();
 
 }

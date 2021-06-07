@@ -18,6 +18,13 @@ server:
   servlet:
     context-path: ${kwik-ecommerce.server.context}
 
+aws:
+  access-key: AKIAUESTIY2WWWFGESXG
+  secret-key: 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
+  s3:
+    bucket: kwik-ecommerce-dev
+    region: us-east-1
+
 spring:
   profiles:
     active: @activatedProperties@
@@ -41,3 +48,14 @@ spring:
     change-log: classpath:/liquibase/changelog.yml
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
+
+springdoc:
+  swagger-ui:
+    path: /ui
+  api-docs:
+    path: /open-api-3/docs
+  produces: application/json
+  group-configs:
+    - group: v1
+      paths-to-match:
+        - /v1/**/*

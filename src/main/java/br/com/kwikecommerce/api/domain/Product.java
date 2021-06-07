@@ -12,6 +12,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Builder
@@ -43,5 +44,10 @@ public final class Product extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Category category;
+
+    @ElementCollection
+    @CollectionTable(name = "produto_foto", joinColumns = @JoinColumn(name = "produto_id"))
+    @Column(name = "url")
+    private List<String> photosUrls;
 
 }

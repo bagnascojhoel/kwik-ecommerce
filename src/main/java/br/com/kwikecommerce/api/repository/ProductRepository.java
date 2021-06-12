@@ -12,6 +12,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategories_id(Long categoryId, Pageable pageable);
 
-    Long countByCategories_idIn(Collection<Long> categoriesIds);
-
 }

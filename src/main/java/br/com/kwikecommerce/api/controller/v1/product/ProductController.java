@@ -5,11 +5,9 @@ import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,8 +23,14 @@ import java.util.List;
 public interface ProductController {
 
     @Tag(name = "Products")
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Create a new product")
+    @PostMapping
+    @Operation(
+        summary = "Create a new product",
+        description = """
+            On Swagger this endpoint doesn't work correctly. Please, use an API Client which
+            supports file upload via Multipart Form Data (e.g. Postman).
+            """
+    )
     Long create(
         @RequestPart @Valid ProductCreationRequest request,
         @RequestPart List<MultipartFile> photos
@@ -35,10 +39,8 @@ public interface ProductController {
     @Tag(name = "Products")
     @GetMapping
     @Operation(summary = "Fetch a page of products")
-    @Parameters({
-        @Parameter(name = "sortingOption"),
-        @Parameter(name = "pageNumber", example = "0")
-    })
+    @Parameter(name = "sortingOption")
+    @Parameter(name = "pageNumber", example = "0")
     Page<ProductListingResponse> fetchPage(
         @RequestParam SortingOption sortingOption,
         @RequestParam Integer pageNumber
@@ -47,11 +49,9 @@ public interface ProductController {
     @Tag(name = "Products")
     @GetMapping("/{categoryId}")
     @Operation(summary = "Fetch a page of products from a given category")
-    @Parameters({
-        @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1"),
-        @Parameter(name = "sortingOption"),
-        @Parameter(name = "pageNumber", example = "0")
-    })
+    @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
+    @Parameter(name = "sortingOption")
+    @Parameter(name = "pageNumber", example = "0")
     Page<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,
         @RequestParam SortingOption sortingOption,

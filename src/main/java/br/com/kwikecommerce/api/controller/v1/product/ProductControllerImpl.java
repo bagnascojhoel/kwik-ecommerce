@@ -18,7 +18,7 @@ public record ProductControllerImpl(
 
     @Override
     public Long create(ProductCreationRequest request, List<MultipartFile> photos) {
-        return productService.create(request, photos);
+        return productService.createProduct(request, photos);
     }
 
     @Override

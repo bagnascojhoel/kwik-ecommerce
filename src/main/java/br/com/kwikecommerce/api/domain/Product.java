@@ -1,24 +1,21 @@
 package br.com.kwikecommerce.api.domain;
 
 import br.com.kwikecommerce.api.domain.base.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
 
-@Builder
+@SuperBuilder
 @Entity
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "produto")
 public final class Product extends AbstractEntity {
@@ -37,17 +34,24 @@ public final class Product extends AbstractEntity {
     private Integer availableQty;
 
     @Length(min = 3)
-    @Column(name = "descricao")
-    private String description;
+    @Column(name = "detalhes")
+    private String details;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+        name = "categoria_produto",
+        joinColumns = @JoinColumn(name = "produto_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Category> categories;
 
     @ElementCollection
-    @CollectionTable(name = "produto_foto", joinColumns = @JoinColumn(name = "produto_id"))
+    @CollectionTable(name = "produto_imagem", joinColumns = @JoinColumn(name = "produto_id"))
     @Column(name = "url")
-    private List<String> photosUrls;
+    private List<String> imagesUrls;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Company company;
 
 }

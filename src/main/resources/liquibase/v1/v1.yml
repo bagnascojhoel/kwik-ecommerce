@@ -1,24 +1,24 @@
 databaseChangeLog:
-  - changeSet:
-      id: create_table-categoria
-      author: jhoel.bagnasco
-      comments: Cria tabela de categorias
-      changes:
-        - sqlFile:
-            encoding: utf8
-            path: categoria/create_table-categoria.sql
-            relativeToChangelogFile: true
+  - include:
+      file: createTable-empresa.yml
+      relativeToChangelogFile: true
 
-  - changeSet:
-      id: create_table-produto
-      author: jhoel.bagnasco
-      comments: Cria domínio de produtos
-      changes:
-        - sqlFile:
-            encoding: utf8
-            path: produto/create_table-produto.sql
-            relativeToChangelogFile: true
-        - sqlFile:
-            encoding: utf8
-            path: produto/create_table-produto_foto.sql
-            relativeToChangelogFile: true
+  - include:
+      file: createTable-produto.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: createTable-categoria.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: createTable-categoria_produto.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: createTable-produto_imagem.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: insert-empresa-add-kwik-admin.yml
+      relativeToChangelogFile: true

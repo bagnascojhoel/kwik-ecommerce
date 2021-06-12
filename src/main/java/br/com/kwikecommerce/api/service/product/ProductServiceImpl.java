@@ -29,10 +29,9 @@ public record ProductServiceImpl(
 ) implements ProductService {
 
     @Override
-    public Long create(ProductCreationRequest requestDto, List<MultipartFile> photoFiles) {
+    public Long createProduct(ProductCreationRequest requestDto, List<MultipartFile> photoFiles) {
         var photoUrls = storageService.upload(PRODUCT_PHOTOS.getFolder(), photoFiles);
-        var category = categoryService.fetchById(requestDto.getCategoryId());
-        var product = productMapper.map(requestDto, category, photoUrls);
+        var product = productMapper.map(requestDto, photoUrls);
         return productRepository.save(product).getId();
     }
 
@@ -52,6 +51,8 @@ public record ProductServiceImpl(
         Integer pageNumber
     ) {
         var pageRequest = paginationUtil.buildPageRequest(sortingOption, pageNumber);
-        return productRepository.findByCategoryId(categoryId, pageRequest).map(productMapper::map);
+        return productRepository.findByCategories_id(categoryId, pageRequest)
+            .map(productMapper::map);
     }
+
 }

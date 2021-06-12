@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 
 @Builder
@@ -17,8 +18,8 @@ public class ProductListingResponse {
     private String title;
     private BigDecimal unitaryPrice;
     private Integer availableQty;
-    private String description;
-    private Long categoryId;
-    private List<String> photosUrls;
+    private String details;
+    private Set<Long> categoriesIds;
+    private List<String> imagesUrls;
 
 }

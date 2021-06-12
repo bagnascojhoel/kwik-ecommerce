@@ -59,3 +59,7 @@ springdoc:
     - group: v1
       paths-to-match:
         - /v1/**/*
+
+logging:
+  level:
+    liquibase: INFO

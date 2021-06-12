@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    Long create(ProductCreationRequest productCreationRequest, List<MultipartFile> photos);
+    Long createProduct(ProductCreationRequest productCreationRequest, List<MultipartFile> photos);
 
     Page<ProductListingResponse> fetchPage(SortingOption sortingOption, Integer pageNumber);
 

@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -27,7 +28,7 @@ public class ProductCreationRequest {
     )
     private String title;
 
-    @NotBlank
+    @NotNull
     @Max(99999)
     @Schema(
         description = "Only two decimal places are used",
@@ -36,7 +37,7 @@ public class ProductCreationRequest {
     )
     private BigDecimal unitaryPrice;
 
-    @NotBlank
+    @NotNull
     @Schema(
         description = "Quantity you currently have for this product",
         example = "37"
@@ -53,13 +54,20 @@ public class ProductCreationRequest {
             on your desk.
             """
     )
-    private String description;
+    private String details;
 
     @NotNull
     @Schema(
         description = "Define the category which this product belongs to",
+        example = "[1]"
+    )
+    private Set<Long> categoriesIds;
+
+    @NotNull
+    @Schema(
+        description = "Id of the Company this product belongs to",
         example = "1"
     )
-    private Long categoryId;
+    private Long companyId;
 
 }

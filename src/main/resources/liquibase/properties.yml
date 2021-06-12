@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - property:
+      dbms: mysql
+      name: key
+      value: bigint unsigned
+
+  - property:
+      dbms: mysql
+      name: now
+      value: CURRENT_TIMESTAMP
+
+  - property:
+      name: kwik-admin-id
+      value: 1

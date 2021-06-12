@@ -1,4 +1,8 @@
 databaseChangeLog:
   - include:
+      file: properties.yml
+      relativeToChangelogFile: true
+
+  - include:
       file: v1/v1.yml
       relativeToChangelogFile: true

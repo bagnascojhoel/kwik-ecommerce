@@ -1,32 +1,31 @@
 package br.com.kwikecommerce.api.domain;
 
 import br.com.kwikecommerce.api.domain.base.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 
-@Builder
+@SuperBuilder
 @Entity
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "categoria")
 public class Category extends AbstractEntity {
 
     @Length(max = 30)
-    @Column(name = "nome")
-    private String name;
+    @Column(name = "titulo")
+    private String title;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Company company;
+
+    @ManyToMany(mappedBy = "categories")
     private List<Product> products;
 
 }

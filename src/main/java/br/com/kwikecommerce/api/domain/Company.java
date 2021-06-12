@@ -1,6 +1,5 @@
 package br.com.kwikecommerce.api.domain;
 
-import br.com.kwikecommerce.api.domain.base.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

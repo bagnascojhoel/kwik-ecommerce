@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.configuration;
 
-import br.com.kwikecommerce.api.domain.base.Constants;
+import br.com.kwikecommerce.api.application.Constants;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

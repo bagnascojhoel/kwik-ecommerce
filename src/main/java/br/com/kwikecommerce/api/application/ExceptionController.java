@@ -5,7 +5,7 @@ import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse.FieldValidation;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.service.message.MessageService;
-import br.com.kwikecommerce.api.exception.base.NotFoundException;
+import br.com.kwikecommerce.api.application.exception.base.NotFoundException;
 import br.com.kwikecommerce.api.message.ExceptionMessageKey;
 import br.com.kwikecommerce.api.message.MessageKey;
 import org.springframework.http.HttpStatus;

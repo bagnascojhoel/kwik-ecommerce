@@ -2,7 +2,7 @@ package br.com.kwikecommerce.api.application.util;
 
 import br.com.kwikecommerce.api.application.property.AwsProperty;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
-import br.com.kwikecommerce.api.exception.general.ExtensionDiscoveryException;
+import br.com.kwikecommerce.api.application.exception.ExtensionDiscoveryException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

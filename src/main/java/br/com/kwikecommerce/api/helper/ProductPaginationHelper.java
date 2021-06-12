@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.helper;
 
-import br.com.kwikecommerce.api.domain.base.SortingOption;
+import br.com.kwikecommerce.api.domain.ProductSorting;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,13 +12,13 @@ public class ProductPaginationHelper {
 
     private static final int MAX_ITEMS_PER_PAGE = 20;
 
-    public Pageable buildPageRequest(SortingOption sortingOption, Integer pageNumber) {
-        var sort = buildSort(sortingOption);
+    public Pageable buildPageRequest(ProductSorting productSorting, Integer pageNumber) {
+        var sort = buildSort(productSorting);
         return PageRequest.of(pageNumber, MAX_ITEMS_PER_PAGE, sort);
     }
 
-    private Sort buildSort(SortingOption sortingOption) {
-        return switch (sortingOption) {
+    private Sort buildSort(ProductSorting productSorting) {
+        return switch (productSorting) {
             case ALPHABETIC_DESC -> Sort.by("title").descending();
             case PRICE_ASC -> Sort.by("unitaryPrice").ascending();
             case PRICE_DESC -> Sort.by("unitaryPrice").descending();

@@ -5,9 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
+
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategories_id(Long categoryId, Pageable pageable);
+
+    Long countByCategories_idIn(Collection<Long> categoriesIds);
 
 }

@@ -1,5 +1,6 @@
 package br.com.kwikecommerce.api.application.service.storage;
 
+import br.com.kwikecommerce.api.application.Storage;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -7,8 +8,8 @@ import java.util.List;
 
 public interface StorageService {
 
-    List<String> upload(String folder, List<MultipartFile> photos);
+    List<String> upload(Storage storage, List<MultipartFile> photos);
 
-    String upload(String folder, MultipartFile multipartFile);
+    String upload(Storage storage, MultipartFile multipartFile);
 
 }

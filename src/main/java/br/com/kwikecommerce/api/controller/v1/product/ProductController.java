@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.domain.base.SortingOption;
+import br.com.kwikecommerce.api.domain.ProductSorting;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +33,7 @@ public interface ProductController {
     )
     Long create(
         @RequestPart @Valid ProductCreationRequest request,
-        @RequestPart List<MultipartFile> photos
+        @RequestPart List<MultipartFile> images
     );
 
     @Tag(name = "Products")
@@ -42,7 +42,7 @@ public interface ProductController {
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
     Page<ProductListingResponse> fetchPage(
-        @RequestParam SortingOption sortingOption,
+        @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber
     );
 
@@ -54,7 +54,7 @@ public interface ProductController {
     @Parameter(name = "pageNumber", example = "0")
     Page<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,
-        @RequestParam SortingOption sortingOption,
+        @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber
     );
 

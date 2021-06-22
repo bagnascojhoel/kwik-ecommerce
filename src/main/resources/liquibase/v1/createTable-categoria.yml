@@ -38,7 +38,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createIndex:
-            indexName: ix_categoria_nome
+            indexName: ix_categoria_titulo
             tableName: categoria
             columns:
               - column:

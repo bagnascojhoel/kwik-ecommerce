@@ -188,6 +188,13 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>mocked</id>
+            <properties>
+                <activatedProperties>mocked</activatedProperties>
+            </properties>
+        </profile>
+
     </profiles>
 
 </project>

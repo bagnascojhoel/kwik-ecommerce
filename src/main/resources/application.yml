@@ -45,7 +45,7 @@ spring:
   liquibase:
     contexts: ${spring.profiles.active}
     enabled: true
-    change-log: classpath:/liquibase/changelog.yml
+    change-log: /liquibase/mock.yml
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
 

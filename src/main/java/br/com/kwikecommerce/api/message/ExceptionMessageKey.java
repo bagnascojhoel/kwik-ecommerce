@@ -9,7 +9,8 @@ public enum ExceptionMessageKey implements MessageKey {
     UNKNOWN("e.unknown"),
     CATEGORY_NOT_FOUND("e.category.not-found"),
     EXTENSION_DISCOVERY_FAILED("e.extension-discovery.failed"),
-    FILE_UPLOAD_FAILED("e.file-upload.failed");
+    FILE_UPLOAD_FAILED("e.file-upload.failed"),
+    COMPANY_NOT_FOUND("e.company.not-found");
 
     @Getter
     private final String key;

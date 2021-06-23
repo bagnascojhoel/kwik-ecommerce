@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.domain.base;
+package br.com.kwikecommerce.api.domain;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Schema(name = "Sorting Option")
 @RequiredArgsConstructor
-public enum SortingOption {
+public enum ProductSorting {
 
     ALPHABETIC_DESC,
     ALPHABETIC_ASC,

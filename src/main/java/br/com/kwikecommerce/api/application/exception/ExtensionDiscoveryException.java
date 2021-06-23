@@ -1,6 +1,6 @@
-package br.com.kwikecommerce.api.exception.general;
+package br.com.kwikecommerce.api.application.exception;
 
-import br.com.kwikecommerce.api.exception.base.BusinessException;
+import br.com.kwikecommerce.api.application.exception.base.BusinessException;
 import br.com.kwikecommerce.api.message.ExceptionMessageKey;
 
 

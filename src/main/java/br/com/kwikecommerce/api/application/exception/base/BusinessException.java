@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.exception.base;
+package br.com.kwikecommerce.api.application.exception.base;
 
 import br.com.kwikecommerce.api.message.MessageKey;
 

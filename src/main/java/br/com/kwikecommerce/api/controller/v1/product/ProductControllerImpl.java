@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.domain.base.SortingOption;
+import br.com.kwikecommerce.api.domain.ProductSorting;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.service.product.ProductService;
@@ -17,21 +17,21 @@ public record ProductControllerImpl(
 ) implements ProductController {
 
     @Override
-    public Long create(ProductCreationRequest request, List<MultipartFile> photos) {
-        return productService.createProduct(request, photos);
+    public Long create(ProductCreationRequest request, List<MultipartFile> images) {
+        return productService.createProduct(request, images);
     }
 
     @Override
-    public Page<ProductListingResponse> fetchPage(SortingOption sortingOption, Integer pageNumber) {
-        return productService.fetchPage(sortingOption, pageNumber);
+    public Page<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber) {
+        return productService.fetchPage(productSorting, pageNumber);
     }
 
     @Override
     public Page<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        SortingOption sortingOption,
+        ProductSorting productSorting,
         Integer pageNumber
     ) {
-        return productService.fetchPageByCategory(categoryId, sortingOption, pageNumber);
+        return productService.fetchPageByCategory(categoryId, productSorting, pageNumber);
     }
 }

@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.domain.base.SortingOption;
+import br.com.kwikecommerce.api.domain.ProductSorting;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import org.springframework.data.domain.Page;
@@ -13,11 +13,11 @@ public interface ProductService {
 
     Long createProduct(ProductCreationRequest productCreationRequest, List<MultipartFile> photos);
 
-    Page<ProductListingResponse> fetchPage(SortingOption sortingOption, Integer pageNumber);
+    Page<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber);
 
     Page<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        SortingOption sortingOption,
+        ProductSorting productSorting,
         Integer pageNumber
     );
 

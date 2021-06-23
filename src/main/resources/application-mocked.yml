@@ -1,0 +1,15 @@
+kwik-ecommerce:
+  db:
+    name: ${DB_NAME:kwik_ecommerce_db__mocked}
+
+spring:
+  liquibase:
+    enabled: true
+    contexts: ${spring.profiles.active}
+    change-log: classpath:/liquibase/mock/mock.yml
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+logging:
+  level:
+#    root: DEBUG

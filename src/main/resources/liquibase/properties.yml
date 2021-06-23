@@ -3,9 +3,13 @@ databaseChangeLog:
       dbms: mysql
       name: key
       value: bigint unsigned
+  - property:
+      dbms: h2
+      name: key
+      value: smallint
 
   - property:
-      dbms: mysql
+      dbms: mysql, h2
       name: now
       value: CURRENT_TIMESTAMP
 

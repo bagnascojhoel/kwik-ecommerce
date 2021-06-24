@@ -63,6 +63,12 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 
@@ -192,6 +198,14 @@
             <id>mocked</id>
             <properties>
                 <activatedProperties>mocked</activatedProperties>
+            </properties>
+        </profile>
+
+        <profile>
+            <!--            Active only when testing?-->
+            <id>test</id>
+            <properties>
+                <activatedProperties>test</activatedProperties>
             </properties>
         </profile>
 

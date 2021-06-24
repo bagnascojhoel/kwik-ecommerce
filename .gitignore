@@ -32,3 +32,6 @@ images/
 
 ### VS Code ###
 .vscode/
+
+### Database ###
+*.db

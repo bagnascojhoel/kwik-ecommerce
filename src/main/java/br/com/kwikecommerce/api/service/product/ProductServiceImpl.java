@@ -23,7 +23,7 @@ import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
 public record ProductServiceImpl(
     ProductRepository productRepository,
     ProductMapper productMapper,
-    ProductPaginationHelper paginationUtil,
+    ProductPaginationHelper productPaginationHelper,
     CategoryService categoryService,
     CategoryProductConverter categoryProductConverter,
     StorageService storageService,
@@ -45,8 +45,8 @@ public record ProductServiceImpl(
         ProductSorting productSorting,
         Integer pageNumber
     ) {
-        var pageRequest = paginationUtil.buildPageRequest(productSorting, pageNumber);
-        return productRepository.findAll(pageRequest).map(productMapper::map);
+        var pageable = productPaginationHelper.buildPageable(productSorting, pageNumber);
+        return productRepository.findAll(pageable).map(productMapper::map);
     }
 
     @Override
@@ -55,8 +55,8 @@ public record ProductServiceImpl(
         ProductSorting productSorting,
         Integer pageNumber
     ) {
-        var pageRequest = paginationUtil.buildPageRequest(productSorting, pageNumber);
-        return productRepository.findByCategories_id(categoryId, pageRequest)
+        var pageable = productPaginationHelper.buildPageable(productSorting, pageNumber);
+        return productRepository.findByCategories_id(categoryId, pageable)
             .map(productMapper::map);
     }
 

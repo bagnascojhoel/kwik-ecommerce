@@ -12,7 +12,7 @@ public class ProductPaginationHelper {
 
     private static final int MAX_ITEMS_PER_PAGE = 20;
 
-    public Pageable buildPageRequest(ProductSorting productSorting, Integer pageNumber) {
+    public Pageable buildPageable(ProductSorting productSorting, Integer pageNumber) {
         var sort = buildSort(productSorting);
         return PageRequest.of(pageNumber, MAX_ITEMS_PER_PAGE, sort);
     }

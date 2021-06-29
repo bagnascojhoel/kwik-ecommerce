@@ -2,6 +2,7 @@ package br.com.kwikecommerce.api.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @SuperBuilder
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "produto")
 public final class Product extends AbstractEntity {

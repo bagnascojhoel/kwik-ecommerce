@@ -1,9 +1,9 @@
-package br.com.kwikecommerce.api.code.random;
+package br.com.kwikecommerce.api.code.application.random;
 
 import org.apache.commons.lang3.RandomUtils;
 
 
-public class RandomPrimitive {
+public class PrimitiveRandom {
 
     public Long nextLong() {
         return RandomUtils.nextLong();

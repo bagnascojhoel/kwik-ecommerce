@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code.random;
+package br.com.kwikecommerce.api.code.application.random;
 
 import lombok.RequiredArgsConstructor;
 import org.jeasy.random.EasyRandom;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RequiredArgsConstructor
-public class RandomObject {
+public class ObjectRandom {
 
     private final EasyRandom easyRandom;
 

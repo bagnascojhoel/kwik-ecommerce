@@ -1,8 +1,12 @@
 package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
-import br.com.kwikecommerce.api.code.UnitTest;
-import br.com.kwikecommerce.api.code.random.Random;
+import br.com.kwikecommerce.api.code.application.IntegrationTest;
+import br.com.kwikecommerce.api.code.application.UnitTest;
+import br.com.kwikecommerce.api.code.application.assertion.Assertion;
+import br.com.kwikecommerce.api.code.application.random.Random;
+import br.com.kwikecommerce.api.domain.Category;
+import br.com.kwikecommerce.api.domain.Company;
 import br.com.kwikecommerce.api.domain.Product;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.mapper.ProductMapper;
@@ -13,34 +17,39 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-class ProductServiceCreateProductTest extends UnitTest {
-
-    @InjectMocks
-    ProductServiceImpl subject;
-
-    @Mock
-    ProductValidator productValidator;
-
-    @Mock
-    StorageService storageService;
-
-    @Mock
-    ProductMapper productMapper;
-
-    @Mock
-    ProductRepository productRepository;
+class ProductServiceCreateProductTest {
 
     @Nested
-    class InnerA {
+    class WithGeneralMockedResponses extends UnitTest {
+
+        @InjectMocks
+        ProductServiceImpl subject;
+
+        @Mock
+        ProductValidator productValidator;
+
+        @Mock
+        StorageService storageService;
+
+        @Mock
+        ProductMapper productMapper;
+
+        @Mock
+        ProductRepository productRepository;
 
         @BeforeEach
         void beforeEach() {
@@ -106,27 +115,38 @@ class ProductServiceCreateProductTest extends UnitTest {
         }
     }
 
+    @Nested
+    class IntegrationTests extends IntegrationTest {
 
-    // TODO: 27/06/2021 adicionar lógica a esse teste
-    @Test
-    void shouldReturnSavedProductId() {
-        // Arrange
-        var request = Random.OBJECT.next(ProductCreationRequest.class);
-        var images = Random.OBJECT.nextList(MockMultipartFile.class, MultipartFile.class);
+        @Autowired
+        ProductMapper productMapper;
 
-        when(storageService.upload(eq(PRODUCT_IMAGES), anyList())).thenReturn(Collections.emptyList());
+        @Autowired
+        ProductServiceImpl subject;
 
-        var product = Random.ENTITY.next(Product.class);
-        when(productMapper.map(any(ProductCreationRequest.class), anyList())).thenReturn(product);
+        // TODO: 27/06/2021 adicionar lógica a esse teste
+        @Test
+        void shouldReturnSavedProductId() {
+            // Arrange
+            var company = Random.ENTITY.nextSaved(Company.class);
+            var category = Random.ENTITY.nextSaved(
+                Category.class,
+                Map.of("companyId", company.getId())
+            );
+            var request = Random.OBJECT.next(ProductCreationRequest.class);
+            request.setCompanyId(1L);
+            request.setCategoriesIds(Set.of(category.getId()));
 
-        product.setId(Random.PRIMITIVE.nextLong());
-        when(productRepository.save(any(Product.class))).thenReturn(product);
+            var images = Random.OBJECT.nextList(MockMultipartFile.class, MultipartFile.class);
+            var expectedProduct = productMapper.map(request, List.of());
 
-        // Act
-        subject.createProduct(request, images);
+            // Act
+            Long actualProductId = subject.createProduct(request, images);
 
-        // Assert
-
+            // Assert
+            assertNotNull(actualProductId);
+            Assertion.DATABASE.assertEquals(Product.class, actualProductId, expectedProduct);
+        }
     }
 
     // TODO: 29/06/2021 testar o retorno do método

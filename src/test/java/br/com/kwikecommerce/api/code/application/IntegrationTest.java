@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code;
+package br.com.kwikecommerce.api.code.application;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

@@ -1,10 +1,10 @@
 package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
-import br.com.kwikecommerce.api.code.application.IntegrationTest;
-import br.com.kwikecommerce.api.code.application.UnitTest;
-import br.com.kwikecommerce.api.code.application.assertion.Assertion;
-import br.com.kwikecommerce.api.code.application.random.Random;
+import br.com.kwikecommerce.api.code.IntegrationTest;
+import br.com.kwikecommerce.api.code.UnitTest;
+import br.com.kwikecommerce.api.code.assertion.Assertion;
+import br.com.kwikecommerce.api.code.random.Random;
 import br.com.kwikecommerce.api.domain.Category;
 import br.com.kwikecommerce.api.domain.Company;
 import br.com.kwikecommerce.api.domain.Product;
@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
@@ -130,8 +130,8 @@ class ProductServiceCreateProductTest {
             // Arrange
             var company = Random.ENTITY.nextSaved(Company.class);
             var category = Random.ENTITY.nextSaved(
-                Category.class,
-                Map.of("companyId", company.getId())
+                    Category.class,
+                    Map.of("company", company)
             );
             var request = Random.OBJECT.next(ProductCreationRequest.class);
             request.setCompanyId(1L);

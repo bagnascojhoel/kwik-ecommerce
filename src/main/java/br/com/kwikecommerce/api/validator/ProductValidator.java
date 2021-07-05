@@ -16,6 +16,7 @@ public record ProductValidator(
     CompanyRepository companyRepository,
     CategoryRepository categoryRepository
 ) {
+    // TODO: 03/07/2021 Analisar possibilidade de utilizar customizadas Anotações para realizar as validações
 
     public void validateProductCreationRequest(ProductCreationRequest request) {
         validateCompanyExists(request.getCompanyId());

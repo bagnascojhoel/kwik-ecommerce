@@ -1,7 +1,6 @@
-package br.com.kwikecommerce.api.code.application.random;
+package br.com.kwikecommerce.api.code.random;
 
 import lombok.RequiredArgsConstructor;
-import org.jeasy.random.EasyRandom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
@@ -11,8 +10,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class ObjectRandom {
-
-    private final EasyRandom easyRandom;
 
     public <T> Page<T> nextPage(Class<T> baseClass) {
         return new PageImpl<>(nextList(baseClass));
@@ -45,7 +42,7 @@ public class ObjectRandom {
     }
 
     public <T> T next(Class<T> baseClass) {
-        return easyRandom.nextObject(baseClass);
+        return RandomUtils.nextObject(baseClass);
     }
 
 }

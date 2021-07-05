@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code.application.assertion;
+package br.com.kwikecommerce.api.code.assertion;
 
 import org.springframework.stereotype.Component;
 

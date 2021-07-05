@@ -1,6 +1,5 @@
 package br.com.kwikecommerce.api.service.category;
 
-import br.com.kwikecommerce.api.application.service.message.MessageService;
 import br.com.kwikecommerce.api.dto.request.CategoryCreationRequest;
 import br.com.kwikecommerce.api.dto.response.CategoryListingResponse;
 import br.com.kwikecommerce.api.mapper.CategoryMapper;
@@ -14,8 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public record CategoryServiceImpl(
     CategoryMapper categoryMapper,
-    CategoryRepository categoryRepository,
-    MessageService messageService
+    CategoryRepository categoryRepository
 ) implements CategoryService {
 
     @Override

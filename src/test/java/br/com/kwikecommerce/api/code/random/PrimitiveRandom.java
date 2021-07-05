@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code.application.random;
+package br.com.kwikecommerce.api.code.random;
 
 import org.apache.commons.lang3.RandomUtils;
 

@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code.application.exception;
+package br.com.kwikecommerce.api.code.exception;
 
 public class PropertySettingException extends RuntimeException {
 

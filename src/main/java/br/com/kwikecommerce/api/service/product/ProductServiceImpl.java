@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collections;
 import java.util.List;
 
 import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
@@ -34,7 +35,9 @@ public record ProductServiceImpl(
     public Long createProduct(ProductCreationRequest request, List<MultipartFile> images) {
         productValidator.validateProductCreationRequest(request);
 
-        var imagesUrls = storageService.upload(PRODUCT_IMAGES, images);
+        List<String> imagesUrls = images.isEmpty()
+            ? storageService.upload(PRODUCT_IMAGES, images)
+            : Collections.emptyList();
         var product = productMapper.map(request, imagesUrls);
 
         return productRepository.save(product).getId();

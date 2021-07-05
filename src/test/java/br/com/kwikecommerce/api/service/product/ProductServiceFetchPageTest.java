@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.code.application.UnitTest;
-import br.com.kwikecommerce.api.code.application.random.Random;
+import br.com.kwikecommerce.api.code.UnitTest;
+import br.com.kwikecommerce.api.code.random.Random;
 import br.com.kwikecommerce.api.domain.Product;
 import br.com.kwikecommerce.api.domain.ProductSorting;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;

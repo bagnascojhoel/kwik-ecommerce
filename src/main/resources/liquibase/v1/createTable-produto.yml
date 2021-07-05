@@ -25,7 +25,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: qtd_disponivel
-                  type: smallint
+                  type: int
                   constraints:
                     nullable: false
                   defaultValue: 0

@@ -1,37 +1,41 @@
 package br.com.kwikecommerce.api.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 
 @SuperBuilder
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "empresa")
 public class Company extends AbstractEntity {
 
-    @Length(max = 50)
+    @Size(max = 50)
     @Column(name = "nome")
     private String name;
 
-    @Length(max = 300)
+    @Size(max = 300)
     @Column(name = "endereco")
     private String address;
 
-    @Length(max = 100)
+    @Size(max = 100)
     @Column(name = "email")
     private String email;
 
-    @Length(max = 9)
+    @Size(max = 9)
     @Column(name = "telefone_whatsapp")
     private String whatsappPhone;
 

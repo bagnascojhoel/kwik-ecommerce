@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.code.application;
+package br.com.kwikecommerce.api.code;
 
 
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,14 +1,12 @@
 package br.com.kwikecommerce.api.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -18,10 +16,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "produto")
 public final class Product extends AbstractEntity {
 
-    @Length(min = 3, max = 100)
+    @Size(min = 3, max = 100)
     @Column(name = "titulo")
     private String title;
 
@@ -30,19 +29,20 @@ public final class Product extends AbstractEntity {
     @Column(name = "preco_unitario", precision = 2)
     private BigDecimal unitaryPrice;
 
+    @Min(0)
     @Max(65535)
     @Column(name = "qtd_disponivel")
     private Integer availableQty;
 
-    @Length(min = 3)
+    @Size(min = 3)
     @Column(name = "detalhes")
     private String details;
 
     @ManyToMany
     @JoinTable(
-        name = "categoria_produto",
-        joinColumns = @JoinColumn(name = "produto_id"),
-        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+            name = "categoria_produto",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Category> categories;
 

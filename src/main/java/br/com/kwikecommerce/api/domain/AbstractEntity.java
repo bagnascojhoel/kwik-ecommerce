@@ -1,19 +1,18 @@
 package br.com.kwikecommerce.api.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @SuperBuilder
 @MappedSuperclass
 public abstract class AbstractEntity {
@@ -23,9 +22,11 @@ public abstract class AbstractEntity {
     @Column(name = "id")
     private Long id;
 
+    @EqualsAndHashCode.Exclude
     @Column(name = "criado_em", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @EqualsAndHashCode.Exclude
     @Column(name = "alterado_em", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 

@@ -1,4 +1,5 @@
 databaseChangeLog:
+  # TODO jhoel.bagnasco 07/07/2021 | Ver como criar um agregado para pedido_produto, já que essa é uma linha do pedido
   - changeSet:
       id: createTable-pedido_produto
       author: jhoel.bagnasco

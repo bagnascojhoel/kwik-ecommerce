@@ -22,3 +22,11 @@ databaseChangeLog:
   - include:
       file: insert-empresa-add-kwik-admin.yml
       relativeToChangelogFile: true
+
+  - include:
+      file: createTable-pedido.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: createTable-pedido_produto.yml
+      relativeToChangelogFile: true

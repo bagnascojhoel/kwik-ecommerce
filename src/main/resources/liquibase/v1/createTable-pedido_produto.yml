@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable-pedido_produto
+      author: jhoel.bagnasco
+      changes:
+        - createTable:
+            tableName: pedido_produto
+            columns:
+              - column:
+                  name: id
+                  type: ${key}
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: produto_id
+                  type: ${key}
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pedido_produto_produto_id
+                    references: produto(id)
+              - column:
+                  name: pedido_id
+                  type: ${key}
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pedido_produto_pedido_id
+                    references: pedido(id)
+              - column:
+                  name: quantidade
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: preco_unitario_venda
+                  type: decimal(7,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: detalhe
+                  type: varchar(100)

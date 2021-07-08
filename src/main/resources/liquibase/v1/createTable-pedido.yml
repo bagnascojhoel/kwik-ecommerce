@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: empreda_id
+                  name: empresa_id
                   type: ${key}
                   constraints:
                     foreignKeyName: fk_pedido_empresa_id

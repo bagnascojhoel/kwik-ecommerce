@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable-pedido_status
+      author: jhoel.bagnasco
+      changes:
+        - createTable:
+            tableName: pedido_status
+            columns:
+              - column:
+                  name: id
+                  type: ${key}
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: pedido_id
+                  type: ${key}
+                  constraints:
+                    foreignKeyName: fk_pedido_status_pedido_id
+                    references: pedido(id)
+                    nullable: false
+              - column:
+                  name: status_id
+                  type: ${key}
+                  constraints:
+                    foreignKeyName: fk_pedido_status_status_id
+                    references: status(id)
+                    nullable: false
+              - column:
+                  name: atualizado_em
+                  type: timestamp
+                  defaultValueDate: ${now}
+                  constraints:
+                    nullable: false

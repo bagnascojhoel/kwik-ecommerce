@@ -30,3 +30,11 @@ databaseChangeLog:
   - include:
       file: createTable-pedido_produto.yml
       relativeToChangelogFile: true
+
+  - include:
+      file: createTable-status.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: createTable-pedido_status.yml
+      relativeToChangelogFile: true

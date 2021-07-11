@@ -1,11 +1,11 @@
 databaseChangeLog:
   # TODO jhoel.bagnasco 07/07/2021 | Ver como criar um agregado para pedido_produto, já que essa é uma linha do pedido
   - changeSet:
-      id: createTable-pedido_produto
+      id: createTable-pedido_item
       author: jhoel.bagnasco
       changes:
         - createTable:
-            tableName: pedido_produto
+            tableName: pedido_item
             columns:
               - column:
                   name: id
@@ -19,14 +19,14 @@ databaseChangeLog:
                   type: ${key}
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_pedido_produto_produto_id
+                    foreignKeyName: fk_pedido_item_produto_id
                     references: produto(id)
               - column:
                   name: pedido_id
                   type: ${key}
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_pedido_produto_pedido_id
+                    foreignKeyName: fk_pedido_item_pedido_id
                     references: pedido(id)
               - column:
                   name: quantidade
@@ -39,5 +39,5 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: detalhe
+                  name: descricao
                   type: varchar(100)

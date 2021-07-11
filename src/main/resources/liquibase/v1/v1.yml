@@ -28,7 +28,7 @@ databaseChangeLog:
       relativeToChangelogFile: true
 
   - include:
-      file: createTable-pedido_produto.yml
+      file: createTable-pedido_item.yml
       relativeToChangelogFile: true
 
   - include:

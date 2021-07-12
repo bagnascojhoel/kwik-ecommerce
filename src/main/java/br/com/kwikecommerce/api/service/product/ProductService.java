@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.model.ProductSorting;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import org.springframework.data.domain.Page;

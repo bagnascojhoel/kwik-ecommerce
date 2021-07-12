@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.domain;
+package br.com.kwikecommerce.api.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,5 +47,8 @@ public class Company extends AbstractEntity {
 
     @OneToMany(mappedBy = "company")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "company")
+    private List<Order> orders;
 
 }

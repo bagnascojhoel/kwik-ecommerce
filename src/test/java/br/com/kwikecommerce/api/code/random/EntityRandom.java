@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.code.random;
 
 import br.com.kwikecommerce.api.code.ReflectionUtils;
-import br.com.kwikecommerce.api.domain.AbstractEntity;
+import br.com.kwikecommerce.api.model.AbstractEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 

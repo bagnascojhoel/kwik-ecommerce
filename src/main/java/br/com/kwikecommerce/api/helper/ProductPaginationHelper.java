@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.helper;
 
-import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.model.ProductSorting;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

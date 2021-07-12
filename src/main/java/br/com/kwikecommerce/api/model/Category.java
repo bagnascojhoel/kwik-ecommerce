@@ -1,13 +1,15 @@
-package br.com.kwikecommerce.api.domain;
+package br.com.kwikecommerce.api.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -19,15 +21,11 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "categoria")
-public class Category extends AbstractEntity {
+public class Category extends AbstractCompanyEntity {
 
     @Size(max = 30)
     @Column(name = "titulo")
     private String title;
-
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Company company;
 
     @ManyToMany(mappedBy = "categories")
     private List<Product> products;

@@ -2,8 +2,8 @@ package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.code.UnitTest;
 import br.com.kwikecommerce.api.code.random.Random;
-import br.com.kwikecommerce.api.domain.Product;
-import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.model.Product;
+import br.com.kwikecommerce.api.model.ProductSorting;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.helper.ProductPaginationHelper;
 import br.com.kwikecommerce.api.mapper.ProductMapper;

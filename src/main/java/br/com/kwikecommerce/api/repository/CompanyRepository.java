@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.repository;
 
-import br.com.kwikecommerce.api.domain.Company;
+import br.com.kwikecommerce.api.model.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

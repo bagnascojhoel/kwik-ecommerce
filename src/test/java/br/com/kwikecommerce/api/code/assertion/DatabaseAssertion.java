@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.code.assertion;
 
-import br.com.kwikecommerce.api.domain.AbstractEntity;
+import br.com.kwikecommerce.api.model.AbstractEntity;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 

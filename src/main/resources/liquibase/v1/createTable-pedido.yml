@@ -27,7 +27,7 @@ databaseChangeLog:
                   name: cliente_endereco
                   type: varchar(255)
               - column:
-                  name: cliente_contato
+                  name: cliente_numero_telefone
                   type: varchar(14)
                   constraints:
                     nullable: false
@@ -35,10 +35,10 @@ databaseChangeLog:
                   name: forma_pagamento
                   type: varchar(20)
               - column:
-                  name: valor_total
+                  name: preco_total
                   type: decimal(7, 2)
               - column:
-                  name: valor_frete
+                  name: preco_frete
                   type: decimal(4, 2)
               - column:
                   name: criado_em

@@ -50,10 +50,8 @@ public class Order extends AbstractCompanyEntity {
     @ManyToMany
     @JoinTable(
         name = "pedido_status",
-        joinColumns = @JoinColumn(name = "pedido_id"),
-        inverseJoinColumns = @JoinColumn(name = "status_id")
+        joinColumns = @JoinColumn(name = "pedido_id")
     )
-    @OrderColumn(name = "atualizado_em")
-    private List<Status> statusHistory;
+    private List<OrderStatus> statusHistory;
 
 }

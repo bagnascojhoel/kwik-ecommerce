@@ -21,11 +21,18 @@ databaseChangeLog:
                     references: pedido(id)
                     nullable: false
               - column:
-                  name: status_id
-                  type: ${key}
+                  name: motivo
+                  type: varchar(50)
+              - column:
+                  name: status
+                  type: ${order_status}
                   constraints:
-                    foreignKeyName: fk_pedido_status_status_id
-                    references: status(id)
+                    nullable: false
+              - column:
+                  name: criado_em
+                  type: timestamp
+                  defaultValueDate: ${now}
+                  constraints:
                     nullable: false
               - column:
                   name: atualizado_em

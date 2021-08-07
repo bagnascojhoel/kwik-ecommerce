@@ -14,18 +14,18 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class MessageSourceConfiguration {
 
     private static final String ENCODING = "UTF-8";
-    private static final String[] MESSAGE_SOURCES = {"messages", "messages-e", "messages-v"};
+    private static final String[] MESSAGE_SOURCES = {"messages", "messages-exception", "messages-validation"};
 
     @Bean
     public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        var validator = new LocalValidatorFactoryBean();
         validator.setValidationMessageSource(messageSource());
         return validator;
     }
 
     @Bean
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        var messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames(MESSAGE_SOURCES);
         messageSource.setDefaultEncoding(ENCODING);
         messageSource.setFallbackToSystemLocale(false);
@@ -34,7 +34,7 @@ public class MessageSourceConfiguration {
 
     @Bean
     public LocaleResolver localeResolver() {
-        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        var localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(Constants.LOCALE_PT_BR);
         return localeResolver;
     }

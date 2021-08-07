@@ -3,9 +3,9 @@ package br.com.kwikecommerce.api.application;
 import br.com.kwikecommerce.api.application.dto.response.ExceptionResponse;
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse;
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse.FieldValidation;
+import br.com.kwikecommerce.api.application.exception.base.NotFoundException;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.service.message.MessageService;
-import br.com.kwikecommerce.api.application.exception.base.NotFoundException;
 import br.com.kwikecommerce.api.message.ExceptionMessageKey;
 import br.com.kwikecommerce.api.message.MessageKey;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestControllerAdvice
@@ -30,6 +33,12 @@ public record ExceptionController(
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public FieldValidationResponse handleFieldValidations(MethodArgumentNotValidException ex) {
         return buildExceptionResponse(ex.getFieldErrors());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public FieldValidationResponse handleFieldValidations(ConstraintViolationException ex) {
+        return buildExceptionResponse(ex.getConstraintViolations());
     }
 
     @ExceptionHandler(NotFoundException.class)
@@ -52,6 +61,27 @@ public record ExceptionController(
             .build();
     }
 
+    private FieldValidationResponse buildExceptionResponse(Set<ConstraintViolation<?>> constraintViolations) {
+        var validations = new ArrayList<FieldValidation>();
+
+        for (var constraintViolation : constraintViolations) {
+            var value = Optional.ofNullable(constraintViolation.getInvalidValue())
+                .map(Object::toString)
+                .orElse(null);
+            var message = fetchValidationMessage(constraintViolation);
+
+            validations.add(FieldValidation.builder()
+                .field(constraintViolation.getPropertyPath().toString())
+                .value(value)
+                .message(message)
+                .build());
+        }
+
+        return FieldValidationResponse.builder()
+            .validations(validations)
+            .build();
+    }
+
     private FieldValidationResponse buildExceptionResponse(List<FieldError> fieldErrors) {
         var validations = new ArrayList<FieldValidation>();
 
@@ -71,4 +101,11 @@ public record ExceptionController(
             .validations(validations)
             .build();
     }
+
+    private String fetchValidationMessage(ConstraintViolation<?> constraintViolation) {
+        var messageKey = constraintViolation.getMessageTemplate().replace("{", "").replace("}", "");
+        return messageService.fetch(messageKey)
+            .orElse(constraintViolation.getMessage());
+    }
+
 }

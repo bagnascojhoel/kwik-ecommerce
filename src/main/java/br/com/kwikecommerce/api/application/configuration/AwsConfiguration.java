@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.configuration;
+package br.com.kwikecommerce.api.application.configuration;
 
 import br.com.kwikecommerce.api.application.property.AwsProperty;
 import lombok.RequiredArgsConstructor;

@@ -1,20 +1,43 @@
 package br.com.kwikecommerce.api.dto.request;
 
 import br.com.kwikecommerce.api.model.PaymentMethod;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Value;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 
-@Data
+@Value
 public class OrderCreationRequest {
 
-    private Long companyId;
-    private String customerName;
-    private String customerAddress;
-    private String customerPhoneNumber;
-    private PaymentMethod paymentMethod;
-    private BigDecimal totalPrice;
-    private BigDecimal freightPrice;
+    // TODO jhoel.bagnasco esse campo no futuro será buscado do token de atenticação
+    @NotNull
+    @Schema(example = "1")
+    Long companyId;
+
+    @NotBlank
+    @Schema(example = "Jonas Fonseca")
+    String customerName;
+
+    @NotBlank
+    @Schema(example = "Brasil, São Paulo, São Paulo, Guarulhos, Av. Araújo Viana, 33")
+    String customerAddress;
+
+    @NotBlank
+    @Schema(example = "48322888692")
+    String customerPhoneNumber;
+
+    @NotNull
+    @Schema(example = "PIX")
+    PaymentMethod paymentMethod;
+
+    @NotNull
+    @Schema(example = "56.99")
+    BigDecimal totalPrice;
+
+    @Schema(example = "4.67")
+    BigDecimal freightPrice;
 
 }

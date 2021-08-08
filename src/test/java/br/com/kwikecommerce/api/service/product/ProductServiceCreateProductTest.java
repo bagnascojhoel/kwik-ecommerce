@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
+import static br.com.kwikecommerce.api.application.common.Storage.PRODUCT_IMAGES;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 

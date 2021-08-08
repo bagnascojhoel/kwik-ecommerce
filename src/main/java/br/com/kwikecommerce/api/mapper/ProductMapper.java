@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.mapper;
 
-import br.com.kwikecommerce.api.model.Product;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
+import br.com.kwikecommerce.api.model.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

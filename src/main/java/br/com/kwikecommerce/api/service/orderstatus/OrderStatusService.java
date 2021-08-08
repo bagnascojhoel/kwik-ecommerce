@@ -5,7 +5,7 @@ import br.com.kwikecommerce.api.model.Order;
 
 public interface OrderStatusService {
 
-    void toCreatedOrder(Order savedOrder);
+    void toCreatedOrder(Order order);
 
     void toCanceledOrder(Long orderId);
 

@@ -19,11 +19,9 @@ import java.util.List;
     name = "Products",
     description = "Operations over product resources"
 )
-@RequestMapping("/v1/products")
 public interface ProductController {
 
     @Tag(name = "Products")
-    @PostMapping
     @Operation(
         summary = "Create a new product",
         description = """
@@ -37,7 +35,6 @@ public interface ProductController {
     );
 
     @Tag(name = "Products")
-    @GetMapping
     @Operation(summary = "Fetch a page of products")
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
@@ -47,7 +44,6 @@ public interface ProductController {
     );
 
     @Tag(name = "Products")
-    @GetMapping("/{categoryId}")
     @Operation(summary = "Fetch a page of products from a given category")
     @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
     @Parameter(name = "sortingOption")

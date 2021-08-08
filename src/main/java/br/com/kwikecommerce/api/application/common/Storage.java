@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application;
+package br.com.kwikecommerce.api.application.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

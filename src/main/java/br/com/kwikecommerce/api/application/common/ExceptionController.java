@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application;
+package br.com.kwikecommerce.api.application.common;
 
 import br.com.kwikecommerce.api.application.dto.response.ExceptionResponse;
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse;

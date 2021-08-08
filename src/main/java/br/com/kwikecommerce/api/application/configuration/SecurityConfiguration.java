@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.configuration;
+package br.com.kwikecommerce.api.application.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

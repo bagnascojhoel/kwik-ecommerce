@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.configuration;
+package br.com.kwikecommerce.api.application.configuration;
 
 import br.com.kwikecommerce.api.application.property.ApiInfoProperty;
 import io.swagger.v3.oas.models.OpenAPI;

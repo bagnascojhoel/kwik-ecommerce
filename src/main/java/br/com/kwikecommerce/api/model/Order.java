@@ -47,11 +47,8 @@ public class Order extends AbstractCompanyEntity {
     @Column(name = "preco_frete")
     private BigDecimal freightPrice;
 
-    @ManyToMany
-    @JoinTable(
-        name = "pedido_status",
-        joinColumns = @JoinColumn(name = "pedido_id")
-    )
+    @OrderBy("createdAt DESC")
+    @OneToMany(mappedBy = "order")
     private List<OrderStatus> statusHistory;
 
 }

@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
-import br.com.kwikecommerce.api.converter.CategoryProductConverter;
+import br.com.kwikecommerce.api.mapper.CategoryProductMapper;
 import br.com.kwikecommerce.api.model.ProductSorting;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Collections;
 import java.util.List;
 
-import static br.com.kwikecommerce.api.application.Storage.PRODUCT_IMAGES;
+import static br.com.kwikecommerce.api.application.common.Storage.PRODUCT_IMAGES;
 
 
 @Service
@@ -26,7 +26,7 @@ public record ProductServiceImpl(
     ProductMapper productMapper,
     ProductPaginationHelper productPaginationHelper,
     CategoryService categoryService,
-    CategoryProductConverter categoryProductConverter,
+    CategoryProductMapper categoryProductMapper,
     StorageService storageService,
     ProductValidator productValidator
 ) implements ProductService {

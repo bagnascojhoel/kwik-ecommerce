@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.configuration;
+package br.com.kwikecommerce.api.application.configuration;
 
 import org.jeasy.random.EasyRandom;
 import org.springframework.context.annotation.Bean;

@@ -1,5 +1,6 @@
 package br.com.kwikecommerce.api.model;
 
+import br.com.kwikecommerce.api.application.exception.NoSuchEnumOptionException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +15,15 @@ public enum OrderStatusType {
     SENT("ENVIADO"),
     DELIVERED("ENTREGUE");
 
-    private final String name;
+    private final String description;
+
+    public static OrderStatusType discoverByDescription(String description) {
+        for (var orderStatusType : values()) {
+            if (orderStatusType.getDescription().equalsIgnoreCase(description))
+                return orderStatusType;
+        }
+
+        throw new NoSuchEnumOptionException(description);
+    }
 
 }

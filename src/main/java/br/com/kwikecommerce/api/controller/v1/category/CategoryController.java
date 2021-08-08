@@ -17,16 +17,13 @@ import java.util.List;
     name = "Categories",
     description = "Operations over category resources"
 )
-@RequestMapping("/v1/categories")
 public interface CategoryController {
 
     @Tag(name = "Categories")
-    @PostMapping
     @Operation(summary = "Create a new category")
     Long create(@RequestBody @Valid CategoryCreationRequest categoryCreationRequest);
 
     @Tag(name = "Categories")
-    @GetMapping
     @Operation(summary = "List all categories")
     List<CategoryListingResponse> fetchAll();
 

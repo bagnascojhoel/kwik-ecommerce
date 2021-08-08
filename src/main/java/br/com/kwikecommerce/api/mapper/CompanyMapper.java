@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface CompanyMapper {
 
-    default Company mapCompanyIdToCompany(Long companyId) {
+    default Company map(Long companyId) {
         return Company.builder()
             .id(companyId)
             .build();

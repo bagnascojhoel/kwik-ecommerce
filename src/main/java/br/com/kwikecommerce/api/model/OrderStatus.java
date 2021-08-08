@@ -1,11 +1,11 @@
 package br.com.kwikecommerce.api.model;
 
+import br.com.kwikecommerce.api.converter.OrderStatusTypeConverter;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 
 @Entity
@@ -16,12 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Table(name = "pedido_status")
-public class OrderStatus extends AbstractCompanyEntity {
+public class OrderStatus extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "statusHistory")
-    private List<Order> order;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Order order;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = OrderStatusTypeConverter.class)
     @Column(name = "status")
     private OrderStatusType orderStatusType;
 

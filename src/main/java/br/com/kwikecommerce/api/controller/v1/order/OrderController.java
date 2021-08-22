@@ -5,32 +5,47 @@ import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import br.com.kwikecommerce.api.service.order.OrderService;
+import br.com.kwikecommerce.api.service.ordermanagement.OrderManagementService;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
-@Tag(
-    name = "Orders",
-    description = "Operations over order resources"
-)
-public interface OrderController {
+@RestController
+@RequestMapping("/v1/orders")
+public record OrderController(
+    OrderService orderService,
+    OrderManagementService orderManagementService
+) implements OrderApi {
 
-    @Tag(name = "Orders")
-    @Operation(summary = "Creates a new Order with its items")
-    Long create(OrderCreationRequestDto orderCreationRequestDto);
+    @Override
+    @PostMapping
+    public Long create(@RequestBody @Valid OrderCreationRequestDto orderCreationRequestDto) {
+        return orderManagementService.createOrder(orderCreationRequestDto).getId();
+    }
 
-    @Tag(name = "Orders")
-    @Operation(summary = "Find Orders valid for given filter")
-    Page<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
+    @Override
+    @GetMapping
+    public Page<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto) {
+        return orderService.findByFilter(pageRequestDto);
+    }
 
-    @Tag(name = "Orders")
-    void cancelById(Long orderId);
+    @Override
+    public void cancelById(Long orderId) {
+        // TODO implement
+    }
 
-    @Tag(name = "Orders")
-    OrderFindingByIdResponseDto findById(Long orderId);
+    @Override
+    public OrderFindingByIdResponseDto findById(Long orderId) {
+        // TODO implement
+        return null;
+    }
 
-    @Tag(name = "Orders")
-    void update(Long orderId, OrderUpdateRequestDto orderUpdateRequestDto);
+    @Override
+    public void update(Long orderId, OrderUpdateRequestDto orderUpdateRequestDto) {
+        return;
+    }
 
 }

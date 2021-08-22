@@ -1,7 +1,6 @@
 package br.com.kwikecommerce.api.repository;
 
-import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
-import br.com.kwikecommerce.api.model.OrderItem;
+import br.com.kwikecommerce.api.domain.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

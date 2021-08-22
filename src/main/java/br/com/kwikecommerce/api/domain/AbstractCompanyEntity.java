@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.model;
+package br.com.kwikecommerce.api.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

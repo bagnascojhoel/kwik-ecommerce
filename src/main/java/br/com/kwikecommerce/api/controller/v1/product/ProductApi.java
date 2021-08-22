@@ -3,7 +3,7 @@ package br.com.kwikecommerce.api.controller.v1.product;
 import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
-import br.com.kwikecommerce.api.model.ProductSorting;
+import br.com.kwikecommerce.api.domain.ProductSorting;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

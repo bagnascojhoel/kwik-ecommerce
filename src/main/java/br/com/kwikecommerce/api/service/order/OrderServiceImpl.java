@@ -4,10 +4,11 @@ import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
 import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
 import br.com.kwikecommerce.api.application.util.PaginationUtil;
+import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
+import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.mapper.OrderMapper;
-import br.com.kwikecommerce.api.model.Order;
 import br.com.kwikecommerce.api.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,15 @@ public class OrderServiceImpl implements OrderService {
     public Order create(OrderCreationRequestDto requestDto) {
         var order = orderMapper.map(requestDto);
         return orderRepository.save(order);
+    }
+
+    @Override
+    @Transactional
+    public Order update(Long orderId, OrderUpdateRequestDto request) {
+        var oldOrder = orderRepository.getOne(orderId);
+        var newOrder = orderMapper.map(oldOrder, request);
+
+        return orderRepository.save(newOrder);
     }
 
     // TODO jhoel.bagnasco 07/08/2021 | Atualizar para esperar um objeto para filtragem

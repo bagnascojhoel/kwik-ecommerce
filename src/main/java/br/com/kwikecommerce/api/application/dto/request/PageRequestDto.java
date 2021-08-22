@@ -19,7 +19,7 @@ public class PageRequestDto {
     @Size(min = 1)
     Integer size;
 
-    @Schema(hidden = true)
+    @Schema(example = "name, DESC")
     String sort;
 
 }

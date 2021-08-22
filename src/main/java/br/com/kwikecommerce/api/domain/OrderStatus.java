@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.model;
+package br.com.kwikecommerce.api.domain;
 
 import br.com.kwikecommerce.api.converter.OrderStatusTypeConverter;
 import lombok.*;

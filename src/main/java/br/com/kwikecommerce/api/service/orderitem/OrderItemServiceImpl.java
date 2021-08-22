@@ -2,7 +2,7 @@ package br.com.kwikecommerce.api.service.orderitem;
 
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.mapper.OrderItemMapper;
-import br.com.kwikecommerce.api.model.OrderItem;
+import br.com.kwikecommerce.api.domain.OrderItem;
 import br.com.kwikecommerce.api.repository.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

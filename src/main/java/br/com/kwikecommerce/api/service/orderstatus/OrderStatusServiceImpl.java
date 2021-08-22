@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.orderstatus;
 
-import br.com.kwikecommerce.api.model.Order;
+import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.repository.OrderStatusRepository;
 import org.springframework.stereotype.Service;
 

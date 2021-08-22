@@ -1,5 +1,5 @@
 databaseChangeLog:
   - property:
-      dbms: mysql
+      dbms: mysql, h2
       name: order_status
       value: enum('PENDENTE', 'VISUALIZADO', 'EM ANDAMENTO', 'CANCELADO', 'ENVIADO', 'ENTREGUE')

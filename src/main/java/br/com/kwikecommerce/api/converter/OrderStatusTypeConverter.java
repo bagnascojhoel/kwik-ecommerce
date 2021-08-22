@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.converter;
 
-import br.com.kwikecommerce.api.model.OrderStatusType;
+import br.com.kwikecommerce.api.domain.OrderStatusType;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

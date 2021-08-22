@@ -1,11 +1,13 @@
 package br.com.kwikecommerce.api.service.ordermanagement;
 
+import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
-import br.com.kwikecommerce.api.model.Order;
 
 
 public interface OrderManagementService {
 
-    Order createOrder(OrderCreationRequestDto requestDto);
+    Order init(OrderCreationRequestDto requestDto);
+
+    void cancel(Long orderId);
 
 }

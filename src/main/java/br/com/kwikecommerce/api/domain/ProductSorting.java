@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.model;
+package br.com.kwikecommerce.api.domain;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;

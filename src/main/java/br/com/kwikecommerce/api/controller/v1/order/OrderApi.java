@@ -6,8 +6,11 @@ import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.validator.order.OrderExists;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import javax.validation.Valid;
 
 
 @Tag(
@@ -17,20 +20,22 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public interface OrderApi {
 
     @Tag(name = "Orders")
-    @Operation(summary = "Creates a new Order with its items")
-    Long create(OrderCreationRequestDto orderCreationRequestDto);
+    @Operation(summary = "Initiates an order with its items")
+    Long init(@Valid OrderCreationRequestDto orderCreationRequestDto);
+
+    @Tag(name = "Orders")
+    void cancel(Long orderId);
 
     @Tag(name = "Orders")
     @Operation(summary = "Find Orders valid for given filter")
     PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
 
     @Tag(name = "Orders")
-    void cancelById(Long orderId);
+    OrderFindingByIdResponseDto findById(@OrderExists Long orderId);
 
+    // TODO jhoel.bagnasco 22/08/2021 | Alterar padrão de nomes para verbos no infinitivo
     @Tag(name = "Orders")
-    OrderFindingByIdResponseDto findById(Long orderId);
-
-    @Tag(name = "Orders")
-    void update(Long orderId, OrderUpdateRequestDto orderUpdateRequestDto);
+    @Operation(summary = "Updates an order")
+    void update(@OrderExists Long orderId, @Valid OrderUpdateRequestDto orderUpdateRequestDto);
 
 }

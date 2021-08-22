@@ -8,23 +8,26 @@ import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
 import br.com.kwikecommerce.api.service.order.OrderService;
 import br.com.kwikecommerce.api.service.ordermanagement.OrderManagementService;
-import org.springframework.data.domain.Page;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 
+@Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/orders")
-public record OrderController(
-    OrderService orderService,
-    OrderManagementService orderManagementService
-) implements OrderApi {
+public class OrderController implements OrderApi {
+
+    private final OrderService orderService;
+    private final OrderManagementService orderManagementService;
 
     @Override
     @PostMapping
-    public Long create(@RequestBody @Valid OrderCreationRequestDto orderCreationRequestDto) {
-        return orderManagementService.createOrder(orderCreationRequestDto).getId();
+    public Long init(@RequestBody @Valid OrderCreationRequestDto orderCreationRequestDto) {
+        return orderManagementService.init(orderCreationRequestDto).getId();
     }
 
     @Override
@@ -33,20 +36,19 @@ public record OrderController(
         return orderService.findByFilter(pageRequestDto);
     }
 
-    @Override
-    public void cancelById(Long orderId) {
+    public void cancel(Long orderId) {
         // TODO implement
     }
 
     @Override
     public OrderFindingByIdResponseDto findById(Long orderId) {
-        // TODO implement
         return null;
     }
 
     @Override
-    public void update(Long orderId, OrderUpdateRequestDto orderUpdateRequestDto) {
-        return;
+    @PutMapping("/{orderId}")
+    public void update(@PathVariable Long orderId, @RequestBody OrderUpdateRequestDto orderUpdateRequestDto) {
+        orderService.update(orderId, orderUpdateRequestDto);
     }
 
 }

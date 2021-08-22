@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.repository;
 
-import br.com.kwikecommerce.api.model.Order;
-import br.com.kwikecommerce.api.model.OrderStatus;
-import br.com.kwikecommerce.api.model.OrderStatusType;
+import br.com.kwikecommerce.api.domain.Order;
+import br.com.kwikecommerce.api.domain.OrderStatus;
+import br.com.kwikecommerce.api.domain.OrderStatusType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

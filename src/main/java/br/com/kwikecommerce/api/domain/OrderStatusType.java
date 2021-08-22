@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.model;
+package br.com.kwikecommerce.api.domain;
 
 import br.com.kwikecommerce.api.application.exception.NoSuchEnumOptionException;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum OrderStatusType {
+public enum OrderStatusType implements DomainType {
     PENDING("PENDENTE"),
     VIEWED("VISUALIZADO"),
     ON_GOING("EM ANDAMENTO"),

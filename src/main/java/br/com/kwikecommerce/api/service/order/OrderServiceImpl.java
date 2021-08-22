@@ -2,30 +2,31 @@ package br.com.kwikecommerce.api.service.order;
 
 import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
 import br.com.kwikecommerce.api.application.util.PaginationUtil;
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequest;
+import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.mapper.OrderMapper;
+import br.com.kwikecommerce.api.model.Order;
 import br.com.kwikecommerce.api.repository.OrderRepository;
 import br.com.kwikecommerce.api.service.orderstatus.OrderStatusService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 
+
+@RequiredArgsConstructor
 @Service
-public record OrderServiceImpl(
-    OrderRepository orderRepository,
-    OrderMapper orderMapper,
-    OrderStatusService orderStatusService
-) implements OrderService {
+public class OrderServiceImpl implements OrderService {
+
+    private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
 
     @Override
-    public Long create(OrderCreationRequest request) {
-        // TODO: 12/07/2021 Validar request antes de salvar
-        var order = orderMapper.map(request);
-        var savedOrder = orderRepository.save(order);
-        orderStatusService.toCreatedOrder(savedOrder);
-
-        return savedOrder.getId();
+    @Transactional
+    public Order create(OrderCreationRequestDto requestDto) {
+        var order = orderMapper.map(requestDto);
+        return orderRepository.save(order);
     }
 
     // TODO jhoel.bagnasco 07/08/2021 | Atualizar para esperar um objeto para filtragem

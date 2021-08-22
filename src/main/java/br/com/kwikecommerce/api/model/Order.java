@@ -51,4 +51,8 @@ public class Order extends AbstractCompanyEntity {
     @OneToMany(mappedBy = "order")
     private List<OrderStatus> statusHistory;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pedido_id")
+    private List<OrderItem> items;
+
 }

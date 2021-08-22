@@ -5,13 +5,12 @@ import br.com.kwikecommerce.api.code.IntegrationTest;
 import br.com.kwikecommerce.api.code.UnitTest;
 import br.com.kwikecommerce.api.code.assertion.Assertion;
 import br.com.kwikecommerce.api.code.random.Random;
+import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
+import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.model.Category;
 import br.com.kwikecommerce.api.model.Company;
 import br.com.kwikecommerce.api.model.Product;
-import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
-import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.repository.ProductRepository;
-import br.com.kwikecommerce.api.validator.ProductValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static br.com.kwikecommerce.api.application.common.Storage.PRODUCT_IMAGES;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
@@ -38,9 +37,6 @@ class ProductServiceCreateProductTest {
 
         @InjectMocks
         ProductServiceImpl subject;
-
-        @Mock
-        ProductValidator productValidator;
 
         @Mock
         StorageService storageService;
@@ -60,19 +56,6 @@ class ProductServiceCreateProductTest {
 
             product.setId(Random.PRIMITIVE.nextLong());
             when(productRepository.save(any(Product.class))).thenReturn(product);
-        }
-
-        @Test
-        void shouldValidateRequest() {
-            // Arrange
-            var request = Random.OBJECT.next(ProductCreationRequest.class);
-            var images = Random.OBJECT.nextList(MockMultipartFile.class, MultipartFile.class);
-
-            // Act
-            subject.createProduct(request, images);
-
-            // Assert
-            verify(productValidator).validateProductCreationRequest(any(ProductCreationRequest.class));
         }
 
         @Test
@@ -130,8 +113,8 @@ class ProductServiceCreateProductTest {
             // Arrange
             var company = Random.ENTITY.nextSaved(Company.class);
             var category = Random.ENTITY.nextSaved(
-                    Category.class,
-                    Map.of("company", company)
+                Category.class,
+                Map.of("company", company)
             );
             var request = Random.OBJECT.next(ProductCreationRequest.class);
             request.setCompanyId(1L);

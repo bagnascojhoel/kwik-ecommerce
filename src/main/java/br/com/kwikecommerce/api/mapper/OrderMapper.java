@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.mapper;
 
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequest;
+import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.model.Order;
 import br.com.kwikecommerce.api.model.OrderStatus;
@@ -11,12 +11,13 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 
-@Mapper(uses = CompanyMapper.class)
+@Mapper(uses = {CompanyMapper.class, OrderItemMapper.class})
 public interface OrderMapper {
 
+    @Mapping(target = "items", ignore = true)
     @Mapping(target = "statusHistory", ignore = true)
     @Mapping(target = "company", source = "companyId")
-    Order map(OrderCreationRequest request);
+    Order map(OrderCreationRequestDto request);
 
     @Mapping(target = "status", source = "statusHistory")
     @Mapping(target = "paymentMethod", source = "paymentMethod")

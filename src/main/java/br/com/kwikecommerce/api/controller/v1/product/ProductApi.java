@@ -1,14 +1,16 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.model.ProductSorting;
+import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
+import br.com.kwikecommerce.api.model.ProductSorting;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -38,7 +40,7 @@ public interface ProductApi {
     @Operation(summary = "Fetch a page of products")
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
-    Page<ProductListingResponse> fetchPage(
+    PageResponseDto<ProductListingResponse> fetchPage(
         @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber
     );
@@ -48,7 +50,7 @@ public interface ProductApi {
     @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
-    Page<ProductListingResponse> fetchPageByCategory(
+    PageResponseDto<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,
         @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber

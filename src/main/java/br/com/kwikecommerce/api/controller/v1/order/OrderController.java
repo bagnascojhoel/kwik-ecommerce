@@ -36,13 +36,16 @@ public class OrderController implements OrderApi {
         return orderService.findByFilter(pageRequestDto);
     }
 
+    @Override
+
     public void cancel(Long orderId) {
         // TODO implement
     }
 
     @Override
-    public OrderFindingByIdResponseDto findById(Long orderId) {
-        return null;
+    @GetMapping("/{orderId}")
+    public OrderFindingByIdResponseDto findById(@PathVariable Long orderId) {
+        return orderService.findById(orderId);
     }
 
     @Override

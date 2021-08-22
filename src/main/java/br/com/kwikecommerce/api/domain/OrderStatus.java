@@ -24,7 +24,7 @@ public class OrderStatus extends AbstractEntity {
 
     @Convert(converter = OrderStatusTypeConverter.class)
     @Column(name = "status")
-    private OrderStatusType orderStatusType;
+    private OrderStatusType type;
 
     @Size(max = 50)
     @Column(name = "motivo")

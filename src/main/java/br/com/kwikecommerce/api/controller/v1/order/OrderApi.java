@@ -19,23 +19,25 @@ import javax.validation.Valid;
 )
 public interface OrderApi {
 
+    // TODO jhoel.bagnasco 22/08/2021 | Alterar padrão de nomes para verbos no infinitivo
     @Tag(name = "Orders")
     @Operation(summary = "Initiates an order with its items")
     Long init(@Valid OrderCreationRequestDto orderCreationRequestDto);
 
     @Tag(name = "Orders")
+    @Operation(summary = "Updates an order")
+    void update(@OrderExists Long orderId, @Valid OrderUpdateRequestDto orderUpdateRequestDto);
+
+    @Tag(name = "Orders")
     void cancel(Long orderId);
 
     @Tag(name = "Orders")
-    @Operation(summary = "Find Orders valid for given filter")
+    @Operation(summary = "Finds orders valid for given filter")
     PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
 
     @Tag(name = "Orders")
+    @Operation(summary = "Finds an order by its ID")
     OrderFindingByIdResponseDto findById(@OrderExists Long orderId);
 
-    // TODO jhoel.bagnasco 22/08/2021 | Alterar padrão de nomes para verbos no infinitivo
-    @Tag(name = "Orders")
-    @Operation(summary = "Updates an order")
-    void update(@OrderExists Long orderId, @Valid OrderUpdateRequestDto orderUpdateRequestDto);
 
 }

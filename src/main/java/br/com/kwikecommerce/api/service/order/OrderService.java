@@ -6,6 +6,7 @@ import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
 
 
 public interface OrderService {
@@ -15,5 +16,7 @@ public interface OrderService {
     Order update(Long orderId, OrderUpdateRequestDto request);
 
     PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
+
+    OrderFindingByIdResponseDto findById(Long orderId);
 
 }

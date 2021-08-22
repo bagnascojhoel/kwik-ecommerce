@@ -28,7 +28,7 @@ public class OrderStatusRepositoryImpl implements OrderStatusRepository {
     @Transactional
     public void toCreatedOrder(Order order) {
         OrderStatus orderStatus = OrderStatus.builder()
-            .orderStatusType(OrderStatusType.PENDING)
+            .type(OrderStatusType.PENDING)
             .order(order)
             .build();
 

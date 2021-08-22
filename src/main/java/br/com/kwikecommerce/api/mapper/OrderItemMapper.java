@@ -1,9 +1,9 @@
 package br.com.kwikecommerce.api.mapper;
 
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.domain.OrderItem;
 import br.com.kwikecommerce.api.domain.Product;
+import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,20 +19,20 @@ public interface OrderItemMapper {
 
     default OrderItem map(OrderCreationRequestDto.OrderItem item, @Context Long orderId) {
         var order = Order.builder()
-            .id(orderId)
-            .build();
+                .id(orderId)
+                .build();
 
         var product = Product.builder()
-            .id(item.getProductId())
-            .build();
+                .id(item.getProductId())
+                .build();
 
         return OrderItem.builder()
-            .order(order)
-            .product(product)
-            .quantity(item.getQuantity())
-            .unitarySalePrice(item.getUnitarySalePrice())
-            .description(item.getDescription())
-            .build();
+                .order(order)
+                .product(product)
+                .quantity(item.getQuantity())
+                .unitarySalePrice(item.getUnitarySalePrice())
+                .description(item.getDescription())
+                .build();
     }
 
 }

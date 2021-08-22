@@ -1,5 +1,4 @@
 databaseChangeLog:
-  # TODO jhoel.bagnasco 07/07/2021 | Ver como criar um agregado para pedido_produto, já que essa é uma linha do pedido
   - changeSet:
       id: createTable-pedido_item
       author: jhoel.bagnasco
@@ -41,3 +40,15 @@ databaseChangeLog:
               - column:
                   name: descricao
                   type: varchar(100)
+              - column:
+                  name: criado_em
+                  type: timestamp
+                  defaultValueDate: ${now}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: alterado_em
+                  type: timestamp
+                  defaultValueDate: ${now}
+                  constraints:
+                    nullable: false

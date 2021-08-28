@@ -1,4 +1,8 @@
 databaseChangeLog:
+  - include:
+      file: enums.yml
+      relativeToChangelogFile: true
+
   - property:
       dbms: mysql
       name: key

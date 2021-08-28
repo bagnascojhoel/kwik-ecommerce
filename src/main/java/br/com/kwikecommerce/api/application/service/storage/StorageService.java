@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.service.storage;
 
-import br.com.kwikecommerce.api.application.Storage;
+import br.com.kwikecommerce.api.application.common.Storage;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

@@ -1,61 +1,41 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
+import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.service.product.ProductService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
-@Tag(
-    name = "Products",
-    description = "Operations over product resources"
-)
+@RestController
 @RequestMapping("/v1/products")
-public interface ProductController {
+public record ProductController(
+    ProductService productService
+) implements ProductApi {
 
-    @Tag(name = "Products")
+    @Override
     @PostMapping
-    @Operation(
-        summary = "Create a new product",
-        description = """
-            On Swagger this endpoint doesn't work correctly. Please, use an API Client which
-            supports file upload via Multipart Form Data (e.g. Postman).
-            """
-    )
-    Long create(
-        @RequestPart @Valid ProductCreationRequest request,
-        @RequestPart List<MultipartFile> images
-    );
+    public Long create(ProductCreationRequest request, List<MultipartFile> images) {
+        return productService.createProduct(request, images);
+    }
 
-    @Tag(name = "Products")
+    // TODO jhoel.bagnasco 21/08/2021 | Utilizar o PageRequestDto
+    @Override
     @GetMapping
-    @Operation(summary = "Fetch a page of products")
-    @Parameter(name = "sortingOption")
-    @Parameter(name = "pageNumber", example = "0")
-    Page<ProductListingResponse> fetchPage(
-        @RequestParam ProductSorting productSorting,
-        @RequestParam Integer pageNumber
-    );
+    public PageResponseDto<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber) {
+        return productService.fetchPage(productSorting, pageNumber);
+    }
 
-    @Tag(name = "Products")
+    @Override
     @GetMapping("/{categoryId}")
-    @Operation(summary = "Fetch a page of products from a given category")
-    @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
-    @Parameter(name = "sortingOption")
-    @Parameter(name = "pageNumber", example = "0")
-    Page<ProductListingResponse> fetchPageByCategory(
-        @PathVariable Long categoryId,
-        @RequestParam ProductSorting productSorting,
-        @RequestParam Integer pageNumber
-    );
-
+    public PageResponseDto<ProductListingResponse> fetchPageByCategory(Long categoryId, ProductSorting productSorting, Integer pageNumber) {
+        return productService.fetchPageByCategory(categoryId, productSorting, pageNumber);
+    }
 }

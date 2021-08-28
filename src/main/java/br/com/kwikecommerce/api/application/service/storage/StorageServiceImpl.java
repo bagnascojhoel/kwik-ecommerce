@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.service.storage;
 
-import br.com.kwikecommerce.api.application.Storage;
+import br.com.kwikecommerce.api.application.common.Storage;
 import br.com.kwikecommerce.api.application.property.AwsProperty;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.util.StorageUtil;

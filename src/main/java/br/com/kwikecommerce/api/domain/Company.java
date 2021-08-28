@@ -48,4 +48,7 @@ public class Company extends AbstractEntity {
     @OneToMany(mappedBy = "company")
     private List<Product> products;
 
+    @OneToMany(mappedBy = "company")
+    private List<Order> orders;
+
 }

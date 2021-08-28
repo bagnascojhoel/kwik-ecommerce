@@ -1,6 +1,9 @@
 package br.com.kwikecommerce.api.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -18,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "produto")
-public final class Product extends AbstractEntity {
+public final class Product extends AbstractCompanyEntity {
 
     @Size(min = 3, max = 100)
     @Column(name = "titulo")
@@ -40,9 +43,9 @@ public final class Product extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "categoria_produto",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+        name = "categoria_produto",
+        joinColumns = @JoinColumn(name = "produto_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Category> categories;
 
@@ -50,9 +53,5 @@ public final class Product extends AbstractEntity {
     @CollectionTable(name = "produto_imagem", joinColumns = @JoinColumn(name = "produto_id"))
     @Column(name = "url")
     private List<String> imagesUrls;
-
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Company company;
 
 }

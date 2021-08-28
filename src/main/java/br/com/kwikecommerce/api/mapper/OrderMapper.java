@@ -22,12 +22,12 @@ public interface OrderMapper {
     @Mapping(target = "items", ignore = true)
     @Mapping(target = "statusHistory", ignore = true)
     @Mapping(target = "company", source = "companyId")
-    Order map(OrderCreationRequestDto request);
+    Order toOrder(OrderCreationRequestDto request);
 
     @Mapping(target = "status", source = "statusHistory")
     OrderFindingByFilterResponse toFindingByFilterResponse(Order order);
 
-    default Order map(Order oldOrder, OrderUpdateRequestDto request) {
+    default Order toOrder(Order oldOrder, OrderUpdateRequestDto request) {
         if (nonNull(request.getPaymentMethod()))
             oldOrder.setPaymentMethod(request.getPaymentMethod());
 

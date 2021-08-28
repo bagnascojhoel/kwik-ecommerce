@@ -23,6 +23,10 @@ public class OrderController implements OrderApi {
 
     private final OrderService orderService;
     private final OrderManagementService orderManagementService;
+    // TODO jhoel.bagnasco 24/08/2021 | Criar tasks para os TODOs
+    // TODO jhoel.bagnasco 24/08/2021 | Adicionar endpoint de exclusão de item de pedido
+    // TODO jhoel.bagnasco 24/08/2021 | Adicionar testes
+    // TODO jhoel.bagnasco 24/08/2021 | Adicionar autenticação com o Google
 
     @Override
     @PostMapping
@@ -37,7 +41,6 @@ public class OrderController implements OrderApi {
     }
 
     @Override
-
     public void cancel(Long orderId) {
         // TODO implement
     }

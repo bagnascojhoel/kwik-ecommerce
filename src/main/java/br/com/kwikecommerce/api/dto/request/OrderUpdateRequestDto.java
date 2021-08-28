@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 @Value
 @Builder
 public class OrderUpdateRequestDto {
-
+    // TODO jhoel.bagnasco 24/08/2021 | Adicionar status
+    
     @JsonIgnore
     @Schema(example = "CORREIOS")
     String freightType;

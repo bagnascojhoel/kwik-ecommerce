@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Order create(OrderCreationRequestDto requestDto) {
-        var order = orderMapper.map(requestDto);
+        var order = orderMapper.toOrder(requestDto);
         return orderRepository.save(order);
     }
 
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public Order update(Long orderId, OrderUpdateRequestDto request) {
         var oldOrder = orderRepository.getOne(orderId);
-        var newOrder = orderMapper.map(oldOrder, request);
+        var newOrder = orderMapper.toOrder(oldOrder, request);
 
         return orderRepository.save(newOrder);
     }

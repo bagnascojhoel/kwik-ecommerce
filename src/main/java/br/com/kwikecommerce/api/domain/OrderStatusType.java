@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum OrderStatusType implements DomainType {
     PENDING("PENDENTE"),
-    VIEWED("VISUALIZADO"),
+    VIEWED("VISUALIZADO"), // TODO jhoel.bagnasco 24/08/2021 | Remover esse status
     ON_GOING("EM ANDAMENTO"),
     CANCELED("CANCELADO"),
     SENT("ENVIADO"),

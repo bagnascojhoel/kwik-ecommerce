@@ -28,6 +28,9 @@
         <awssdk-s3.version>2.16.77</awssdk-s3.version>
         <easy-random.version>4.0.0</easy-random.version>
         <mockito-inline.version>3.11.2</mockito-inline.version>
+        <infinispan.version>11.0.9.Final</infinispan.version>
+        <resteasy.version>4.7.1.Final</resteasy.version>
+        <keycloak-dependencies-server-all.version>15.0.2</keycloak-dependencies-server-all.version>
     </properties>
 
     <dependencies>
@@ -124,7 +127,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.jeasy</groupId>
             <artifactId>easy-random-core</artifactId>
@@ -137,10 +139,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Embedded Keycloak -->
+
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
+            <version>${resteasy.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-dependencies-server-all</artifactId>
+            <version>${keycloak-dependencies-server-all.version}</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>

@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.application.service.storage;
 
 import br.com.kwikecommerce.api.application.common.Storage;
-import br.com.kwikecommerce.api.application.property.AwsProperty;
+import br.com.kwikecommerce.api.application.properties.AwsProperties;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.util.StorageUtil;
 import br.com.kwikecommerce.api.application.exception.FileUploadException;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Service
 public record StorageServiceImpl(
     S3Client s3Client,
-    AwsProperty awsProperty,
+    AwsProperties awsProperties,
     StorageUtil storageUtil,
     LogService logService
 ) implements StorageService {
@@ -41,7 +41,7 @@ public record StorageServiceImpl(
         var request = PutObjectRequest.builder()
             .contentType(file.getContentType())
             .contentDisposition("inline")
-            .bucket(awsProperty.getS3().getBucket())
+            .bucket(awsProperties.getS3().getBucket())
             .key(key)
             .build();
 
@@ -60,7 +60,7 @@ public record StorageServiceImpl(
     }
 
     private String buildFileUrl(String objectKey) {
-        var fixedBucket = awsProperty.getS3().getBucket().toLowerCase();
+        var fixedBucket = awsProperties.getS3().getBucket().toLowerCase();
         return "https://"
             + fixedBucket
             + ".s3.amazonaws.com/"

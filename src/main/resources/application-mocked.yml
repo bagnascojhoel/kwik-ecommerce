@@ -1,7 +1,7 @@
 kwik-ecommerce:
   db:
     name: ${DB_NAME:kwik_ecommerce_db__mocked}
-    file: ${MOCKED_DB_FILE:./mocked}
+    file: ${MOCKED_DB_FILE:./data/mocked}
     user: kwik
     pass: kwik
 

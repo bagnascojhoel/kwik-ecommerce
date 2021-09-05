@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.configuration;
 
-import br.com.kwikecommerce.api.application.property.AwsProperty;
+import br.com.kwikecommerce.api.application.properties.AwsProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 @Configuration
 public class AwsConfiguration {
 
-    private final AwsProperty awsProperty;
+    private final AwsProperties awsProperties;
 
     @Bean
     public S3Client buildS3Client() {
@@ -22,7 +22,7 @@ public class AwsConfiguration {
 
         return S3Client.builder()
             .credentialsProvider(credentialsProvider)
-            .region(Region.of(awsProperty.getS3().getRegion()))
+            .region(Region.of(awsProperties.getS3().getRegion()))
             .build();
     }
 
@@ -30,12 +30,12 @@ public class AwsConfiguration {
         return new AwsCredentials() {
             @Override
             public String accessKeyId() {
-                return awsProperty.getAccessKey();
+                return awsProperties.getAccessKey();
             }
 
             @Override
             public String secretAccessKey() {
-                return awsProperty.getSecretKey();
+                return awsProperties.getSecretKey();
             }
         };
     }

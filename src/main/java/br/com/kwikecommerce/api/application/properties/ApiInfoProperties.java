@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application.property;
+package br.com.kwikecommerce.api.application.properties;
 
 
 import lombok.Data;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Data
 @ConfigurationProperties("kwik-ecommerce.api-info")
-public class ApiInfoProperty {
+public class ApiInfoProperties {
 
     private String title;
     private String description;

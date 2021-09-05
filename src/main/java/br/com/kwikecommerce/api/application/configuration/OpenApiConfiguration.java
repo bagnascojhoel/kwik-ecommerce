@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.configuration;
 
-import br.com.kwikecommerce.api.application.property.ApiInfoProperty;
+import br.com.kwikecommerce.api.application.properties.ApiInfoProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
 
-    private final ApiInfoProperty apiInfoProperty;
+    private final ApiInfoProperties apiInfoProperties;
 
     @Bean
     public OpenAPI buildOpenApi() {
@@ -22,9 +22,9 @@ public class OpenApiConfiguration {
 
     private Info buildInfo() {
         return new Info()
-            .title(apiInfoProperty.getTitle())
-            .description(apiInfoProperty.getDescription())
-            .version(apiInfoProperty.getVersion());
+            .title(apiInfoProperties.getTitle())
+            .description(apiInfoProperties.getDescription())
+            .version(apiInfoProperties.getVersion());
     }
 
 }

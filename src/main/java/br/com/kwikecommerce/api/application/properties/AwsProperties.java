@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application.property;
+package br.com.kwikecommerce.api.application.properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @NoArgsConstructor
 @ConfigurationProperties("aws")
-public class AwsProperty {
+public class AwsProperties {
 
     private S3Property s3;
     private String accessKey;

@@ -1,6 +1,6 @@
 kwik-ecommerce:
   db:
-    file: ${TEST_DB_FILE:./test_db}
+    file: ${TEST_DB_FILE:./data/test}
     user: kwik
     pass: kwik
 

@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.util;
 
-import br.com.kwikecommerce.api.application.property.AwsProperty;
+import br.com.kwikecommerce.api.application.properties.AwsProperties;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.exception.ExtensionDiscoveryException;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 @Component
 public record StorageUtil(
     LogService logService,
-    AwsProperty awsProperty
+    AwsProperties awsProperties
 ) {
 
     private static final Map<String, String> relations = Map.of(

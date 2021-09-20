@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.controller.v1.order;
 
 import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
-import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
+import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
@@ -33,7 +33,7 @@ public interface OrderApi {
 
     @Tag(name = "Orders")
     @Operation(summary = "Finds orders valid for given filter")
-    PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
+    PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
 
     @Tag(name = "Orders")
     @Operation(summary = "Finds an order by its ID")

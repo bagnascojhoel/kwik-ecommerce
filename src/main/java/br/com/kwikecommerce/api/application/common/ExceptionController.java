@@ -4,10 +4,11 @@ import br.com.kwikecommerce.api.application.dto.response.ExceptionResponse;
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse;
 import br.com.kwikecommerce.api.application.dto.response.FieldValidationResponse.FieldValidation;
 import br.com.kwikecommerce.api.application.exception.base.NotFoundException;
+import br.com.kwikecommerce.api.application.service.localization.LocalizationService;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
-import br.com.kwikecommerce.api.application.service.message.MessageService;
 import br.com.kwikecommerce.api.message.ExceptionMessageKey;
 import br.com.kwikecommerce.api.message.MessageKey;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,7 +26,7 @@ import java.util.Set;
 
 @RestControllerAdvice
 public record ExceptionController(
-    MessageService messageService,
+    LocalizationService localizationService,
     LogService logService
 ) {
 
@@ -55,7 +56,7 @@ public record ExceptionController(
     }
 
     private ExceptionResponse buildExceptionResponse(MessageKey messageKey, Object... fields) {
-        var message = messageService.fetch(messageKey, fields);
+        var message = localizationService.fetch(messageKey, fields);
         return ExceptionResponse.builder()
             .message(message)
             .build();
@@ -104,8 +105,15 @@ public record ExceptionController(
 
     private String fetchValidationMessage(ConstraintViolation<?> constraintViolation) {
         var messageKey = constraintViolation.getMessageTemplate().replace("{", "").replace("}", "");
-        return messageService.fetch(messageKey)
-            .orElse(constraintViolation.getMessage());
+
+        String message;
+        try {
+            message = localizationService.fetch(messageKey);
+        } catch (NoSuchMessageException ex) {
+            message = constraintViolation.getMessage();
+        }
+
+        return message;
     }
 
 }

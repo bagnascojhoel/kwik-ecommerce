@@ -11,7 +11,8 @@ public enum ExceptionMessageKey implements MessageKey {
     EXTENSION_DISCOVERY_FAILED("e.extension-discovery.failed"),
     FILE_UPLOAD_FAILED("e.file-upload.failed"),
     NO_SUCH_ENUM_OPTION("e.enum.invalid-option"),
-    ORDER_NOT_FOUND("e.order.not-found");
+    ORDER_NOT_FOUND("e.order.not-found"),
+    AUTHENTICATION("e.authentication");
 
     @Getter
     private final String key;

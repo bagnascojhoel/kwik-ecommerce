@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
+import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.domain.ProductSorting;
@@ -40,7 +40,7 @@ public interface ProductApi {
     @Operation(summary = "Fetch a page of products")
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
-    PageResponseDto<ProductListingResponse> fetchPage(
+    PageResponse<ProductListingResponse> fetchPage(
         @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber
     );
@@ -50,7 +50,7 @@ public interface ProductApi {
     @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
     @Parameter(name = "sortingOption")
     @Parameter(name = "pageNumber", example = "0")
-    PageResponseDto<ProductListingResponse> fetchPageByCategory(
+    PageResponse<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,
         @RequestParam ProductSorting productSorting,
         @RequestParam Integer pageNumber

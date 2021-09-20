@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
+import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
@@ -42,7 +42,7 @@ public record ProductServiceImpl(
     }
 
     @Override
-    public PageResponseDto<ProductListingResponse> fetchPage(
+    public PageResponse<ProductListingResponse> fetchPage(
         ProductSorting productSorting,
         Integer pageNumber
     ) {
@@ -53,7 +53,7 @@ public record ProductServiceImpl(
     }
 
     @Override
-    public PageResponseDto<ProductListingResponse> fetchPageByCategory(
+    public PageResponse<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
         ProductSorting productSorting,
         Integer pageNumber

@@ -17,6 +17,7 @@ public class PaginationUtil {
     private static final byte PROPERTY_POSITION = 0;
     private static final byte DIRECTION_POSITION = 1;
 
+    // TODO jhoel.bagnasco 11/09/2021 | Validar se a propriedade utilizada na ordenação existe na entidade target
     public static Pageable buildPageable(PageRequestDto pageRequestDto) {
         var correctPage = pageRequestDto.getPage() - 1;
         return pageRequestDto.getSort() == null || pageRequestDto.getSort().isBlank() ?

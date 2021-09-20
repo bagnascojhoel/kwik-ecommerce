@@ -13,6 +13,10 @@ kwik-ecommerce:
     description: API for the Kwik-Ecommerce website.
     version: 0.0.1
 
+logging:
+  level:
+    liquibase: INFO
+
 server:
   port: ${kwik-ecommerce.server.port}
   servlet:
@@ -60,6 +64,10 @@ springdoc:
       paths-to-match:
         - /v1/**/*
 
-logging:
-  level:
-    liquibase: INFO
+keycloak:
+  auth-server-url: ${KEYCLOAK_URL:http://localhost:8000/auth}
+  realm: ${KEYCLOAK_REALM:KwikEcommerce}
+  resource: ${KEYCLOAK_CLIENT_ID:admin-cli}
+  credentials.secret: ${KEYCLOAK_CLIENT_SECRET:6223aaf2-db5b-434e-98cb-fdf1143b174f}
+  bearer-only: true
+  ssl-required: none

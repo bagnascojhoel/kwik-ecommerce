@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
+import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.domain.ProductSorting;
@@ -13,9 +13,9 @@ public interface ProductService {
 
     Long createProduct(ProductCreationRequest productCreationRequest, List<MultipartFile> photos);
 
-    PageResponseDto<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber);
+    PageResponse<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber);
 
-    PageResponseDto<ProductListingResponse> fetchPageByCategory(
+    PageResponse<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
         ProductSorting productSorting,
         Integer pageNumber

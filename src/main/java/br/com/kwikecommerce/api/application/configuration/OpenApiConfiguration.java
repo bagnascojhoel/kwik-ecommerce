@@ -1,11 +1,16 @@
 package br.com.kwikecommerce.api.application.configuration;
 
 import br.com.kwikecommerce.api.application.properties.ApiInfoProperties;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -16,7 +21,19 @@ public class OpenApiConfiguration {
 
     @Bean
     public OpenAPI buildOpenApi() {
+        var securitySchemeName = "bearerAuth";
+        var securityScheme = new SecurityScheme()
+            .scheme("bearer")
+            .bearerFormat("JWT")
+            .name(securitySchemeName)
+            .type(SecurityScheme.Type.HTTP);
+
+        var components = new Components();
+        components.setSecuritySchemes(Map.of(securitySchemeName, securityScheme));
+
         return new OpenAPI()
+            .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+            .components(components)
             .info(buildInfo());
     }
 

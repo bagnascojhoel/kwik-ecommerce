@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.v1.product;
 
-import br.com.kwikecommerce.api.application.dto.response.PageResponseDto;
+import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
 import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
 import br.com.kwikecommerce.api.domain.ProductSorting;
@@ -29,13 +29,13 @@ public record ProductController(
     // TODO jhoel.bagnasco 21/08/2021 | Utilizar o PageRequestDto
     @Override
     @GetMapping
-    public PageResponseDto<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber) {
+    public PageResponse<ProductListingResponse> fetchPage(ProductSorting productSorting, Integer pageNumber) {
         return productService.fetchPage(productSorting, pageNumber);
     }
 
     @Override
     @GetMapping("/{categoryId}")
-    public PageResponseDto<ProductListingResponse> fetchPageByCategory(Long categoryId, ProductSorting productSorting, Integer pageNumber) {
+    public PageResponse<ProductListingResponse> fetchPageByCategory(Long categoryId, ProductSorting productSorting, Integer pageNumber) {
         return productService.fetchPageByCategory(categoryId, productSorting, pageNumber);
     }
 }

@@ -25,7 +25,9 @@ public class DebbuggerInterceptor implements HandlerInterceptor {
         HttpServletResponse response,
         Object handler
     ) throws Exception {
-        logService.logInfo(localizationService.fetch("log.debugger-interceptor.pre-handle", securityService.getKeycloakId()));
+        if (securityService.isAuthenticated())
+            logService.logInfo(localizationService.fetch("log.debugger-interceptor.pre-handle", securityService.getKeycloakId()));
+
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
@@ -36,7 +38,9 @@ public class DebbuggerInterceptor implements HandlerInterceptor {
         Object handler,
         Exception ex
     ) throws Exception {
-        logService.logInfo(localizationService.fetch("log.debugger-interceptor.after-completion", securityService.getKeycloakId()));
+        if (securityService.isAuthenticated())
+            logService.logInfo(localizationService.fetch("log.debugger-interceptor.after-completion", securityService.getKeycloakId()));
+
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
     }
 

@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+
+import static java.util.Objects.nonNull;
 
 
 @RequiredArgsConstructor
@@ -14,7 +17,16 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String getKeycloakId() {
-        return mockRequest.getUserPrincipal().getName();
+        return getPrincipal().getName();
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        return nonNull(getPrincipal());
+    }
+
+    private Principal getPrincipal() {
+        return mockRequest.getUserPrincipal();
     }
 
 }

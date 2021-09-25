@@ -65,7 +65,6 @@ public class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
         var keycloakAuthenticationProvider = this.keycloakAuthenticationProvider();
-
         var simpleAuthorityMapper = new SimpleAuthorityMapper();
         simpleAuthorityMapper.setConvertToUpperCase(true);
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(simpleAuthorityMapper);

@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
+import br.com.kwikecommerce.api.application.dto.request.PageRequest;
 import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.domain.Order;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
@@ -15,7 +15,7 @@ public interface OrderService {
 
     Order update(Long orderId, OrderUpdateRequestDto request);
 
-    PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto);
+    PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest);
 
     OrderFindingByIdResponseDto findById(Long orderId);
 

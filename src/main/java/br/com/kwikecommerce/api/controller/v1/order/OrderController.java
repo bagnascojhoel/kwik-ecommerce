@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.v1.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
+import br.com.kwikecommerce.api.application.dto.request.PageRequest;
 import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
@@ -36,8 +36,8 @@ public class OrderController implements OrderApi {
 
     @Override
     @GetMapping
-    public PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto) {
-        return orderService.findByFilter(pageRequestDto);
+    public PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest) {
+        return orderService.findByFilter(pageRequest);
     }
 
     @Override

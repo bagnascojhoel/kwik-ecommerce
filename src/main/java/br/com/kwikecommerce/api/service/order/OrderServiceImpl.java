@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequestDto;
+import br.com.kwikecommerce.api.application.dto.request.PageRequest;
 import br.com.kwikecommerce.api.application.dto.response.PageResponse;
 import br.com.kwikecommerce.api.application.exception.base.BusinessException;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
@@ -53,8 +53,8 @@ public class OrderServiceImpl implements OrderService {
 
     // TODO jhoel.bagnasco 07/08/2021 | Atualizar para esperar um objeto para filtragem
     @Override
-    public PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequestDto pageRequestDto) {
-        var page = orderRepository.findAll(PaginationUtil.buildPageable(pageRequestDto))
+    public PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest) {
+        var page = orderRepository.findAll(PaginationUtil.buildPageable(pageRequest))
             .map(orderMapper::toFindingByFilterResponse);
 
         return paginationMapper.map(page);

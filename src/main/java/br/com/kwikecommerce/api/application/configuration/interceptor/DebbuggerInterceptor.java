@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class DebbuggerInterceptor implements HandlerInterceptor {
 
+    private static final String NOT_AUTHENTICATED = "not authenticated";
+
     private final LocalizationService localizationService;
     private final LogService logService;
     private final SecurityService securityService;
@@ -25,8 +27,17 @@ public class DebbuggerInterceptor implements HandlerInterceptor {
         HttpServletResponse response,
         Object handler
     ) throws Exception {
-        if (securityService.isAuthenticated())
-            logService.logInfo(localizationService.fetch("log.debugger-interceptor.pre-handle", securityService.getKeycloakId()));
+        var authentication = securityService.isAuthenticated()
+            ? securityService.getKeycloakId()
+            : NOT_AUTHENTICATED;
+
+        var message = localizationService.fetch(
+            "log.debugger-interceptor.pre-handle",
+            request.getMethod(),
+            request.getServletPath(),
+            authentication
+        );
+        logService.logInfo(message);
 
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
@@ -38,8 +49,18 @@ public class DebbuggerInterceptor implements HandlerInterceptor {
         Object handler,
         Exception ex
     ) throws Exception {
-        if (securityService.isAuthenticated())
-            logService.logInfo(localizationService.fetch("log.debugger-interceptor.after-completion", securityService.getKeycloakId()));
+        var authentication = securityService.isAuthenticated()
+            ? securityService.getKeycloakId()
+            : NOT_AUTHENTICATED;
+
+        var message = localizationService.fetch(
+            "log.debugger-interceptor.after-completion",
+            request.getMethod(),
+            request.getServletPath(),
+            authentication
+        );
+
+        logService.logInfo(message);
 
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
     }

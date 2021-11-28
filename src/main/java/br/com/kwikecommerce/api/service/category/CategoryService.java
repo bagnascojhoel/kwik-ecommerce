@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    Long create(CategoryCreationRequest categoryCreationRequest);
+    void create(CategoryCreationRequest categoryCreationRequest);
 
     List<CategoryListingResponse> fetchAll();
 

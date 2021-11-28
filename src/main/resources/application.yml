@@ -63,7 +63,7 @@ springdoc:
     - group: v1
       paths-to-match:
         - /v1/**/*
-
+# TODO mover as variáveis de ambiente lá pra cima
 keycloak:
   auth-server-url: ${KEYCLOAK_URL:http://localhost:8000/auth}
   realm: ${KEYCLOAK_REALM:KwikEcommerce}

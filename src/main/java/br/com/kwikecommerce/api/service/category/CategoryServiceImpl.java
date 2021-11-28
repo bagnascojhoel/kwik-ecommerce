@@ -17,9 +17,9 @@ public record CategoryServiceImpl(
 ) implements CategoryService {
 
     @Override
-    public Long create(CategoryCreationRequest categoryCreationRequest) {
+    public void create(CategoryCreationRequest categoryCreationRequest) {
         var category = categoryMapper.map(categoryCreationRequest);
-        return categoryRepository.save(category).getId();
+        categoryRepository.save(category).getId();
     }
 
     @Override

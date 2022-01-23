@@ -1,0 +1,5 @@
+{
+    "title": "Kwik Ecommerce API",
+    "tags": ["back-end", "java", "rest", "spring boot", "docker", "spring security"],
+    "description": "REST API for a Ecommerce. Written with Java 16, Spring Boot and MySQL database. It uses a H2 database and Liquibase scripts in YML to speed up automated tests."
+}

@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.entity.order;
 
 import br.com.kwikecommerce.api.entity.AbstractEntity;
-import br.com.kwikecommerce.api.entity.Product;
+import br.com.kwikecommerce.api.entity.product.Product;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Immutable;

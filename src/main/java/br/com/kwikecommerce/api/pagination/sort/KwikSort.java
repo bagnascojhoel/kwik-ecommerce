@@ -21,9 +21,9 @@ public class KwikSort<T extends Enum> {
     @Getter
     private final Sort sort;
 
-    protected KwikSort(Class<T> anEnum, String aString) {
+    public KwikSort(Class<T> anEnum, String aString) {
         var sortSections = splitSections(aString);
-        var sortOption = SortOptionFactory.create(anEnum);
+        var sortOption = KwikSortOptionFactory.create(anEnum);
         if (KwikSort.isNotASortString(sortOption, sortSections))
             throw new InternalServerException(
                 MessageProperty.of("log.attempted-to-build-invalid-sort", aString)
@@ -32,10 +32,10 @@ public class KwikSort<T extends Enum> {
         this.sort = this.createSort(sortOption, sortSections);
     }
 
-    private static boolean isNotASortString(SortOption sortOption, Set<SortSection> sections) {
+    private static boolean isNotASortString(KwikSortOption kwikSortOption, Set<SortSection> sections) {
         for (var section : sections) {
             var isValidDirection = Sort.Direction.fromOptionalString(section.getDirection()).isPresent();
-            var isValidPropertyOption = sortOption.valueOptionalOfOption(section.getProperty()).isPresent();
+            var isValidPropertyOption = kwikSortOption.findPropertyNameForOption(section.getOption()).isPresent();
 
             if (isValidDirection && isValidPropertyOption)
                 return false;
@@ -44,11 +44,11 @@ public class KwikSort<T extends Enum> {
         return true;
     }
 
-    private <U extends SortOption> Sort createSort(U sortOption, Set<SortSection> sections) {
+    private <U extends KwikSortOption> Sort createSort(U sortOption, Set<SortSection> sections) {
         var orders = new ArrayList<Sort.Order>();
         sections.forEach(section -> {
             var direction = Sort.Direction.fromString(section.getDirection());
-            var property = sortOption.valueOfOption(section.getProperty());
+            var property = sortOption.mustFindPropertyNameForOption(section.getOption());
 
             orders.add(new Sort.Order(direction, property));
         });
@@ -78,7 +78,7 @@ public class KwikSort<T extends Enum> {
 
     @Value
     private static final class SortSection {
-        String property;
+        String option;
         String direction;
     }
 

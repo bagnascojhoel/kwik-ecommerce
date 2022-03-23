@@ -1,6 +1,7 @@
 package br.com.kwikecommerce.api.entity;
 
 import br.com.kwikecommerce.api.entity.order.Order;
+import br.com.kwikecommerce.api.entity.product.Product;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

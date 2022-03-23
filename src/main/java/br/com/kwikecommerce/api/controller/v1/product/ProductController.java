@@ -4,7 +4,7 @@ import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductCreationRequest;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.entity.Product;
+import br.com.kwikecommerce.api.entity.product.ProductSortOption;
 import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.pagination.PageRequest;
 import br.com.kwikecommerce.api.service.product.ProductService;
@@ -37,18 +37,19 @@ public class ProductController implements ProductApi {
 
     @Override
     @GetMapping
-    public PageResponseDto<ProductListingResponse> findPage(@Valid PageRequest<Product.ProductSortOption> pageRequest) {
+    public PageResponseDto<ProductListingResponse> findPage(@Valid PageRequest<ProductSortOption> pageRequest) {
         var page = productService.findPage(pageRequest)
             .map(productMapper::map);
 
         return paginationMapper.map(page);
     }
 
+    // TODO mover esse método para /v1/categories/{categoryId}/products
     @Override
     @GetMapping("/{categoryId}")
     public PageResponseDto<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        PageRequest<Product.ProductSortOption> pageRequest
+        PageRequest<ProductSortOption> pageRequest
     ) {
         return productService.fetchPageByCategory(categoryId, pageRequest);
     }

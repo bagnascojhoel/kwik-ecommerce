@@ -2,7 +2,8 @@ package br.com.kwikecommerce.api.service.product;
 
 import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.entity.Product;
+import br.com.kwikecommerce.api.entity.product.Product;
+import br.com.kwikecommerce.api.entity.product.ProductSortOption;
 import br.com.kwikecommerce.api.pagination.PageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,11 +17,11 @@ public interface ProductService {
 
     List<String> uploadImages(List<MultipartFile> files);
 
-    Page<Product> findPage(PageRequest<Product.ProductSortOption> pageRequest);
+    Page<Product> findPage(PageRequest<ProductSortOption> pageRequest);
 
     PageResponseDto<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        PageRequest<Product.ProductSortOption> pageRequest
+        PageRequest<ProductSortOption> pageRequest
     );
 
 }

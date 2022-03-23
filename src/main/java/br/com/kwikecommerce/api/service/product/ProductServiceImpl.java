@@ -4,7 +4,8 @@ import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.entity.Product;
+import br.com.kwikecommerce.api.entity.product.Product;
+import br.com.kwikecommerce.api.entity.product.ProductSortOption;
 import br.com.kwikecommerce.api.mapper.ProductMapper;
 import br.com.kwikecommerce.api.pagination.PageRequest;
 import br.com.kwikecommerce.api.repository.ProductRepository;
@@ -41,14 +42,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findPage(PageRequest<Product.ProductSortOption> pageRequest) {
+    public Page<Product> findPage(PageRequest<ProductSortOption> pageRequest) {
         return productRepository.findAll(pageRequest);
     }
 
     @Override
     public PageResponseDto<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        PageRequest<Product.ProductSortOption> pageRequest
+        PageRequest<ProductSortOption> pageRequest
     ) {
         var page = productRepository.findByCategories_id(categoryId, pageRequest)
             .map(productMapper::map);

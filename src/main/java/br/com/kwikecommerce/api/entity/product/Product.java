@@ -1,7 +1,11 @@
-package br.com.kwikecommerce.api.entity;
+package br.com.kwikecommerce.api.entity.product;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import br.com.kwikecommerce.api.entity.Category;
+import br.com.kwikecommerce.api.entity.CompanyOwned;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 
@@ -53,16 +57,5 @@ public final class Product extends CompanyOwned {
     @CollectionTable(name = "produto_imagem", joinColumns = @JoinColumn(name = "produto_id"))
     @Column(name = "url")
     private List<String> imagesUrls;
-
-    @Schema(name = "Product Sorting Option")
-    @RequiredArgsConstructor
-    public enum ProductSortOption {
-        TITLE(Fields.title),
-        PRICE(Fields.unitaryPrice);
-
-        @Getter
-        private final String propertyName;
-
-    }
 
 }

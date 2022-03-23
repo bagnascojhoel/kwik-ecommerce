@@ -3,7 +3,7 @@ package br.com.kwikecommerce.api.controller.v1.product;
 import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductCreationRequest;
 import br.com.kwikecommerce.api.controller.v1.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.entity.Product;
+import br.com.kwikecommerce.api.entity.product.ProductSortOption;
 import br.com.kwikecommerce.api.pagination.PageRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -35,7 +35,7 @@ public interface ProductApi {
     @Tag(name = "Products")
     @Operation(summary = "Find page")
     PageResponseDto<ProductListingResponse> findPage(
-        @Valid PageRequest<Product.ProductSortOption> pageRequest
+        @Valid PageRequest<ProductSortOption> pageRequest
     );
 
     @Tag(name = "Products")
@@ -45,7 +45,7 @@ public interface ProductApi {
     @Parameter(name = "pageNumber", example = "0")
     PageResponseDto<ProductListingResponse> fetchPageByCategory(
         @PathVariable Long categoryId,
-        PageRequest<Product.ProductSortOption> pageRequest
+        PageRequest<ProductSortOption> pageRequest
     );
 
 }

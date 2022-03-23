@@ -14,18 +14,13 @@ public record LogServiceImpl() implements LogService {
     }
 
     @Override
-    public void logInfo(String message, Object... fields) {
-        log.info(message, fields);
-    }
-
-    @Override
     public void logWarning(String message) {
         log.warn(message);
     }
 
     @Override
-    public void logWarning(String message, Object... fields) {
-        log.warn(message, fields);
+    public void logWarning(String message, Throwable throwable) {
+        log.warn(message, throwable);
     }
 
     @Override
@@ -34,12 +29,8 @@ public record LogServiceImpl() implements LogService {
     }
 
     @Override
-    public void logError(String message, Object... fields) {
-        log.error(message, fields);
-    }
-
-    @Override
     public void logError(String message, Throwable throwable) {
         log.error(message, throwable);
     }
+
 }

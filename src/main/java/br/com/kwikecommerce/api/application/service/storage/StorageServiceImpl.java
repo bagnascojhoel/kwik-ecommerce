@@ -1,10 +1,11 @@
 package br.com.kwikecommerce.api.application.service.storage;
 
 import br.com.kwikecommerce.api.application.common.Storage;
+import br.com.kwikecommerce.api.message.MessageProperty;
+import br.com.kwikecommerce.api.application.exception.FileException;
 import br.com.kwikecommerce.api.application.properties.AwsProperties;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
 import br.com.kwikecommerce.api.application.util.StorageUtil;
-import br.com.kwikecommerce.api.application.exception.FileUploadException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -48,8 +49,8 @@ public record StorageServiceImpl(
         try {
             s3Client.putObject(request, RequestBody.fromBytes(file.getBytes()));
         } catch (IOException ex) {
-            logService.logError("Error while uploading file", ex);
-            throw new FileUploadException();
+            logService.logError("[FILE] Error while uploading file", ex);
+            throw new FileException(MessageProperty.of("e.file.upload-failed"));
         }
 
         return buildFileUrl(key);

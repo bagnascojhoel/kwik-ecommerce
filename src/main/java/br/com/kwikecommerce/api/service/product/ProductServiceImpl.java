@@ -1,16 +1,15 @@
 package br.com.kwikecommerce.api.service.product;
 
-import br.com.kwikecommerce.api.application.dto.response.PageResponse;
+import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
 import br.com.kwikecommerce.api.application.mapper.PaginationMapper;
 import br.com.kwikecommerce.api.application.service.storage.StorageService;
-import br.com.kwikecommerce.api.dto.request.ProductCreationRequest;
-import br.com.kwikecommerce.api.dto.response.ProductListingResponse;
-import br.com.kwikecommerce.api.helper.ProductPaginationHelper;
-import br.com.kwikecommerce.api.mapper.CategoryProductMapper;
+import br.com.kwikecommerce.api.controller.v1.product.dto.ProductListingResponse;
+import br.com.kwikecommerce.api.entity.Product;
 import br.com.kwikecommerce.api.mapper.ProductMapper;
-import br.com.kwikecommerce.api.domain.ProductSorting;
+import br.com.kwikecommerce.api.pagination.PageRequest;
 import br.com.kwikecommerce.api.repository.ProductRepository;
-import br.com.kwikecommerce.api.service.category.CategoryService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,46 +19,38 @@ import java.util.List;
 import static br.com.kwikecommerce.api.application.common.Storage.PRODUCT_IMAGES;
 
 
+@RequiredArgsConstructor
 @Service
-public record ProductServiceImpl(
-    ProductRepository productRepository,
-    ProductMapper productMapper,
-    ProductPaginationHelper productPaginationHelper,
-    CategoryService categoryService,
-    CategoryProductMapper categoryProductMapper,
-    StorageService storageService,
-    PaginationMapper paginationMapper
-) implements ProductService {
+public class ProductServiceImpl implements ProductService {
+
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
+    private final StorageService storageService;
+    private final PaginationMapper paginationMapper;
 
     @Override
-    public Long createProduct(ProductCreationRequest request, List<MultipartFile> images) {
-        List<String> imagesUrls = images.isEmpty()
-            ? storageService.upload(PRODUCT_IMAGES, images)
-            : Collections.emptyList();
-        var product = productMapper.map(request, imagesUrls);
-
+    public Long createProduct(Product product) {
         return productRepository.save(product).getId();
     }
 
     @Override
-    public PageResponse<ProductListingResponse> fetchPage(
-        ProductSorting productSorting,
-        Integer pageNumber
-    ) {
-        var pageable = productPaginationHelper.buildPageable(productSorting, pageNumber);
-        var page = productRepository.findAll(pageable).map(productMapper::map);
-
-        return paginationMapper.map(page);
+    public List<String> uploadImages(List<MultipartFile> files) {
+        return files.isEmpty()
+            ? storageService.upload(PRODUCT_IMAGES, files)
+            : Collections.emptyList();
     }
 
     @Override
-    public PageResponse<ProductListingResponse> fetchPageByCategory(
+    public Page<Product> findPage(PageRequest<Product.ProductSortOption> pageRequest) {
+        return productRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public PageResponseDto<ProductListingResponse> fetchPageByCategory(
         Long categoryId,
-        ProductSorting productSorting,
-        Integer pageNumber
+        PageRequest<Product.ProductSortOption> pageRequest
     ) {
-        var pageable = productPaginationHelper.buildPageable(productSorting, pageNumber);
-        var page = productRepository.findByCategories_id(categoryId, pageable)
+        var page = productRepository.findByCategories_id(categoryId, pageRequest)
             .map(productMapper::map);
 
         return paginationMapper.map(page);

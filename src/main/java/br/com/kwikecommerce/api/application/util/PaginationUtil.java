@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.util;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequest;
+import br.com.kwikecommerce.api.pagination.PageRequest;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,18 +17,11 @@ public class PaginationUtil {
     private static final byte DIRECTION_POSITION = 1;
 
     // TODO jhoel.bagnasco 11/09/2021 | Validar se a propriedade utilizada na ordenação existe na entidade target
-    public static Pageable buildPageable(PageRequest pageRequest) {
-        var correctPage = pageRequest.getPage() - 1;
-        return pageRequest.getSort() == null || pageRequest.getSort().isBlank() ?
-            org.springframework.data.domain.PageRequest.of(
-                correctPage,
-                pageRequest.getLimit()
-            ) :
-            org.springframework.data.domain.PageRequest.of(
-                correctPage,
-                pageRequest.getLimit(),
-                buildSort(pageRequest.getSort())
-            );
+    public static Pageable buildPageableWithoutSort(PageRequest pageRequest) {
+        return org.springframework.data.domain.PageRequest.of(
+            pageRequest.getPage(),
+            pageRequest.getLimit()
+        );
     }
 
     private static Sort buildSort(String sortString) {

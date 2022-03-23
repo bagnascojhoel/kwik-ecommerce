@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.code;
 
 import br.com.kwikecommerce.api.code.exception.PropertySettingException;
-import br.com.kwikecommerce.api.domain.AbstractEntity;
+import br.com.kwikecommerce.api.entity.AbstractEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

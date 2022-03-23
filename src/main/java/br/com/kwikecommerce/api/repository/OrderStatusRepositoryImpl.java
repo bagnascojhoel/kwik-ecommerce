@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.repository;
 
-import br.com.kwikecommerce.api.domain.Order;
-import br.com.kwikecommerce.api.domain.OrderStatus;
-import br.com.kwikecommerce.api.domain.OrderStatusType;
+import br.com.kwikecommerce.api.entity.order.Order;
+import br.com.kwikecommerce.api.entity.order.OrderStatus;
+import br.com.kwikecommerce.api.entity.order.OrderStatusType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +17,6 @@ public class OrderStatusRepositoryImpl implements OrderStatusRepository {
 
     @PersistenceContext
     private final EntityManager entityManager;
-
-    private static final String TABLE_ORDER_STATUS = "pedido_status";
-
-    private static final String CREATE_ORDER_STATUS_ITEM = """
-                
-        """;
 
     @Override
     @Transactional

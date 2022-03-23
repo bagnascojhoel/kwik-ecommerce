@@ -1,16 +1,17 @@
 package br.com.kwikecommerce.api.controller.v1.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequest;
-import br.com.kwikecommerce.api.application.dto.response.PageResponse;
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
-import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.pagination.PageRequest;
+import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderCreationRequestDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.validator.order.OrderExists;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 
 @Tag(
@@ -22,7 +23,7 @@ public interface OrderApi {
     // TODO jhoel.bagnasco 22/08/2021 | Alterar padrão de nomes para verbos no infinitivo
     @Tag(name = "Orders")
     @Operation(summary = "Initiates an order with its items")
-    Long init(@Valid OrderCreationRequestDto orderCreationRequestDto);
+    Long init(@NotNull Long companyId, @Valid OrderCreationRequestDto orderCreationRequestDto);
 
     @Tag(name = "Orders")
     @Operation(summary = "Updates an order")
@@ -33,7 +34,7 @@ public interface OrderApi {
 
     @Tag(name = "Orders")
     @Operation(summary = "Finds orders valid for given filter")
-    PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest);
+    PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest);
 
     @Tag(name = "Orders")
     @Operation(summary = "Finds an order by its ID")

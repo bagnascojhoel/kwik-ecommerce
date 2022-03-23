@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.service.orderstatus;
 
-import br.com.kwikecommerce.api.domain.Order;
+import br.com.kwikecommerce.api.entity.order.Order;
 
 
 public interface OrderStatusService {

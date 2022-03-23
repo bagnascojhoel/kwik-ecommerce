@@ -1,9 +1,8 @@
 package br.com.kwikecommerce.api.controller.v1.domaintypes;
 
-import br.com.kwikecommerce.api.dto.response.DomainTypeListingResponseDto;
+import br.com.kwikecommerce.api.controller.v1.domaintypes.dto.DomainTypeListingResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 
 import java.util.Set;
 

@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.mapper;
 
-import br.com.kwikecommerce.api.dto.request.CategoryCreationRequest;
-import br.com.kwikecommerce.api.dto.response.CategoryListingResponse;
-import br.com.kwikecommerce.api.domain.Category;
+import br.com.kwikecommerce.api.controller.v1.category.dto.CategoryCreationRequestDto;
+import br.com.kwikecommerce.api.controller.v1.category.dto.CategoryListingResponse;
+import br.com.kwikecommerce.api.entity.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 public interface CategoryMapper {
 
     @Mapping(target = "company", source = "companyId")
-    Category map(CategoryCreationRequest request);
+    Category map(CategoryCreationRequestDto request);
 
     CategoryListingResponse map(Category category);
 

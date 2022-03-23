@@ -1,11 +1,12 @@
 package br.com.kwikecommerce.api.controller.v1.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequest;
-import br.com.kwikecommerce.api.application.dto.response.PageResponse;
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
-import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderCreationRequestDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderUpdateRequestDto;
+import br.com.kwikecommerce.api.mapper.OrderManagementMapper;
+import br.com.kwikecommerce.api.pagination.PageRequest;
 import br.com.kwikecommerce.api.service.order.OrderService;
 import br.com.kwikecommerce.api.service.ordermanagement.OrderManagementService;
 import lombok.RequiredArgsConstructor;
@@ -23,20 +24,24 @@ public class OrderController implements OrderApi {
 
     private final OrderService orderService;
     private final OrderManagementService orderManagementService;
-    // TODO jhoel.bagnasco 24/08/2021 | Criar tasks para os TODOs
-    // TODO jhoel.bagnasco 24/08/2021 | Adicionar endpoint de exclusão de item de pedido
-    // TODO jhoel.bagnasco 24/08/2021 | Adicionar testes
-    // TODO jhoel.bagnasco 24/08/2021 | Adicionar autenticação com o Google
+    private final OrderManagementMapper orderManagementMapper;
+
+    // TODO jhoel.bagnasco | Adicionar endpoint de exclusão de item de pedido
+    // TODO jhoel.bagnasco | Adicionar testes
+    // TODO jhoel.bagnasco | Adicionar autenticação com o Google
 
     @Override
     @PostMapping
-    public Long init(@RequestBody @Valid OrderCreationRequestDto orderCreationRequestDto) {
-        return orderManagementService.init(orderCreationRequestDto).getId();
+    public Long init(
+        @RequestHeader("companyId") Long companyId,
+        @RequestBody @Valid OrderCreationRequestDto orderCreationRequestDto
+    ) {
+        return null;
     }
 
     @Override
     @GetMapping
-    public PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest) {
+    public PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest) {
         return orderService.findByFilter(pageRequest);
     }
 
@@ -54,7 +59,11 @@ public class OrderController implements OrderApi {
     @Override
     @PutMapping("/{orderId}")
     public void update(@PathVariable Long orderId, @RequestBody OrderUpdateRequestDto orderUpdateRequestDto) {
-        orderService.update(orderId, orderUpdateRequestDto);
+        orderService.update(
+            orderId,
+            orderUpdateRequestDto.getPaymentMethod(),
+            orderUpdateRequestDto.getFreightPrice()
+        );
     }
 
 }

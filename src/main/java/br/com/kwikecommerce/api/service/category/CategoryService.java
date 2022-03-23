@@ -1,15 +1,14 @@
 package br.com.kwikecommerce.api.service.category;
 
-import br.com.kwikecommerce.api.dto.request.CategoryCreationRequest;
-import br.com.kwikecommerce.api.dto.response.CategoryListingResponse;
+import br.com.kwikecommerce.api.entity.Category;
 
 import java.util.List;
 
 
 public interface CategoryService {
 
-    void create(CategoryCreationRequest categoryCreationRequest);
+    Long create(Category category);
 
-    List<CategoryListingResponse> fetchAll();
+    List<Category> findAll();
 
 }

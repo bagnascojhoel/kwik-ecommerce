@@ -1,14 +1,16 @@
 package br.com.kwikecommerce.api.service.orderstatus;
 
-import br.com.kwikecommerce.api.domain.Order;
+import br.com.kwikecommerce.api.entity.order.Order;
 import br.com.kwikecommerce.api.repository.OrderStatusRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+@RequiredArgsConstructor
 @Service
-public record OrderStatusServiceImpl(
-    OrderStatusRepository orderStatusRepostiory
-) implements OrderStatusService {
+public class OrderStatusServiceImpl implements OrderStatusService {
+
+    private final OrderStatusRepository orderStatusRepostiory;
 
     // TODO jhoel.bagnasco 01/08/2021 | Ver como criar um repository independente de JPA para fazer queries de status
 

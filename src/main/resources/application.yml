@@ -30,6 +30,8 @@ aws:
     region: us-east-1
 
 spring:
+  banner.location: classpath:/startup-banner.txt
+
   profiles:
     active: @activatedProperties@
 
@@ -63,11 +65,3 @@ springdoc:
     - group: v1
       paths-to-match:
         - /v1/**/*
-# TODO mover as variáveis de ambiente lá pra cima
-keycloak:
-  auth-server-url: ${KEYCLOAK_URL:http://localhost:8000/auth}
-  realm: ${KEYCLOAK_REALM:KwikEcommerce}
-  resource: ${KEYCLOAK_CLIENT_ID:admin-cli}
-  credentials.secret: ${KEYCLOAK_CLIENT_SECRET:6223aaf2-db5b-434e-98cb-fdf1143b174f}
-  bearer-only: true
-  ssl-required: none

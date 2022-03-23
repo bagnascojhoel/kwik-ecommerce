@@ -1,8 +1,9 @@
 package br.com.kwikecommerce.api.application.util;
 
+import br.com.kwikecommerce.api.application.exception.BadRequestException;
+import br.com.kwikecommerce.api.message.MessageProperty;
 import br.com.kwikecommerce.api.application.properties.AwsProperties;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
-import br.com.kwikecommerce.api.application.exception.ExtensionDiscoveryException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +29,8 @@ public record StorageUtil(
         var contentType = file.getContentType();
         var cannotDiscoverExtension = isNull(contentType) || !relations.containsKey(contentType);
         if (cannotDiscoverExtension) {
-            logService.logError("Couldn't discover extension from Content-Type: {0}", file.getContentType());
-            throw new ExtensionDiscoveryException();
+            logService.logError(MessageProperty.use("log.storage.unknown-content-type", file.getContentType()));
+            throw new BadRequestException(MessageProperty.of("e.file.extension-discovery-failed"));
         }
 
         return relations.get(contentType);

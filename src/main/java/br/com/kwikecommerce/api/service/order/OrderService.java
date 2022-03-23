@@ -1,21 +1,23 @@
 package br.com.kwikecommerce.api.service.order;
 
-import br.com.kwikecommerce.api.application.dto.request.PageRequest;
-import br.com.kwikecommerce.api.application.dto.response.PageResponse;
-import br.com.kwikecommerce.api.domain.Order;
-import br.com.kwikecommerce.api.dto.request.OrderCreationRequestDto;
-import br.com.kwikecommerce.api.dto.request.OrderUpdateRequestDto;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByFilterResponse;
-import br.com.kwikecommerce.api.dto.response.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.pagination.PageRequest;
+import br.com.kwikecommerce.api.application.dto.page.PageResponseDto;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.controller.v1.order.dto.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.entity.Company;
+import br.com.kwikecommerce.api.entity.PaymentMethod;
+import br.com.kwikecommerce.api.entity.order.Order;
+
+import java.math.BigDecimal;
 
 
 public interface OrderService {
 
-    Order create(OrderCreationRequestDto request);
+    Order create(Company company, Order order);
 
-    Order update(Long orderId, OrderUpdateRequestDto request);
+    Order update(Long orderId, PaymentMethod paymentMethod, BigDecimal freightPrice);
 
-    PageResponse<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest);
+    PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest);
 
     OrderFindingByIdResponseDto findById(Long orderId);
 

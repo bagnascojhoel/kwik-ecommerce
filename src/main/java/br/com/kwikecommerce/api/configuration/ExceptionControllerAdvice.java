@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.application.common;
+package br.com.kwikecommerce.api.configuration;
 
 import br.com.kwikecommerce.api.application.dto.exception.ExceptionResponseDto;
 import br.com.kwikecommerce.api.application.dto.exception.FieldValidationResponseDto;
@@ -6,12 +6,14 @@ import br.com.kwikecommerce.api.application.dto.exception.FieldValidationRespons
 import br.com.kwikecommerce.api.application.exception.BadRequestException;
 import br.com.kwikecommerce.api.application.exception.InternalServerException;
 import br.com.kwikecommerce.api.application.exception.NotFoundException;
-import br.com.kwikecommerce.api.message.MessageProperty;
 import br.com.kwikecommerce.api.application.service.logging.LogService;
+import br.com.kwikecommerce.api.message.MessageProperty;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 @RestControllerAdvice
@@ -31,45 +32,28 @@ public record ExceptionControllerAdvice(LogService logService) {
 
     // 4xx
 
-    @ExceptionHandler(BindException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public FieldValidationResponseDto handleBindException(BindException ex) {
-        var mappedFieldErrors = ex.getFieldErrors().stream()
-            .map(fieldError -> new FieldError(
-                fieldError.getObjectName(),
-                fieldError.getField(),
-                fieldError.getRejectedValue(),
-                fieldError.isBindingFailure(),
-                fieldError.getCodes(),
-                fieldError.getArguments(),
-                MessageProperty.use("e.exception-controller-advice.invalid-value-binded")
-            ))
-            .collect(Collectors.toList());
-        return this.buildExceptionResponse(mappedFieldErrors);
-    }
-
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public FieldValidationResponseDto handleFieldValidations(MethodArgumentNotValidException ex) {
-        return buildExceptionResponse(ex.getFieldErrors());
+    public FieldValidationResponseDto handleFieldValidations(BindException ex) {
+        return this.createFieldValidationResponse(ex.getAllErrors());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public FieldValidationResponseDto handleFieldValidations(ConstraintViolationException ex) {
-        return buildExceptionResponse(ex.getConstraintViolations());
+        return createFieldValidationResponse(ex.getConstraintViolations());
     }
 
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionResponseDto handleNotFound(BadRequestException ex) {
-        return buildExceptionResponse(ex.getTextForClient());
+        return createGenericExceptionResponse(ex.getTextForClient());
     }
 
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ExceptionResponseDto handleNotFound(NotFoundException ex) {
-        return buildExceptionResponse(ex.getTextForClient());
+        return createGenericExceptionResponse(ex.getTextForClient());
     }
 
     // 5xx
@@ -80,23 +64,23 @@ public record ExceptionControllerAdvice(LogService logService) {
         InternalServerException internalServerException
     ) {
         logService.logError(internalServerException.getLogMessage().getText(), internalServerException.getCause());
-        return buildExceptionResponse(internalServerException.getTextForClient());
+        return createGenericExceptionResponse(internalServerException.getTextForClient());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ExceptionResponseDto handleAnyException(Exception ex) {
         logService.logError(MessageProperty.use("log.unknown-error"), ex);
-        return buildExceptionResponse(MessageProperty.of("e.unknown"));
+        return createGenericExceptionResponse(MessageProperty.of("e.unknown"));
     }
 
-    private ExceptionResponseDto buildExceptionResponse(MessageProperty messageProperty) {
+    private ExceptionResponseDto createGenericExceptionResponse(MessageProperty messageProperty) {
         return ExceptionResponseDto.builder()
             .message(messageProperty.getText())
             .build();
     }
 
-    private FieldValidationResponseDto buildExceptionResponse(Set<ConstraintViolation<?>> constraintViolations) {
+    private FieldValidationResponseDto createFieldValidationResponse(Set<ConstraintViolation<?>> constraintViolations) {
         var validations = new ArrayList<FieldValidation>();
 
         for (var constraintViolation : constraintViolations) {
@@ -117,24 +101,49 @@ public record ExceptionControllerAdvice(LogService logService) {
             .build();
     }
 
-    private FieldValidationResponseDto buildExceptionResponse(List<FieldError> fieldErrors) {
+    private FieldValidationResponseDto createFieldValidationResponse(List<ObjectError> objectErrors) {
         var validations = new ArrayList<FieldValidation>();
 
-        for (var fieldError : fieldErrors) {
-            var value = Optional.ofNullable(fieldError.getRejectedValue())
-                .map(Object::toString)
-                .orElse(null);
-
-            validations.add(FieldValidation.builder()
-                .field(fieldError.getField())
-                .value(value)
-                .message(fieldError.getDefaultMessage())
-                .build());
+        for (var objectError : objectErrors) {
+            if (objectError instanceof FieldError) {
+                var fieldValidation = this.toFieldValidation((FieldError) objectError);
+                validations.add(fieldValidation);
+            }
         }
 
         return FieldValidationResponseDto.builder()
             .validations(validations)
             .build();
+    }
+
+    private FieldValidation toFieldValidation(FieldError fieldError) {
+        var value = Optional.ofNullable(fieldError.getRejectedValue())
+            .map(Object::toString)
+            .orElse(null);
+        var message = this.extractMessage(fieldError);
+
+        return FieldValidation.builder()
+            .field(fieldError.getField())
+            .value(value)
+            .message(message)
+            .build();
+    }
+
+    private String extractMessage(FieldError fieldError) {
+        var result = MessageProperty.use("e.exception-controller-advice.invalid-value-binded");
+
+        try {
+            var rootCause = fieldError.unwrap(TypeMismatchException.class).getRootCause();
+            if (rootCause instanceof InternalServerException) {
+                var internalServerException = ((InternalServerException) rootCause);
+                logService.logError(internalServerException.getLogMessage().getText());
+                result = internalServerException.getTextForClient().getText();
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
+
+
+        return result;
     }
 
     private String getValidationMessage(ConstraintViolation<?> constraintViolation) {

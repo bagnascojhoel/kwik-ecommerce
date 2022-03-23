@@ -26,7 +26,8 @@ public class KwikSort<T extends Enum> {
         var sortOption = KwikSortOptionFactory.create(anEnum);
         if (KwikSort.isNotASortString(sortOption, sortSections))
             throw new InternalServerException(
-                MessageProperty.of("log.attempted-to-build-invalid-sort", aString)
+                MessageProperty.of("e.sort.wrongly-formatted-or-invalid-option", sortOption.toString()),
+                MessageProperty.of("log.attempted-to-build-invalid-sort", anEnum.getName(), aString)
             );
 
         this.sort = this.createSort(sortOption, sortSections);

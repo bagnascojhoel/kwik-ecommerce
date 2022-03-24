@@ -1,6 +1,6 @@
-package br.com.kwikecommerce.api.controller.validator;
+package br.com.kwikecommerce.api.controller;
 
-import br.com.kwikecommerce.api.product.ProductRepository;
+import br.com.kwikecommerce.api.company.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.Constraint;
@@ -13,24 +13,25 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Constraint(validatedBy = ProductExists.Validator.class)
+@Constraint(validatedBy = CompanyExists.Validator.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ProductExists {
-    String message() default "{v.product.does-not-exists}";
+public @interface CompanyExists {
+
+    String message() default "{v.company.does-not-exists}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
     @RequiredArgsConstructor
-    class Validator implements ConstraintValidator<ProductExists, Long> {
+    class Validator implements ConstraintValidator<CompanyExists, Long> {
 
-        private final ProductRepository productRepository;
+        private final CompanyRepository companyRepository;
 
         @Override
-        public boolean isValid(Long productId, ConstraintValidatorContext context) {
-            return productRepository.existsById(productId);
+        public boolean isValid(Long companyId, ConstraintValidatorContext constraintValidatorContext) {
+            return companyRepository.existsById(companyId);
         }
 
     }

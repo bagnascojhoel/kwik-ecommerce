@@ -1,10 +1,10 @@
 package br.com.kwikecommerce.api.controller.product;
 
+import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
 import br.com.kwikecommerce.api.controller.product.dto.ProductCreationRequest;
 import br.com.kwikecommerce.api.controller.product.dto.ProductListingResponse;
 import br.com.kwikecommerce.api.product.ProductSortOption;
-import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -17,12 +17,11 @@ import java.util.List;
 
 
 @Tag(
-    name = "Product",
+    name = "Products",
     description = "Operations over product resources"
 )
 public interface ProductApi {
 
-    @Tag(name = "Products")
     @Operation(
         summary = "Create",
         description = """
@@ -32,13 +31,11 @@ public interface ProductApi {
     )
     Long create(@Valid ProductCreationRequest request, List<MultipartFile> images);
 
-    @Tag(name = "Products")
     @Operation(summary = "Find page")
     PageResponseDto<ProductListingResponse> findPage(
         @Valid PageRequest<ProductSortOption> pageRequest
     );
 
-    @Tag(name = "Products")
     @Operation(summary = "Fetch a page of products from a given category")
     @Parameter(name = "categoryId", in = ParameterIn.PATH, example = "1")
     @Parameter(name = "sortingOption")

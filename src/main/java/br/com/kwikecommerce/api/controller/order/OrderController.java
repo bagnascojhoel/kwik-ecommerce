@@ -1,14 +1,15 @@
 package br.com.kwikecommerce.api.controller.order;
 
+import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
+import br.com.kwikecommerce.api.application.pagination.sort.NoSortOption;
+import br.com.kwikecommerce.api.controller.order.dto.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByFilterResponse;
 import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByIdResponseDto;
-import br.com.kwikecommerce.api.controller.order.dto.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.controller.order.dto.OrderUpdateRequestDto;
 import br.com.kwikecommerce.api.order.OrderManagementMapper;
-import br.com.kwikecommerce.api.application.pagination.PageRequest;
-import br.com.kwikecommerce.api.order.OrderService;
 import br.com.kwikecommerce.api.order.OrderManagementService;
+import br.com.kwikecommerce.api.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/orders")
+@RequestMapping("/orders")
 public class OrderController implements OrderApi {
 
     private final OrderService orderService;
@@ -41,7 +42,7 @@ public class OrderController implements OrderApi {
 
     @Override
     @GetMapping
-    public PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequest pageRequest) {
+    public PageResponseDto<OrderFindingByFilterResponse> findByFilter(PageRequest<NoSortOption> pageRequest) {
         return orderService.findByFilter(pageRequest);
     }
 

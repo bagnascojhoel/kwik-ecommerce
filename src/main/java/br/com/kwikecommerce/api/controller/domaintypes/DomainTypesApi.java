@@ -13,11 +13,9 @@ import java.util.Set;
 )
 public interface DomainTypesApi {
 
-    @Tag(name = "DomainTypes")
     @Operation(summary = "Finds all possible order status types")
     Set<DomainTypeListingResponseDto> findOrderStatusTypes();
 
-    @Tag(name = "DomainTypes")
     @Operation(summary = "Finds all possible payment methods")
     Set<DomainTypeListingResponseDto> findPaymentMethods();
 

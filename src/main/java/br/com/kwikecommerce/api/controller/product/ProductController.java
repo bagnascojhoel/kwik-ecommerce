@@ -1,13 +1,13 @@
 package br.com.kwikecommerce.api.controller.product;
 
+import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
 import br.com.kwikecommerce.api.application.pagination.PaginationMapper;
 import br.com.kwikecommerce.api.controller.product.dto.ProductCreationRequest;
 import br.com.kwikecommerce.api.controller.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.product.ProductSortOption;
 import br.com.kwikecommerce.api.product.ProductMapper;
-import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.product.ProductService;
+import br.com.kwikecommerce.api.product.ProductSortOption;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @Validated
 @RequiredArgsConstructor
-@RequestMapping("/v1/products")
+@RequestMapping("/products")
 public class ProductController implements ProductApi {
 
     private final ProductService productService;
@@ -44,7 +44,7 @@ public class ProductController implements ProductApi {
         return paginationMapper.map(page);
     }
 
-    // TODO mover esse método para /v1/categories/{categoryId}/products
+    // TODO mover esse método para /categories/{categoryId}/products
     @Override
     @GetMapping("/{categoryId}")
     public PageResponseDto<ProductListingResponse> fetchPageByCategory(

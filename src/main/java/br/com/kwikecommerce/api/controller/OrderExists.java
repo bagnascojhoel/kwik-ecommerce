@@ -1,4 +1,4 @@
-package br.com.kwikecommerce.api.controller.validator;
+package br.com.kwikecommerce.api.controller;
 
 import br.com.kwikecommerce.api.order.OrderRepository;
 import lombok.RequiredArgsConstructor;

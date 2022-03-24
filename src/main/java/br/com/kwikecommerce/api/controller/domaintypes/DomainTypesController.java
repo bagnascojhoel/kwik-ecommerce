@@ -1,9 +1,9 @@
 package br.com.kwikecommerce.api.controller.domaintypes;
 
-import br.com.kwikecommerce.api.controller.domaintypes.dto.DomainTypeListingResponseDto;
-import br.com.kwikecommerce.api.order.PaymentMethod;
-import br.com.kwikecommerce.api.order.OrderStatusType;
 import br.com.kwikecommerce.api.application.domaintype.DomainTypeMapper;
+import br.com.kwikecommerce.api.controller.domaintypes.dto.DomainTypeListingResponseDto;
+import br.com.kwikecommerce.api.order.OrderStatusType;
+import br.com.kwikecommerce.api.order.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;

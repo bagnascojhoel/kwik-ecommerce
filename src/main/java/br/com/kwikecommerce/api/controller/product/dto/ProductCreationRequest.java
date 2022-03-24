@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.controller.product.dto;
 
-import br.com.kwikecommerce.api.controller.validator.AllCategoriesExist;
-import br.com.kwikecommerce.api.controller.validator.CompanyExists;
+import br.com.kwikecommerce.api.controller.AllCategoriesExist;
+import br.com.kwikecommerce.api.controller.CompanyExists;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

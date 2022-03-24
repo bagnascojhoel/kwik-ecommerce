@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.controller.order.dto;
 
-import br.com.kwikecommerce.api.controller.validator.ProductExists;
+import br.com.kwikecommerce.api.controller.ProductExists;
 import br.com.kwikecommerce.api.order.PaymentMethod;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Value;

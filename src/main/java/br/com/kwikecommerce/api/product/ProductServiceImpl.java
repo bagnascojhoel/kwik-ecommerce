@@ -1,10 +1,10 @@
 package br.com.kwikecommerce.api.product;
 
+import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
 import br.com.kwikecommerce.api.application.pagination.PaginationMapper;
 import br.com.kwikecommerce.api.application.storage.StorageService;
-import br.com.kwikecommerce.api.controller.product.dto.ProductListingResponse;
-import br.com.kwikecommerce.api.application.pagination.PageRequest;
+import br.com.kwikecommerce.api.restcontroller.product.dto.ProductListingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.application.domaintype;
 
-import br.com.kwikecommerce.api.controller.domaintypes.dto.DomainTypeListingResponseDto;
+import br.com.kwikecommerce.api.restcontroller.domaintypes.dto.DomainTypeListingResponseDto;
 import org.mapstruct.Mapper;
 
 import java.util.Arrays;

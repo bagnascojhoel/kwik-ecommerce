@@ -1,9 +1,9 @@
 package br.com.kwikecommerce.api.order;
 
 import br.com.kwikecommerce.api.company.CompanyMapper;
-import br.com.kwikecommerce.api.controller.order.dto.OrderCreationRequestDto;
-import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByFilterResponse;
-import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderCreationRequestDto;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderFindingByIdResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

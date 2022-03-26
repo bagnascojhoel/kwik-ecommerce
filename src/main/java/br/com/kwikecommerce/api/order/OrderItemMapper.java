@@ -1,6 +1,6 @@
 package br.com.kwikecommerce.api.order;
 
-import br.com.kwikecommerce.api.controller.order.dto.OrderCreationRequestDto;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderCreationRequestDto;
 import br.com.kwikecommerce.api.product.Product;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;

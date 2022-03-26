@@ -1,8 +1,8 @@
 package br.com.kwikecommerce.api.order;
 
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
-import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByFilterResponse;
-import br.com.kwikecommerce.api.controller.order.dto.OrderFindingByIdResponseDto;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderFindingByFilterResponse;
+import br.com.kwikecommerce.api.restcontroller.order.dto.OrderFindingByIdResponseDto;
 import br.com.kwikecommerce.api.company.Company;
 import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import br.com.kwikecommerce.api.application.pagination.sort.NoSortOption;

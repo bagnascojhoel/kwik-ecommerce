@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.application.interceptor;
 
 import br.com.kwikecommerce.api.application.logging.LogService;
-import br.com.kwikecommerce.api.controller.AuthenticationService;
+import br.com.kwikecommerce.api.restcontroller.AuthenticationService;
 import br.com.kwikecommerce.api.application.message.MessageProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -2,8 +2,8 @@ package br.com.kwikecommerce.api.product;
 
 import br.com.kwikecommerce.api.category.CategoryMapper;
 import br.com.kwikecommerce.api.company.CompanyMapper;
-import br.com.kwikecommerce.api.controller.product.dto.ProductCreationRequest;
-import br.com.kwikecommerce.api.controller.product.dto.ProductListingResponse;
+import br.com.kwikecommerce.api.restcontroller.product.dto.ProductCreationRequest;
+import br.com.kwikecommerce.api.restcontroller.product.dto.ProductListingResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

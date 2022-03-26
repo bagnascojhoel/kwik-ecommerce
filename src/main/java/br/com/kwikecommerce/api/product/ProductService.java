@@ -1,7 +1,7 @@
 package br.com.kwikecommerce.api.product;
 
 import br.com.kwikecommerce.api.application.pagination.PageResponseDto;
-import br.com.kwikecommerce.api.controller.product.dto.ProductListingResponse;
+import br.com.kwikecommerce.api.restcontroller.product.dto.ProductListingResponse;
 import br.com.kwikecommerce.api.application.pagination.PageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;

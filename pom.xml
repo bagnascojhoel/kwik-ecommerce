@@ -13,7 +13,7 @@
 
     <groupId>br.com.kwikecommerce</groupId>
     <artifactId>kwik-ecommerce-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>kwik-ecommerce-api</name>
     <description>Kwik-Ecommerce API</description>
 
@@ -65,7 +65,7 @@
 
     <properties>
         <java.version>16</java.version>
-        <mysql.version>8.0.15</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <spring-doc.version>1.5.9</spring-doc.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>

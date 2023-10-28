@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0-createTableTalkRegistry
+      author: jhoel.bagnasco
+      preConditions:
+        - onFail: CONTINUE
+        - not:
+            - tableExists:
+                tableName: talk_registry
+      changes:
+        - createTable:
+            tableName: talk_registry
+            columns:
+              - column:
+                  name: talk_registry_code
+                  type: char(24)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: sayer_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sayer_speech
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: world_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: world_response
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: talked_at
+                  type: datetime
+                  constraints:
+                    nullable: false

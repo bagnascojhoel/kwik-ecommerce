@@ -1,0 +1,29 @@
+app:
+  name: Kwik Rules API
+  description: API that handles direct business rules of Kwik.
+  version: v0
+  external-docs:
+    description: Research and architectural documentations
+    url: https://github.com/nocpah/kwik-docs
+  port: 9001
+
+server:
+  port: ${app.port}
+
+spring:
+  application:
+    name: ${app.name}
+  banner.location: classpath:banner.txt
+  datasource:
+    url: jdbc:h2:file:./data/local
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  liquibase:
+    change-log: db/changelog.yml
+
+spring-doc:
+  swagger-ui.path: docs
+  show-actuator: true

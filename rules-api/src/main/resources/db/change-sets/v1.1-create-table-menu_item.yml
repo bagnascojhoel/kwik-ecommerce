@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.1-create-table-menu_item.yml
+      author: jhoel.bagnasco
+      preConditions:
+        - onFail: CONTINUE
+        - not:
+            - tableExists:
+                tableName: menu_item
+      changes:
+        - createTable:
+            tableName: menu_item
+            columns:
+              - column:
+                  name: menu_item_code
+                  type: char(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: varchar(12)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_url
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: can_be_sold
+                  type: boolean
+                  constraints:
+                    nullable: false

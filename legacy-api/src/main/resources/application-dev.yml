@@ -1,0 +1,10 @@
+kwik-ecommerce:
+  db:
+    name: ${DB_NAME:kwik_ecommerce_db}
+    host: ${DB_HOST:kwik-ecommerce-db.cccwvtvgcg8k.us-east-1.rds.amazonaws.com}
+    port: ${DB_PORT:3306}
+    user: ${DB_USER:root}
+    pass: ${DB_PASS:aAE39Rt1}
+
+  server:
+    port: ${APP_PORT:80}

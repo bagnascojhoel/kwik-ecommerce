@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - property:
+      dbms: mysql, h2
+      name: order_status
+      value: enum('PENDENTE', 'VISUALIZADO', 'EM ANDAMENTO', 'CANCELADO', 'ENVIADO', 'ENTREGUE')
+# TODO jhoel.bagnasco 24/08/2021 | Remover status de VISUALIZADO

@@ -12,4 +12,6 @@ public interface ProductRepository {
     Optional<Product> findById(@NonNull final ProductId productId);
 
     List<Product> findAllByState(@NonNull final ProductState productState);
+
+    List<Product> findAll();
 }

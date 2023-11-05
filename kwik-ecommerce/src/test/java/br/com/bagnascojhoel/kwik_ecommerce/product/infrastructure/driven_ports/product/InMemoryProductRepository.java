@@ -1,4 +1,4 @@
-package br.com.bagnascojhoel.kwik_ecommerce.product.code.infrastructure;
+package br.com.bagnascojhoel.kwik_ecommerce.product.infrastructure.driven_ports.product;
 
 import br.com.bagnascojhoel.kwik_ecommerce.product.domain.Product;
 import br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductId;
@@ -42,5 +42,10 @@ public class InMemoryProductRepository implements ProductRepository {
         return this.products.stream()
                 .filter(product -> product.isOnState(productState))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return this.products;
     }
 }

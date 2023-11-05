@@ -1,11 +1,19 @@
-version: '3.3'
+version: '3.5'
 
 services:
-
-  db:
-    container_name: kwik_ecommerce-db
-    image: mysql:8.0.25
-    ports:
-      - 3306:3306
+  postgres:
+    container_name: postgres_container
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: toor
+      POSTGRES_USER: kwik
+      POSTGRES_PASSWORD: kwik
+      POSTGRES_DB: kwik_ecommerce
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres:

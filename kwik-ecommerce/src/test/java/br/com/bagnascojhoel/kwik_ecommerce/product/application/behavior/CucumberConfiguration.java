@@ -1,4 +1,4 @@
-package br.com.bagnascojhoel.kwik_ecommerce.product.behavior;
+package br.com.bagnascojhoel.kwik_ecommerce.product.application.behavior;
 
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,22 +1,35 @@
-package br.com.bagnascojhoel.kwik_ecommerce.product;
+package br.com.bagnascojhoel.kwik_ecommerce.product.application;
 
 
 import br.com.bagnascojhoel.kwik_ecommerce.AbstractApplicationServiceTest;
-import br.com.bagnascojhoel.kwik_ecommerce.product.application.ProductApplicationService;
-import br.com.bagnascojhoel.kwik_ecommerce.product.domain.Product;
-import br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductId;
-import br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductNotFound;
-import br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductRepository;
+import br.com.bagnascojhoel.kwik_ecommerce.product.domain.*;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
 import java.util.Optional;
 
+<<<<<<< HEAD
+import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
+=======
+<<<<<<< HEAD
+import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
+=======
+<<<<<<< HEAD
+import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
+=======
+import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductDomainFixtures.PEPERONI_PIZZA;
+>>>>>>> 6b0331d (feat(api): create products CRUD)
+>>>>>>> 47b2bca (feat(api): create products CRUD)
+>>>>>>> 1b40fd0 (feat(api): create products CRUD)
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,8 +40,16 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
     @MockBean
     private ProductRepository productRepository;
 
+    @MockBean
+    private ProductFactory productFactory;
+
     @Autowired
     private ProductApplicationService productApplicationService;
+
+    @Test
+    void serviceShouldBeAnnotatedWithValidated() {
+        assertThat(ProductApplicationService.class.isAnnotationPresent(Validated.class)).isTrue();
+    }
 
     @Nested
     class SaveProduct {
@@ -39,9 +60,15 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
         }
 
         @Test
+        void commandIsValid() throws NoSuchFieldException, NoSuchMethodException {
+            assertMethodHasValidParam(ProductApplicationService.class, "saveProduct", "command");
+        }
+
+        @Test
         void passOnTransactionToRepository() {
-            Product product = Product.builder().build();
             setupTransactionName("create-product");
+
+            when(productFactory.createFromSaveCommand(any())).thenReturn(PEPERONI_PIZZA);
 
             Mockito.
                     doAnswer(inv -> {
@@ -49,26 +76,38 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
                         return ProductId.generate();
                     })
                     .when(productRepository)
-                    .save(product);
+                    .save(any());
 
-            productApplicationService.saveProduct(product);
+<<<<<<< HEAD
+            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
+=======
+<<<<<<< HEAD
+            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
+=======
+<<<<<<< HEAD
+            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
+=======
+            productApplicationService.saveProduct(ProductDomainFixtures.SAVE_PEPERONI_PIZZA);
+>>>>>>> 6b0331d (feat(api): create products CRUD)
+>>>>>>> 47b2bca (feat(api): create products CRUD)
+>>>>>>> 1b40fd0 (feat(api): create products CRUD)
 
-            verify(productRepository).save(product);
+            verify(productRepository).save(any());
         }
     }
 
     @Nested
-    class FindProduct {
+    class GetProductById {
         @Test
         void nonNullProductId() {
-            assertThatThrownBy(() -> productApplicationService.findProduct(null))
+            assertThatThrownBy(() -> productApplicationService.getProductById(null))
                     .isInstanceOf(NullPointerException.class);
         }
 
         @Test
         void passOnTransactionToRepository() {
             Product product = Product.builder().build();
-            setupTransactionName("find-product");
+            setupTransactionName("get-product-by-id");
 
             Mockito.
                     doAnswer(inv -> {
@@ -78,7 +117,7 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
                     .when(productRepository)
                     .findById(product.getId());
 
-            productApplicationService.findProduct(product.getId());
+            productApplicationService.getProductById(product.getId());
         }
 
         @Test
@@ -87,9 +126,9 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
 
             when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
 
-            assertThatThrownBy(() -> productApplicationService.showProduct(product.getId()))
-                    .hasMessage("product-not-found")
-                    .isInstanceOf(ProductNotFound.class);
+            assertThatThrownBy(() -> productApplicationService.getProductById(product.getId()))
+                    .hasFieldOrPropertyWithValue("errorCode", "product-not-found")
+                    .isInstanceOf(ProductNotFoundException.class);
         }
     }
 
@@ -124,8 +163,8 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
             when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
 
             assertThatThrownBy(() -> productApplicationService.showProduct(product.getId()))
-                    .hasMessage("product-not-found")
-                    .isInstanceOf(ProductNotFound.class);
+                    .hasFieldOrPropertyWithValue("errorCode", "product-not-found")
+                    .isInstanceOf(ProductNotFoundException.class);
         }
     }
 
@@ -160,8 +199,8 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
             when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
 
             assertThatThrownBy(() -> productApplicationService.showProduct(product.getId()))
-                    .hasMessage("product-not-found")
-                    .isInstanceOf(ProductNotFound.class);
+                    .hasFieldOrPropertyWithValue("errorCode", "product-not-found")
+                    .isInstanceOf(ProductNotFoundException.class);
         }
 
     }
@@ -197,8 +236,26 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
             when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
 
             assertThatThrownBy(() -> productApplicationService.showProduct(product.getId()))
-                    .hasMessage("product-not-found")
-                    .isInstanceOf(ProductNotFound.class);
+                    .hasFieldOrPropertyWithValue("errorCode", "product-not-found")
+                    .isInstanceOf(ProductNotFoundException.class);
+        }
+    }
+
+    @Nested
+    class FindAllProducts {
+        @Test
+        void passOnTransactionToRepository() {
+            setupTransactionName("find-all-products");
+
+            Mockito.
+                    doAnswer(inv -> {
+                        assertTransactionIsPropagated();
+                        return List.of(PEPERONI_PIZZA);
+                    })
+                    .when(productRepository)
+                    .findAll();
+
+            productApplicationService.findAllProducts();
         }
     }
 }

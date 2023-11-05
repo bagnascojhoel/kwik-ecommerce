@@ -65,3 +65,25 @@ Feature: Create, Read, Update, and Delete Products
     Then the following products are returned:
       | name             | description  | priceInBrl | imageUrl |
       | Brazilian Pastel | Choose this. | 21.50      |          |
+
+  Scenario: Find All Products
+    Given someone is interacting with the application
+    And they create the following products:
+      | name             | description                          | priceInBrl | imageUrl |
+      | Pizza            | The best pizza you'll ever eat!      | 50.00      |          |
+      | Hamburguer       | The best hamburguer you'll ever eat! | 25.00      |          |
+      | Brazilian Pastel | Choose this.                         | 21.50      |          |
+    When they fetch all products
+    Then the following products are returned:
+      | name             | description                          | priceInBrl | imageUrl |
+      | Pizza            | The best pizza you'll ever eat!      | 50.00      |          |
+      | Hamburguer       | The best hamburguer you'll ever eat! | 25.00      |          |
+      | Brazilian Pastel | Choose this.                         | 21.50      |          |
+
+  Scenario: Fail When Product Searched for Does Not Exist
+    Given someone is interacting with the application
+    And they create a product with:
+      | name  | description                     | priceInBrl | imageUrl |
+      | Pizza | The best pizza you'll ever eat! | 50.00      |          |
+    When they get the product "Hamburger"
+    Then they receive an error of product not found

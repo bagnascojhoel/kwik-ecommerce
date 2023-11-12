@@ -1,18 +1,41 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:kwik_ecommerce_management_ui/page/favorites_page.dart';
+import 'package:kwik_ecommerce_management_ui/page/home_page.dart';
+import 'package:kwik_ecommerce_management_ui/shared_state/idea_state.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int selectedPageIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
+
+    Widget currentPage;
+
+    switch (selectedPageIndex) {
+      case 0:
+        currentPage = HomePage();
+        break;
+      case 1:
+        currentPage = FavoritesPage();
+        break;
+      default:
+        throw UnimplementedError("Page $selectedPageIndex does not exist");
+    }
+
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+      create: (context) => IdeaState(),
       child: MaterialApp(
         title: 'Namer App',
         theme: ThemeData(
@@ -20,83 +43,45 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFF97316))
               .copyWith(primary: Color(0xFFF97316)),
         ),
-        home: MyHomePage(),
-      ),
-    );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  late WordPair currentIdea = WordPair.random();
-
-  void changeIdea() {
-    currentIdea = WordPair.random();
-    notifyListeners();
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var idea = appState.currentIdea;
-
-    final theme = Theme.of(context);
-    final textStyle = theme.textTheme.displayMedium!
-        .copyWith(color: theme.colorScheme.primary);
-
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Dangerously generated idea:',
-            textAlign: TextAlign.center,
-            style: textStyle,
-          ),
-          Idea(idea: idea),
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: appState.changeIdea, child: Text('Change Idea'))
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Idea extends StatelessWidget {
-  const Idea({
-    super.key,
-    required this.idea,
-  });
-
-  final WordPair idea;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final textStyle = theme.textTheme.displaySmall!
-        .copyWith(color: theme.colorScheme.onPrimary);
-
-    return Card(
-      elevation: 2,
-      color: theme.colorScheme.primary,
-      margin: EdgeInsets.symmetric(horizontal: 50),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(
-          idea.asPascalCase,
-          style: textStyle,
-          textAlign: TextAlign.center,
-          semanticsLabel: "${idea.first} ${idea.second}",
+        home: LayoutBuilder(
+            builder: (context, constraints) {
+              return Scaffold(
+                body: Row(
+                  children: [
+                    SafeArea(
+                        child: NavigationRail(
+                          extended: constraints.maxWidth >= 800,
+                          destinations: [
+                            NavigationRailDestination(
+                                icon: Icon(Icons.home),
+                                label: Text("Home")
+                            ),
+                            NavigationRailDestination(
+                                icon: Icon(Icons.favorite),
+                                label: Text("Favorites")
+                            )
+                          ],
+                          selectedIndex: selectedPageIndex,
+                          onDestinationSelected: (value) {
+                            setState(() {
+                              selectedPageIndex = value;
+                            });
+                          },
+                        )
+                    ),
+                    Expanded(
+                        child: Container(
+                            color: Theme.of(context).canvasColor,
+                            child: currentPage
+                        )
+                    )
+                  ],
+                ),
+              );
+            }
         ),
       ),
     );
   }
 }
+

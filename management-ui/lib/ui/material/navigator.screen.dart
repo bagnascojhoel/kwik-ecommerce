@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwik_ecommerce_management_ui/ui/material/favorites_page.dart';
 import 'package:kwik_ecommerce_management_ui/ui/material/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kwik_ecommerce_management_ui/ui/material/product.screen.dart';
 
 class MaterialNavigatorScreen extends StatefulWidget {
   @override
@@ -33,6 +35,9 @@ class _MaterialNavigatorScreenState extends State<MaterialNavigatorScreen> {
         break;
       case 1:
         currentPage = FavoritesPage();
+        break;
+      case 2:
+        currentPage = ProductScreen();
         break;
       default:
         throw UnimplementedError("Page $_currentScreenIndex does not exist");
@@ -74,7 +79,8 @@ class _BottomNavigationBar extends StatelessWidget {
     return  NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-            NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites")
+            NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
+            NavigationDestination(icon: Icon(Icons.shopping_basket), label: AppLocalizations.of(context)!.products),
           ],
           onDestinationSelected: onDestinationSelected,
       selectedIndex: selectedIndex,
@@ -96,14 +102,9 @@ class _RailNavigation extends StatelessWidget {
         child: NavigationRail(
           extended: extended,
           destinations: [
-            NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text("Home")
-            ),
-            NavigationRailDestination(
-                icon: Icon(Icons.favorite),
-                label: Text("Favorites")
-            )
+            NavigationRailDestination(icon: Icon(Icons.home), label: Text("Home")),
+            NavigationRailDestination(icon: Icon(Icons.favorite), label: Text("Favorites")),
+            NavigationRailDestination(icon: Icon(Icons.shopping_basket), label: Text(AppLocalizations.of(context)!.products))
           ],
           selectedIndex: selectedIndex,
           onDestinationSelected: onDestinationSelected,

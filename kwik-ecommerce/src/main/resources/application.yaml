@@ -13,3 +13,8 @@ spring:
     username: kwik
     password: kwik
     driver-class-name: org.postgresql.Driver
+
+kwik:
+  logging:
+    blacklisted-headers:
+      - authorization

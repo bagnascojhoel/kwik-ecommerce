@@ -1,5 +1,6 @@
 package br.com.bagnascojhoel.kwik_ecommerce.product.infrastructure.driven_ports;
 
+import br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.CommonTestConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.assertj.core.api.Assertions;
@@ -15,25 +16,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.UUID;
 
-<<<<<<< HEAD
 @JdbcTest(properties = {
-        "spring.datasource.hikari.jdbc-url=jdbc:tc:postgresql:9.6.8:///kwik_ecommerce?currentSchema=product",
-=======
-<<<<<<< HEAD
-@JdbcTest(properties = {
-        "spring.datasource.hikari.jdbc-url=jdbc:tc:postgresql:9.6.8:///kwik_ecommerce?currentSchema=product",
-=======
-<<<<<<< HEAD
-@JdbcTest(properties = {
-        "spring.datasource.hikari.jdbc-url=jdbc:tc:postgresql:9.6.8:///kwik_ecommerce?currentSchema=product",
-=======
-import static br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.CommonTestConstants.TEST_CONTAINER_POSTGRES_JDBC_URL;
-
-@JdbcTest(properties = {
-        "spring.datasource.hikari.jdbc-url=" + TEST_CONTAINER_POSTGRES_JDBC_URL + "?currentSchema=product",
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
+        "spring.datasource.hikari.jdbc-url=" + CommonTestConstants.TEST_CONTAINER_POSTGRES_JDBC_URL + "?currentSchema=product",
         "spring.datasource.driver-class-name=org.testcontainers.jdbc.ContainerDatabaseDriver"
 })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

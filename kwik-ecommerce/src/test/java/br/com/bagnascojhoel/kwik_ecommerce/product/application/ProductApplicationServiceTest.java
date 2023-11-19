@@ -14,19 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.util.Optional;
 
-<<<<<<< HEAD
-import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
-=======
-<<<<<<< HEAD
-import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
-=======
-<<<<<<< HEAD
-import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.DomainFixtures.PEPERONI_PIZZA;
-=======
-import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductDomainFixtures.PEPERONI_PIZZA;
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -68,7 +55,7 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
         void passOnTransactionToRepository() {
             setupTransactionName("create-product");
 
-            when(productFactory.createFromSaveCommand(any())).thenReturn(PEPERONI_PIZZA);
+            when(productFactory.createFromSaveCommand(any())).thenReturn(ProductDomainFixtures.PEPERONI_PIZZA);
 
             Mockito.
                     doAnswer(inv -> {
@@ -78,19 +65,7 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
                     .when(productRepository)
                     .save(any());
 
-<<<<<<< HEAD
-            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
-=======
-<<<<<<< HEAD
-            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
-=======
-<<<<<<< HEAD
-            productApplicationService.saveProduct(DomainFixtures.SAVE_PEPERONI_PIZZA);
-=======
             productApplicationService.saveProduct(ProductDomainFixtures.SAVE_PEPERONI_PIZZA);
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
 
             verify(productRepository).save(any());
         }
@@ -250,7 +225,7 @@ class ProductApplicationServiceTest extends AbstractApplicationServiceTest {
             Mockito.
                     doAnswer(inv -> {
                         assertTransactionIsPropagated();
-                        return List.of(PEPERONI_PIZZA);
+                        return List.of(ProductDomainFixtures.PEPERONI_PIZZA);
                     })
                     .when(productRepository)
                     .findAll();

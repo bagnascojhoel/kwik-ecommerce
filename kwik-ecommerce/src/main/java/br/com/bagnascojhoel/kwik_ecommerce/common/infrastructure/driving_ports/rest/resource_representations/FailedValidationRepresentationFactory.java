@@ -1,5 +1,6 @@
 package br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.driving_ports.rest.resource_representations;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.NonNull;
@@ -13,6 +14,17 @@ import java.util.stream.Collectors;
 
 @Component
 public final class FailedValidationRepresentationFactory {
+
+    public List<FailedValidationRepresentation> createAll(
+            @NonNull final InvalidFormatException invalidFormatException
+    ) {
+        var fieldPath = invalidFormatException.getPath();
+        return Collections.singletonList(FailedValidationRepresentation.builder()
+                .field(fieldPath.get(fieldPath.size() - 1).getFieldName())
+                .reason("Value '{}' is not valid".replace("{}", invalidFormatException.getValue().toString()))
+                .build());
+    }
+
     public List<FailedValidationRepresentation> createAll(
             @NonNull final MethodArgumentNotValidException methodArgumentNotValidException
     ) {

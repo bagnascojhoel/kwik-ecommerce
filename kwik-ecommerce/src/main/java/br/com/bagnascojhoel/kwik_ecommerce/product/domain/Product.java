@@ -1,31 +1,29 @@
 package br.com.bagnascojhoel.kwik_ecommerce.product.domain;
 
+import br.com.bagnascojhoel.kwik_ecommerce.common.domain.Validatable;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 import static br.com.bagnascojhoel.kwik_ecommerce.product.domain.ProductState.*;
 import static java.util.Optional.ofNullable;
 
-@Data
-@RequiredArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Builder(toBuilder = true)
-public final class Product {
+public final class Product implements Validatable {
 
     @NonNull
-    @Builder.Default
-    private final ProductId id = ProductId.generate();
+    private final ProductId id;
 
-    @Builder.Default
-    private final ProductState state = HIDDEN;
+    @NonNull
+    private final ProductState state;
 
     @NotBlank(message = "product-name-not-blank")
     private final String name;
@@ -39,6 +37,24 @@ public final class Product {
     private final BigDecimal priceInBrl;
 
     private final String imageUrl;
+
+    private Product(
+            ProductId id,
+            ProductState state,
+            String name,
+            @Nullable String description,
+            BigDecimal priceInBrl,
+            String imageUrl
+    ) {
+        this.id = id == null ? ProductId.generate() : id;
+        this.state = state == null ? HIDDEN : state;
+        this.name = name;
+        this.description = description;
+        this.priceInBrl = priceInBrl;
+        this.imageUrl = imageUrl;
+
+        validate();
+    }
 
     public boolean canBeShownToCustomer() {
         return SHOWN.equals(this.state);

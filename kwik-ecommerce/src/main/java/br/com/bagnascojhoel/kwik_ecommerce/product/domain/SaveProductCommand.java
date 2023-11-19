@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Nullable
 public class SaveProductCommand {
     private final ProductId id;
-
+    
     private final String name;
 
     private final String description;

@@ -31,19 +31,7 @@ public class JdbcProductRepository implements ProductRepository {
     public Optional<Product> findById(@NonNull final ProductId productId) {
         try {
             return Optional.ofNullable(namedParameterJdbcTemplate.queryForObject(
-<<<<<<< HEAD
-                    ProductSql.FIND_BY_STATE,
-=======
-<<<<<<< HEAD
-                    ProductSql.FIND_BY_STATE,
-=======
-<<<<<<< HEAD
-                    ProductSql.FIND_BY_STATE,
-=======
                     ProductSql.FIND_BY_ID,
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
                     parameterSource.onlyId(productId),
                     productRowMapper
             ));
@@ -51,19 +39,7 @@ public class JdbcProductRepository implements ProductRepository {
             return Optional.empty();
         }
     }
-<<<<<<< HEAD
-    
-=======
-<<<<<<< HEAD
-    
-=======
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
     @Override
     public List<Product> findAllByState(@NonNull final ProductState productState) {
         return namedParameterJdbcTemplate.query(

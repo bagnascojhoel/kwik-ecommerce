@@ -2,17 +2,21 @@ package br.com.bagnascojhoel.kwik_ecommerce.product.infrastructure.driving_ports
 
 import br.com.bagnascojhoel.kwik_ecommerce.common.domain.AbstractResourceNotFoundException;
 import br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.driving_ports.rest.resource_representations.ErrorRepresentation;
+import br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.driving_ports.rest.resource_representations.FailedValidationRepresentation;
 import br.com.bagnascojhoel.kwik_ecommerce.common.infrastructure.driving_ports.rest.resource_representations.FailedValidationRepresentationFactory;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestControllerAdvice
@@ -57,25 +61,36 @@ public class RestExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorRepresentation handleHttpMessageNotReadable(
+            final HttpServletRequest httpServletRequest,
+            final HttpMessageNotReadableException httpMessageNotReadableException
+    ) {
+        Throwable cause = httpMessageNotReadableException.getMostSpecificCause();
+        List<FailedValidationRepresentation> failedValidations = switch (cause.getClass().getSimpleName()) {
+            case "InvalidFormatException" ->
+                    failedValidationRepresentationFactory.createAll((InvalidFormatException) cause);
+            default -> {
+                log.error("http message not readable for unknown cause", httpMessageNotReadableException);
+                yield null;
+            }
+        };
+
+        return ErrorRepresentation.builder()
+                .typeUri("/errors/client-errors/bad-requests/failed-validation")
+                .title("Some validation failed")
+                .failedValidations(failedValidations)
+                .build();
+    }
+
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorRepresentation handleAny(
             final HttpServletRequest httpServletRequest,
             final Throwable throwable
     ) {
-<<<<<<< HEAD
-        var message = "internal server error, endpoint={}".replace("{}", httpServletRequest.getRequestURI());
-=======
-<<<<<<< HEAD
-        var message = "internal server error, endpoint={}".replace("{}", httpServletRequest.getRequestURI());
-=======
-<<<<<<< HEAD
-        var message = "internal server error, endpoint={}".replace("{}", httpServletRequest.getRequestURI());
-=======
         var message = "internal server error, endpoint={}".replace("{}", httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURI());
->>>>>>> 6b0331d (feat(api): create products CRUD)
->>>>>>> 47b2bca (feat(api): create products CRUD)
->>>>>>> 1b40fd0 (feat(api): create products CRUD)
         log.error(message, throwable);
 
         return ErrorRepresentation.builder()

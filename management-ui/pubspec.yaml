@@ -17,6 +17,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  get: ^4.6.6
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,606 @@
+{
+  "uuid": "1d21c2d4-96c1-4e77-aa7c-3b6451f7a7cc",
+  "lastMigration": 29,
+  "name": "Kwik-Ecommerce API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "6d16b65c-7b74-429c-9acb-26d3f098d5f2",
+      "type": "http",
+      "documentation": "Get all products",
+      "method": "get",
+      "endpoint": "products",
+      "responses": [
+        {
+          "uuid": "66563e79-57d1-46d4-9523-6940e13b627c",
+          "body": "{\n  \"products\": [\n    {\n      \"productId\": \"fa3719da-a186-4da5-a2f6-57dcf53e1b01\",\n      \"productState\": {\n        \"code\": \"product-state-hidden\",\n        \"defaultMessage\": \"HIDDEN\"\n      },\n      \"productName\": \"Large Pizza\",\n      \"productDescription\": \"The best pizza in the neighborhood!\",\n      \"priceInBrl\": 99.9,\n      \"imageUrl\": \"https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1212512019.jpg\"\n    },\n    {\n      \"productId\": \"b92e0f5c-64d9-4a8a-81d1-23c4a7c3b9f2\",\n      \"productState\": {\n        \"code\": \"product-state-shown\",\n        \"defaultMessage\": \"SHOWN\"\n      },\n      \"productName\": \"Classic Burger\",\n      \"productDescription\": \"A timeless favorite with a juicy patty and fresh toppings.\",\n      \"priceInBrl\": 49.99,\n      \"imageUrl\": \"https://example.com/classic-burger.jpg\"\n    },\n    {\n      \"productId\": \"c8d3b6e1-9e15-4d35-aeec-4d03613b2c15\",\n      \"productState\": {\n        \"code\": \"product-state-shown\",\n        \"defaultMessage\": \"SHOWN\"\n      },\n      \"productName\": \"Iced Cappuccino\",\n      \"productDescription\": \"Stay cool with our refreshing iced cappuccino, perfect for any time of the day.\",\n      \"priceInBrl\": 7.99,\n      \"imageUrl\": \"https://example.com/iced-cappuccino.jpg\"\n    },\n    {\n      \"productId\": \"1f3c78c1-b901-45cc-8894-bd98c9b66a6d\",\n      \"productState\": {\n        \"code\": \"product-state-shown\",\n        \"defaultMessage\": \"SHOWN\"\n      },\n      \"productName\": \"Strawberry Cheesecake\",\n      \"productDescription\": \"Indulge your sweet tooth with the irresistible taste of strawberry cheesecake.\",\n      \"priceInBrl\": 39.99,\n      \"imageUrl\": \"https://example.com/strawberry-cheesecake.jpg\"\n    }\n  ]\n}",
+          "latency": 5000,
+          "statusCode": 200,
+          "label": "Successful response",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "2e0329c1-2994-405e-9beb-eabd00f104ff",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "2b9746ad-6e56-406d-b678-81f83eefc3f3",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "70d8c511-82d7-4a72-b91c-dbad01bb60ab",
+      "type": "http",
+      "documentation": "Create a new product",
+      "method": "post",
+      "endpoint": "products",
+      "responses": [
+        {
+          "uuid": "c83d563b-b6d4-4e64-aa2c-7f93d0288140",
+          "body": "",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "Product created successfully",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "74c33cb3-a6a2-48ce-864d-b26de54883e4",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "9ef717ba-b9a1-4b99-9ef9-584beedaabd8",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "8b405e62-730a-46d0-a6fa-72e36d3f8caf",
+      "type": "http",
+      "documentation": "Get product by ID",
+      "method": "get",
+      "endpoint": "products/:productId",
+      "responses": [
+        {
+          "uuid": "3ec34c4f-3ba5-410e-98b4-62f7b7c1e41f",
+          "body": "{\n  \"productId\": \"fa3719da-a186-4da5-a2f6-57dcf53e1b01\",\n  \"productState\": {\n    \"code\": \"product-state-hidden\",\n    \"defaultMessage\": \"HIDDEN\"\n  },\n  \"productName\": \"Large Pizza\",\n  \"productDescription\": \"The best pizza in the neighborhood!\",\n  \"priceInBrl\": 99.9,\n  \"imageUrl\": \"https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1212512019.jpg\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successful response",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "85ce4775-35d8-490a-a5a5-289bc08cbc54",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "55c831de-3daf-4589-97c4-d3a00ac5b5e4",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a1cc3e16-7d95-401b-8f25-554dff8ce751",
+      "type": "http",
+      "documentation": "Archive a product",
+      "method": "post",
+      "endpoint": "products/:productId/archive",
+      "responses": [
+        {
+          "uuid": "449c57f5-8dbf-4a62-8072-dbdafa135a08",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Product archived successfully",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "b68b042a-5f82-476a-a557-b8a138f472c9",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "8252e796-9ab7-4abc-a556-d7b8322d60a6",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "d465ac93-0b53-4a0b-aaf2-97eb93619cce",
+      "type": "http",
+      "documentation": "Hide a product",
+      "method": "post",
+      "endpoint": "products/:productId/hide",
+      "responses": [
+        {
+          "uuid": "5b7fbbac-d94b-4b24-8ca4-396db0ff777c",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Product hidden successfully",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "562f2bfd-77db-44d2-8de2-ed0ce5bcc17e",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "c0bc19c8-c3fb-4c51-916d-b292bd0fdd0d",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ea6ddcb1-5150-476a-9620-a93d103e50a8",
+      "type": "http",
+      "documentation": "Show a product",
+      "method": "post",
+      "endpoint": "products/:productId/show",
+      "responses": [
+        {
+          "uuid": "51fac12a-06ad-41f6-88e1-00e7730278ea",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Product shown successfully",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "795091f4-2609-4890-98ae-73cd4975b63e",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Resource not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "67f417b3-73fc-4234-bd5f-177217b64f8d",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "9f62597c-3b27-40f3-a37c-e1024dcf0416",
+      "type": "http",
+      "documentation": "Get products for customers",
+      "method": "get",
+      "endpoint": "customer/products",
+      "responses": [
+        {
+          "uuid": "a48beb16-7691-4e63-be17-1c16e426499f",
+          "body": "{\n  \"products\": [\n    {\n      \"productId\": \"fa3719da-a186-4da5-a2f6-57dcf53e1b01\",\n      \"productState\": {\n        \"code\": \"product-state-shown\",\n        \"defaultMessage\": \"SHOWN\"\n      },\n      \"productName\": \"Large Pizza\",\n      \"productDescription\": \"The best pizza in the neighborhood!\",\n      \"priceInBrl\": 99.9,\n      \"imageUrl\": \"https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1212512019.jpg\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Successful response",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "d881f71f-87f7-4807-bc13-237a94d40b2b",
+          "body": "{\n  \"typeUri\": \"\",\n  \"title\": \"\",\n  \"failedValidations\": [\n    {\n      \"field\": \"\",\n      \"reason\": \"\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal Server Error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "6d16b65c-7b74-429c-9acb-26d3f098d5f2"
+    },
+    {
+      "type": "route",
+      "uuid": "70d8c511-82d7-4a72-b91c-dbad01bb60ab"
+    },
+    {
+      "type": "route",
+      "uuid": "8b405e62-730a-46d0-a6fa-72e36d3f8caf"
+    },
+    {
+      "type": "route",
+      "uuid": "a1cc3e16-7d95-401b-8f25-554dff8ce751"
+    },
+    {
+      "type": "route",
+      "uuid": "d465ac93-0b53-4a0b-aaf2-97eb93619cce"
+    },
+    {
+      "type": "route",
+      "uuid": "ea6ddcb1-5150-476a-9620-a93d103e50a8"
+    },
+    {
+      "type": "route",
+      "uuid": "9f62597c-3b27-40f3-a37c-e1024dcf0416"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

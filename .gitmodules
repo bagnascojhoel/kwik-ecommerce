@@ -1,3 +1,7 @@
 [submodule "kwik-ecommerce-ui"]
 	path = kwik-ecommerce-ui
 	url = git@github.com:bagnascojhoel/kwik-ecommerce-ui.git
+
+[submodule "kwik-ecommerce-api"]
+	path = kwik-ecommerce-api
+	url = git@github.com:bagnascojhoel/kwik-ecommerce-api.git

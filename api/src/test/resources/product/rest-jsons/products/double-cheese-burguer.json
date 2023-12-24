@@ -1,9 +1,0 @@
-{
-  "productName": "Double-Chesse Burguer",
-  "productDescription": "The best hamburguer you'll ever eat!",
-  "productState": {
-    "code": "hidden"
-  },
-  "imageUrl": "https://hamburguer-url.com",
-  "priceInBrl": "29.99"
-}

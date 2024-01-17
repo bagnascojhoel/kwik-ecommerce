@@ -8,3 +8,8 @@ submodule will not be there. You will need to do the checkout with `--recurse-su
 Another way of handling this issues with submodules is to tell git to always use 
 `--recurse-submodules`. You can do that with the config `git config submodule.recurse true`. This
 will work for every command that accepts a `--recurse-submodules`, except the clone command.
+
+
+---
+
+[ ] Fix building and local publishing of @kwik-ecommerce/common

@@ -1,0 +1,233 @@
+{
+  "uuid": "e32ae27e-0f04-4a12-b6b3-002981482edb",
+  "lastMigration": 32,
+  "name": "Kwik API",
+  "endpointPrefix": "",
+  "latency": 100,
+  "port": 3001,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "a5d94993-8b93-48eb-a362-171b88a79570",
+      "name": "Manager",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "ea4e05fc-46c9-4752-b86c-af004c388024"
+        },
+        {
+          "type": "route",
+          "uuid": "1769a62e-9b77-4dec-b31f-a34a3559ab7e"
+        },
+        {
+          "type": "route",
+          "uuid": "893f9c3e-7ba3-4eb8-848d-d46f2553ee6a"
+        },
+        {
+          "type": "route",
+          "uuid": "b80e3fbe-4f73-492a-a146-f49c0723e199"
+        }
+      ]
+    },
+    {
+      "uuid": "c870e6e5-891f-4198-aa36-b2ceb522640f",
+      "name": "Customer",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "4b34f026-fde5-4c62-86c7-d3cb96025877"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "1769a62e-9b77-4dec-b31f-a34a3559ab7e",
+      "type": "http",
+      "documentation": "Create product",
+      "method": "post",
+      "endpoint": "products",
+      "responses": [
+        {
+          "uuid": "1de6f868-499e-464f-b396-7188dfcb0cdd",
+          "body": "{\n  \"productName\": \"Example Product\",\n  \"productDescription\": \"This is a product description.\",\n  \"priceInBrl\": 19.99,\n  \"imageUrl\": \"asdkfjaksdjf\"\n\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "893f9c3e-7ba3-4eb8-848d-d46f2553ee6a",
+      "type": "http",
+      "documentation": "Get products",
+      "method": "get",
+      "endpoint": "products",
+      "responses": [
+        {
+          "uuid": "9a30d1b1-9713-4038-89c7-976368914f1d",
+          "body": "{\n  \"products\": [\n    {\n      \"productId\": \"d235e669-be29-4b97-b434-8ea9a5876382\",\n      \"productState\": {\n        \"code\": \"SHOWN\",\n        \"label\": \"Shown\"\n      },\n      \"productName\": \"Example Product\",\n      \"productDescription\": \"This is a product description.\",\n      \"priceInBrl\": 19.99,\n      \"imageUrl\": \"asdkfjaksdjf\"\n    },\n    {\n      \"productId\": \"a1b2c3d4-e5f6-4g7h-8i9j-0k1l2m3n4o5\",\n      \"productState\": {\n        \"code\": \"HIDDEN\",\n        \"label\": \"Hidden\"\n      },\n      \"productName\": \"Hidden Product\",\n      \"productDescription\": \"This is the description for the first sample item.\",\n      \"priceInBrl\": 29.99,\n      \"imageUrl\": \"sample_image_url_1\"\n    },\n    {\n      \"productId\": \"x1y2z3w4-v5u6-6r7s-8t9u-0v1w2x3y4z5\",\n      \"productState\": {\n        \"code\": \"ARCHIVED\",\n        \"label\": \"Archived\"\n      },\n      \"productName\": \"Archived Product\",\n      \"productDescription\": \"A detailed description of product XYZ.\",\n      \"priceInBrl\": 49.99,\n      \"imageUrl\": \"xyz_product_image_url\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b80e3fbe-4f73-492a-a146-f49c0723e199",
+      "type": "http",
+      "documentation": "Get product by ID",
+      "method": "get",
+      "endpoint": "products/:productId",
+      "responses": [
+        {
+          "uuid": "35686e13-4704-4c00-ad2f-48a84b62dd2a",
+          "body": "{\n  \"productId\": \"d235e669-be29-4b97-b434-8ea9a5876382\",\n  \"productState\": {\n    \"code\": \"SHOWN\",\n    \"label\": \"Shown\"\n  },\n  \"productName\": \"Example Product\",\n  \"productDescription\": \"This is a product description.\",\n  \"priceInBrl\": 19.99,\n  \"imageUrl\": \"asdkfjaksdjf\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "ea4e05fc-46c9-4752-b86c-af004c388024",
+      "type": "http",
+      "documentation": "Set product state",
+      "method": "put",
+      "endpoint": "products/:productId/state",
+      "responses": [
+        {
+          "uuid": "e502c542-999b-41c1-b832-7ba0d7ec9935",
+          "body": "{\n  \"productId\": \"d235e669-be29-4b97-b434-8ea9a5876382\",\n  \"productState\": {\n    \"code\": \"SHOWN\",\n    \"label\": \"Shown\"\n  },\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4b34f026-fde5-4c62-86c7-d3cb96025877",
+      "type": "http",
+      "documentation": "Get products for customer",
+      "method": "get",
+      "endpoint": "customer/products",
+      "responses": [
+        {
+          "uuid": "d64792c5-ad46-44aa-93f8-dea93be75fe9",
+          "body": "{\n  \"products\": [\n    {\n      \"productId\": \"d235e669-be29-4b97-b434-8ea9a5876382\",\n      \"productName\": \"Example Product\",\n      \"productDescription\": \"This is a product description.\",\n      \"priceInBrl\": 19.99,\n      \"imageUrl\": \"asdkfjaksdjf\"\n    },\n    {\n      \"productId\": \"a1b2c3d4-e5f6-4g7h-8i9j-0k1l2m3n4o5\",\n      \"productName\": \"Hidden Product\",\n      \"productDescription\": \"This is the description for the first sample item.\",\n      \"priceInBrl\": 29.99,\n      \"imageUrl\": \"sample_image_url_1\"\n    },\n    {\n      \"productId\": \"x1y2z3w4-v5u6-6r7s-8t9u-0v1w2x3y4z5\",\n      \"productName\": \"Archived Product\",\n      \"productDescription\": \"A detailed description of product XYZ.\",\n      \"priceInBrl\": 49.99,\n      \"imageUrl\": \"xyz_product_image_url\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "a5d94993-8b93-48eb-a362-171b88a79570"
+    },
+    {
+      "type": "folder",
+      "uuid": "c870e6e5-891f-4198-aa36-b2ceb522640f"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

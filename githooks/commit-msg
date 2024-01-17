@@ -4,7 +4,7 @@
 types="build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test"
 
 # Create a regex for a conventional commit.
-conventional_commit_regex="^(${types})(\((${scopes})\))!?: .+$"
+conventional_commit_regex="^(${types})!?: .+$"
 
 # Get the commit message from the provided file path.
 commit_message=$(cat "$1")

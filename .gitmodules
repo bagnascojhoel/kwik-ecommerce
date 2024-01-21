@@ -7,3 +7,6 @@
 	path = kwik-ecommerce-api
 	url = git@github.com:bagnascojhoel/kwik-ecommerce-api.git
 	branch = main
+[submodule "kwik-chat-api"]
+	path = kwik-chat-api
+	url = git@github.com:bagnascojhoel/kwik-chat-api.git

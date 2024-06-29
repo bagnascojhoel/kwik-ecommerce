@@ -3,3 +3,6 @@
 ./rules-api
 
 .idea
+
+build
+.gradle

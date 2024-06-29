@@ -1,0 +1,39 @@
+server:
+  port: 9000
+
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**, /api/meta/docs/swagger-ui/**
+  liquibase:
+    enabled: true
+    change-log: classpath:migrations/changelog.xml
+    default-schema: common
+  datasource:
+    # TODO This won't work once I have more modules. Need to look into spring modulith.
+    url: jdbc:postgresql:kwik_ecommerce?currentSchema=product
+    username: kwik
+    password: kwik
+    driver-class-name: org.postgresql.Driver
+
+springdoc:
+  api-docs:
+    enabled: false
+    path: /api/meta/docs/open-api
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  show-actuator: true
+  swagger-ui:
+    enabled: false
+    filter: true
+    path: /api/meta/docs/swagger-ui
+    disable-swagger-default-url: true
+    try-it-out-enabled: true
+  packages-to-scan: br.com.bagnascojhoel.kwik_ecommerce
+
+kwik:
+  logging:
+    whitelisted-headers:
+      - content-type

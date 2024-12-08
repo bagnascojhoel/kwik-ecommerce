@@ -10,3 +10,6 @@
 [submodule "kwik-chat-api"]
 	path = kwik-chat-api
 	url = git@github.com:bagnascojhoel/kwik-chat-api.git
+[submodule "kwik-ecommerce-quarkus"]
+	path = kwik-ecommerce-quarkus
+	url = git@github.com:bagnascojhoel/kwik-ecommerce-quarkus.git

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+if [ -x "./gradlew" ]; then
+  ./gradlew test || exit $?
+fi
